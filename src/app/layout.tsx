@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ThemeProvider } from "./providers";
 import { primary_font } from "@/lib/fonts";
 import "./globals.css";
 
@@ -16,9 +17,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" suppressHydrationWarning>
-      <head/>
+      <head />
       <body className={cn("min-h-screen bg-background antialiased", primary_font.className)}>
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
