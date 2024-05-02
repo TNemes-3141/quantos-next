@@ -36,6 +36,7 @@ export default function Home() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
+    <p>Hello!</p>
     </main>
   );
 }

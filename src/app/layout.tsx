@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "./providers";
 import { primary_font } from "@/lib/fonts";
-import "./globals.css";
+import "@/styles/globals.css"
 
 import { cn } from "@/lib/utils";
 
@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="de" suppressHydrationWarning>
       <head />
-      <body className={cn("min-h-screen dark:bg-zinc-950 bg-white antialiased", primary_font.className)}>
+      <body className={cn("min-h-screen bg-background antialiased", primary_font.className)}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
