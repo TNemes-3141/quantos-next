@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={cn("min-h-screen bg-background antialiased", primary_font.className)}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="system"
         >
           {children}
         </ThemeProvider>

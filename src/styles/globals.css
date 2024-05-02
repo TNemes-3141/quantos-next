@@ -41,23 +41,23 @@
     --foreground: 214 31% 91%;
 
     --muted: 233 31% 11%;
-    --muted-foreground: 244 16% 35%;
+    --muted-foreground: 244 16% 45%;
 
-    --card: 229 30% 14%;
+    --card: 229 40% 10%;
     --card-foreground: 214 31% 91%;
 
     --popover: 229 30% 14%;
     --popover-foreground: 214 31% 91%;
 
-    --border: 214 31% 91%;
+    --border: 229 30% 25%;
 
     --input: 214 31% 91%;
 
     --primary: 196 67% 38%;
     --primary-foreground: 214 66% 94%;
 
-    --secondary: 309 30% 60%;
-    --secondary-foreground: 309 66% 94%;
+    --secondary: 196 89% 17%;
+    --secondary-foreground: 214 66% 84%;
 
     --accent: 229 30% 25%;
     --accent-foreground: 214 31% 91%;
