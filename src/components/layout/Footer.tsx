@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Separator } from "../shadcn-ui/separator";
 import LanguageSelector from "../LanugageSelector";
 
+import { ValidLocale, getTranslator } from "@/i18n";
+
 export default function Footer() {
     return (
         <div>

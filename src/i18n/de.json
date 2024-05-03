@@ -1,4 +1,8 @@
 {
+    "footer": {
+        "copyrightNote": "Made with ❤️ mit Unterstützung des",
+        "languageLabel": "Sprache:"
+    },
     "home": {
         "authSignUpDescription": "Neu hier?",
         "authSignUpButtonLabel": "Registrieren",
