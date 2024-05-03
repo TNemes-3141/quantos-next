@@ -5,9 +5,8 @@ import LoginOption from "@/components/LoginOption";
 import { Card } from "@/components/shadcn-ui/card";
 
 export default function Home() {
-
   return (
-    <main className="flex h-dvh flex-col items-center justify-center p-24 w-full space-y-12">
+    <main className="flex flex-col items-center justify-center p-24 w-full space-y-12">
       <AnimatedLogo size={300} />
       <Card className="max-w-lg w-full space-y-12 p-10">
         <LoginOption optionText="Neu hier?" buttonText="Registrieren" target="/" />
