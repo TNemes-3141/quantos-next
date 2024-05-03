@@ -1,0 +1,10 @@
+{
+    "home": {
+        "authSignUpDescription": "New here?",
+        "authSignUpButtonLabel": "Sign up",
+        "authLogInDescription": "Already on board?",
+        "authLogInButtonLabel": "Log in",
+        "authGroupAccessDescription": "Part of a classroom or a team?",
+        "authGroupAccessButtonLabel": "Enter access code"
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "home": {
+        "authSignUpDescription": "Neu hier?",
+        "authSignUpButtonLabel": "Registrieren",
+        "authLogInDescription": "Bereits an Bord?",
+        "authLogInButtonLabel": "Einloggen",
+        "authGroupAccessDescription": "Teil einer Klasse oder eines Teams?",
+        "authGroupAccessButtonLabel": "Zugangscode eingeben"
+    }
+}

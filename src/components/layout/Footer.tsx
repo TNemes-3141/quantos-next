@@ -12,7 +12,7 @@ export default function Footer() {
                 <div className="flex flex-col justify-start items-left gap-4">
                     <Link href="https://quantos.online/">
                         <Image
-                            src="/quantos_logo.svg"
+                            src="/assets/quantos_logo.svg"
                             alt="Quantos Logo"
                             width={200}
                             height={40}
