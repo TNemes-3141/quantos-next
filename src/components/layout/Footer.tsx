@@ -4,7 +4,9 @@ import Link from "next/link";
 import { Separator } from "../shadcn-ui/separator";
 import LanguageSelector from "../LanugageSelector";
 
-export default function Footer() {
+import { LocalizedProps } from "@/i18n";
+
+export default function Footer(params: LocalizedProps) {    
     return (
         <div>
             <Separator />
@@ -18,12 +20,12 @@ export default function Footer() {
                             height={40}
                         />
                     </Link>
-                    <p className="text-muted-foreground">© 2024 Tamas Nemes. Made with ❤️ with support from&nbsp;
+                    <p className="text-muted-foreground">© 2024 Tamas Nemes. <span>{params.translate("footer.copyrightNote")}</span>&nbsp;
                         <Link href="https://www.fz-juelich.de/en/ias/jsc" className="underline">Jülich Supercomputing Centre</Link>
                     </p>
                 </div>
                 <div className="flex justify-center md:justify-end items-center gap-4">
-                    <p>Sprache:</p>
+                    <p>{params.translate("footer.languageLabel")}</p>
                     <LanguageSelector />
                 </div>
             </footer>
