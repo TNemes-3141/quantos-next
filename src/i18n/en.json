@@ -16,6 +16,7 @@
         "logInHint": "Already on board?",
         "emailLabel": "Email address",
         "passwordLabel": "Password",
+        "passwordDescription": "At least 10 characters",
         "passwordConfirmLabel": "Confirm password",
         "showPasswordTooltip": "Show password",
         "hidePasswordTooltip": "Hide password"

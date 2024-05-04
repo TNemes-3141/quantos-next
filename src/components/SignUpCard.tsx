@@ -28,13 +28,12 @@ export default function SignUpCard(props: LocalizedProps) {
                     emailLabel={props.translate("signup.emailLabel")}
                     passwordLabel={props.translate("signup.passwordLabel")}
                     passwordConfirmLabel={props.translate("signup.passwordConfirmLabel")}
+                    passwordDescription={props.translate("signup.passwordDescription")}
                     showPasswordTooltip={props.translate("signup.showPasswordTooltip")}
                     hidePasswordTooltip={props.translate("signup.hidePasswordTooltip")}
+                    submitLabel={props.translate("home.authSignUpButtonLabel")}
                 />
             </CardContent>
-            <CardFooter className="flex justify-end">
-                <Button>{props.translate("home.authSignUpButtonLabel")}</Button>
-            </CardFooter>
         </Card>
     );
 }

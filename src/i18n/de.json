@@ -16,6 +16,7 @@
         "logInHint": "Bereits an Bord? Hier",
         "emailLabel": "Email-Adresse",
         "passwordLabel": "Passwort",
+        "passwordDescription": "Mindestens 10 Zeichen",
         "passwordConfirmLabel": "Passwort bestätigen",
         "showPasswordTooltip": "Passwort anzeigen",
         "hidePasswordTooltip": "Passwort verstecken"
