@@ -8,7 +8,7 @@ export default function Home({
 }) {
   
   return (
-    <main className="flex flex-col items-center justify-center p-24 w-full space-y-12">
+    <main className="flex flex-col items-center justify-center p-12 sm:p-24 w-full space-y-12">
       <AnimatedLogo size={300} />
       <AuthOptions locale={params.locale}/>
     </main>

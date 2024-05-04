@@ -10,7 +10,7 @@ export default function Footer() {
     return (
         <div>
             <Separator />
-            <footer className="grid max-sm:grid-rows-2 md:grid-cols-2 px-24 py-12 gap-6">
+            <footer className="grid max-sm:grid-rows-2 md:grid-cols-2 px-12 sm:px-24 py-12 gap-4">
                 <div className="flex flex-col justify-start items-left gap-4">
                     <Link href="https://quantos.online/">
                         <Image
