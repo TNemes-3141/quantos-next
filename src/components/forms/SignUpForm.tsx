@@ -16,6 +16,7 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/shadcn-ui/form"
+import { showPasswordAtomZero, showPasswordAtomOne } from "@/stores/showPasswordStore";
 
 type SignUpFormProps = {
     emailLabel: string,
@@ -80,7 +81,7 @@ export default function SignUpForm(props: SignUpFormProps) {
                             showPasswordTooltip={props.showPasswordTooltip}
                             hidePasswordTooltip={props.hidePasswordTooltip}
                             field={field}
-                            index={0}
+                            atom={showPasswordAtomZero}
                         />
                     )}
                 />
@@ -94,7 +95,7 @@ export default function SignUpForm(props: SignUpFormProps) {
                             showPasswordTooltip={props.showPasswordTooltip}
                             hidePasswordTooltip={props.hidePasswordTooltip}
                             field={field}
-                            index={1}
+                            atom={showPasswordAtomOne}
                         />
                     )}
                 />

@@ -41,6 +41,7 @@ export default function LanguageSelector() {
 
     const redirect = (locale: ValidLocale) => {
         const newPath = transformPathname(pathname, locale);
+        console.log("New path: " + newPath);
         if (!newPath) {
             return;
         }

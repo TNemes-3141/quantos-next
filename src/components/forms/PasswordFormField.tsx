@@ -1,6 +1,6 @@
 "use client";
 
-import { atom, useAtom } from "jotai"
+import { useAtom, WritableAtom } from "jotai"
 import { Eye, EyeOff } from "lucide-react"
 
 import {
@@ -12,7 +12,6 @@ import {
 } from "@/components/shadcn-ui/form"
 import { Input } from "@/components/shadcn-ui/input"
 import { Button } from "@/components/shadcn-ui/button"
-import { createBooleanElementAtom } from "@/stores/showPasswordStore";
 
 type PasswordFormFieldProps = {
     label: string,
@@ -20,11 +19,11 @@ type PasswordFormFieldProps = {
     showPasswordTooltip: string,
     hidePasswordTooltip: string,
     field: any,
-    index: number
+    atom: WritableAtom<boolean, [update: boolean], void>
 }
 
-export default function PasswordFormField({ field, label, description, showPasswordTooltip, hidePasswordTooltip, index }: PasswordFormFieldProps) {
-    const [showPassword, setShowPassword] = useAtom(createBooleanElementAtom(index));
+export default function PasswordFormField({ field, label, description, showPasswordTooltip, hidePasswordTooltip, atom }: PasswordFormFieldProps) {
+    const [showPassword, setShowPassword] = useAtom(atom);
 
     return (
         <FormItem>

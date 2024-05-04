@@ -2,17 +2,22 @@ import { atom } from "jotai"
 
 const showPasswordAtom = atom([false, false]);
 
-export function createBooleanElementAtom(index: number) {
-    const booleanElementAtom = atom(
-        (get) => get(showPasswordAtom)[index] || false,
+export const showPasswordAtomZero = atom(
+    (get) => get(showPasswordAtom)[0] || false,
 
-        (get, set, update: boolean) => {
-            const arr = [...get(showPasswordAtom)];
-            arr[index] = update;
-            set(showPasswordAtom, arr);
-        }
-    );
+    (get, set, update: boolean) => {
+        const arr = [...get(showPasswordAtom)];
+        arr[0] = update;
+        set(showPasswordAtom, arr);
+    }
+);
+export const showPasswordAtomOne = atom(
+    (get) => get(showPasswordAtom)[1] || false,
 
-    return booleanElementAtom;
-}
+    (get, set, update: boolean) => {
+        const arr = [...get(showPasswordAtom)];
+        arr[1] = update;
+        set(showPasswordAtom, arr);
+    }
+);
 
