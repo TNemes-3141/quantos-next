@@ -10,5 +10,14 @@
         "authLogInButtonLabel": "Log in",
         "authGroupAccessDescription": "Part of a classroom or a team?",
         "authGroupAccessButtonLabel": "Enter access code"
+    },
+    "signup": {
+        "title": "Welcome!",
+        "logInHint": "Already on board?",
+        "emailLabel": "Email address",
+        "passwordLabel": "Password",
+        "passwordConfirmLabel": "Confirm password",
+        "showPasswordTooltip": "Show password",
+        "hidePasswordTooltip": "Hide password"
     }
 }

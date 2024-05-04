@@ -10,5 +10,14 @@
         "authLogInButtonLabel": "Einloggen",
         "authGroupAccessDescription": "Teil einer Klasse oder eines Teams?",
         "authGroupAccessButtonLabel": "Zugangscode eingeben"
+    },
+    "signup": {
+        "title": "Willkommen!",
+        "logInHint": "Bereits an Bord? Hier",
+        "emailLabel": "Email-Adresse",
+        "passwordLabel": "Passwort",
+        "passwordConfirmLabel": "Passwort bestätigen",
+        "showPasswordTooltip": "Passwort anzeigen",
+        "hidePasswordTooltip": "Passwort verstecken"
     }
 }

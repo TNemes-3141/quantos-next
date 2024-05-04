@@ -10,7 +10,7 @@ export default async function AuthOptions(props: LocalizedProps) {
       <LoginOption
         optionText={props.translate("home.authSignUpDescription")}
         buttonText={props.translate("home.authSignUpButtonLabel")}
-        target="/home"
+        target="/signup"
       />
       <LoginOption
         optionText={props.translate("home.authLogInDescription")}
