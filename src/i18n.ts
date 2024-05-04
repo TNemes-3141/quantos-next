@@ -1,6 +1,9 @@
 export const defaultLocale = "en";
 export const locales = ["en", "de"] as const;
 export type ValidLocale = typeof locales[number];
+export const ValidLocales = new Set<ValidLocale>(locales);
+export type TranslatorFunction = (key: string, params?: { [key: string]: string | number }) => string;
+export type LocalizedProps = { translate: TranslatorFunction };
 
 type PathnameLocale = {
     pathname: string;
