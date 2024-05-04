@@ -10,17 +10,16 @@ export default async function Home({
 }: {
   params: { locale: string; };
 }) {
-  const translate = await getTranslator(
-    `${params.locale}` as ValidLocale // our middleware ensures this is valid
-  );
+  const validLocale = params.locale as ValidLocale
+  const translate = await getTranslator(validLocale);
 
   return (
     <>
       <main className="flex flex-col items-center justify-center p-12 sm:p-24 w-full space-y-12">
         <AnimatedLogo size={300} />
-        <AuthOptions translate={translate} />
+        <AuthOptions locale={validLocale} translate={translate} />
       </main>
-      <Footer translate={translate}/>
+      <Footer locale={validLocale} translate={translate}/>
     </>
   );
 }
