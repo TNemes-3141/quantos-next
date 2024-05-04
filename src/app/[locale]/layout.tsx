@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "./providers";
+import { Providers } from "./providers";
 import { primary_font } from "@/lib/fonts";
 import "@/styles/globals.css"
 
@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="de" suppressHydrationWarning>
       <head />
       <body className={cn("flex flex-col min-h-screen bg-background antialiased", primary_font.className)}>
-        <ThemeProvider
+        <Providers
           attribute="class"
           defaultTheme="system"
         >
@@ -29,7 +29,7 @@ export default function RootLayout({
             {children}
             <Footer />
           </div>
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
