@@ -25,6 +25,7 @@ export default function GroupAccessCard(props: LocalizedProps) {
             <CardContent>
                 <GroupAccessForm
                     accessCodeLabel={props.translate("auth.accessCodeLabel")}
+                    submitLabel={props.translate("auth.groupaccess.enterButtonLabel")}
                 />
             </CardContent>
             <CardFooter className="flex flex-col gap-4 items-start">

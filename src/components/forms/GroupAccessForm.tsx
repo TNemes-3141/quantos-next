@@ -25,6 +25,7 @@ import {
 
 type LogInFormProps = {
     accessCodeLabel: string,
+    submitLabel: string,
 }
 
 const formSchema = z.object({
@@ -75,9 +76,9 @@ export default function GroupAccessForm(props: LogInFormProps) {
                         </FormItem>
                     )}
                 />
-                {/*<div className="flex justify-end mt-15">
+                <div className="flex justify-end mt-15">
                     <Button type="submit">{props.submitLabel}</Button>
-                    </div>*/}
+                </div>
             </form>
         </Form>
     );

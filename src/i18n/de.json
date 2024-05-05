@@ -29,7 +29,8 @@
         "groupaccess": {
             "instructions": "Gib den Code, den du erhalten hast, ein",
             "logInHint": "Bereits ein Konto? Hier",
-            "accountHint": "Du erhältst ein temporäres, anonymes Konto ohne persönliche Informationen. Du kannst es nach Anmeldung jederzeit in ein richtiges Konto umwandeln."
+            "accountHint": "Du erhältst ein temporäres, anonymes Konto ohne persönliche Informationen. Du kannst es nach Anmeldung jederzeit in ein richtiges Konto umwandeln.",
+            "enterButtonLabel": "Eingeben"
         }
     },
     "error": {

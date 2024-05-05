@@ -29,7 +29,8 @@
         "groupaccess": {
             "instructions": "Enter the code that you received",
             "logInHint": "Already have an account?",
-            "accountHint": "You will receive a temporary, anonymous account without personal information. You can convert it into an actual account at any time after registration."
+            "accountHint": "You will receive a temporary, anonymous account without personal information. You can convert it into an actual account at any time after registration.",
+            "enterButtonLabel": "Enter"
         }
     },
     "error": {

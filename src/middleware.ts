@@ -70,10 +70,10 @@ export async function middleware(request: NextRequest) {
         return combinedResponse;
     }
 
-    console.log("Headers:");
+    /*console.log("Headers:");
     authResponse.headers.forEach((value, key) => console.log("Key: " + key + " / Value: " + value));
     console.log("Cookies:");
-    authResponse.cookies.getAll().forEach((cookie) => console.log("Name: " + cookie.name + " / Value: " + cookie.value));
+    authResponse.cookies.getAll().forEach((cookie) => console.log("Name: " + cookie.name + " / Value: " + cookie.value));*/
 
     return authResponse;
 }
