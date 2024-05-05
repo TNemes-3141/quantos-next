@@ -3,23 +3,27 @@
         "copyrightNote": "Made with ❤️ with support from",
         "languageLabel": "Language:"
     },
-    "home": {
-        "authSignUpDescription": "New here?",
-        "authSignUpButtonLabel": "Sign up",
-        "authLogInDescription": "Already on board?",
-        "authLogInButtonLabel": "Log in",
-        "authGroupAccessDescription": "Part of a classroom or a team?",
-        "authGroupAccessButtonLabel": "Enter access code"
-    },
-    "signup": {
-        "title": "Welcome!",
-        "logInHint": "Already on board?",
+    "auth": {
+        "signUpDescription": "New here?",
+        "signUpButtonLabel": "Sign up",
+        "logInDescription": "Already on board?",
+        "logInButtonLabel": "Log in",
+        "groupAccessDescription": "Part of a classroom or a team?",
+        "groupAccessButtonLabel": "Enter access code",
         "emailLabel": "Email address",
         "passwordLabel": "Password",
         "passwordDescription": "At least 10 characters",
         "passwordConfirmLabel": "Confirm password",
         "showPasswordTooltip": "Show password",
-        "hidePasswordTooltip": "Hide password"
+        "hidePasswordTooltip": "Hide password",
+        "signup": {
+            "title": "Welcome!",
+            "logInHint": "Already on board?"
+        },
+        "login": {
+            "title": "Welcome back!",
+            "signUpHint": "New here?"
+        }
     },
     "error": {
         "pageText": "Oops, sorry! Something went wrong...",

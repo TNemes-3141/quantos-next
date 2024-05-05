@@ -3,23 +3,27 @@
         "copyrightNote": "Made with ❤️ mit Unterstützung des",
         "languageLabel": "Sprache:"
     },
-    "home": {
-        "authSignUpDescription": "Neu hier?",
-        "authSignUpButtonLabel": "Registrieren",
-        "authLogInDescription": "Bereits an Bord?",
-        "authLogInButtonLabel": "Einloggen",
-        "authGroupAccessDescription": "Teil einer Klasse oder eines Teams?",
-        "authGroupAccessButtonLabel": "Zugangscode eingeben"
-    },
-    "signup": {
-        "title": "Willkommen!",
-        "logInHint": "Bereits an Bord? Hier",
+    "auth": {
+        "signUpDescription": "Neu hier?",
+        "signUpButtonLabel": "Registrieren",
+        "logInDescription": "Bereits an Bord?",
+        "logInButtonLabel": "Einloggen",
+        "groupAccessDescription": "Teil einer Klasse oder eines Teams?",
+        "groupAccessButtonLabel": "Zugangscode eingeben",
         "emailLabel": "Email-Adresse",
         "passwordLabel": "Passwort",
         "passwordDescription": "Mindestens 10 Zeichen",
         "passwordConfirmLabel": "Passwort bestätigen",
         "showPasswordTooltip": "Passwort anzeigen",
-        "hidePasswordTooltip": "Passwort verstecken"
+        "hidePasswordTooltip": "Passwort verstecken",
+        "signup": {
+            "title": "Willkommen!",
+            "logInHint": "Bereits an Bord? Hier"
+        },
+        "login": {
+            "title": "Willkommen zurück!",
+            "signUpHint": "Noch neu? Hier"
+        }
     },
     "error": {
         "pageText": "Sorry! Etwas ist schiefgelaufen...",
