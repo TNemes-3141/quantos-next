@@ -20,5 +20,9 @@
         "passwordConfirmLabel": "Passwort bestätigen",
         "showPasswordTooltip": "Passwort anzeigen",
         "hidePasswordTooltip": "Passwort verstecken"
+    },
+    "error": {
+        "pageText": "Sorry! Etwas ist schiefgelaufen...",
+        "pageCta": "Zurück zur Startseite"
     }
 }

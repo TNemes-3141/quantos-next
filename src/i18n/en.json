@@ -20,5 +20,9 @@
         "passwordConfirmLabel": "Confirm password",
         "showPasswordTooltip": "Show password",
         "hidePasswordTooltip": "Hide password"
+    },
+    "error": {
+        "pageText": "Oops, sorry! Something went wrong...",
+        "pageCta": "Back to the starting page"
     }
 }

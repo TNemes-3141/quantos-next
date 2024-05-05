@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { signup } from "@/app/[locale]/signup/actions";
 
 import PasswordFormField from "./PasswordFormField";
 import { Input } from "@/components/shadcn-ui/input"
@@ -52,6 +53,9 @@ export default function SignUpForm(props: SignUpFormProps) {
 
     const onSubmit = (values: z.infer<typeof formSchema>) => {
         console.log(values)
+        //TODO: Verify password match
+
+        signup(values.email, values.password);
     }
 
     return (
