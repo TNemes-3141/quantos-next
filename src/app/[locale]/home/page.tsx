@@ -10,7 +10,7 @@ export default async function PrivatePage() {
 
   if (error || !data?.user) {
     console.log("Error: " + error);
-    redirect('/signup') //TODO: Replace with Login route
+    redirect('/auth/login');
   }
 
   return <p>Hello {data.user.email}</p>
