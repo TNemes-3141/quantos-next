@@ -14,6 +14,7 @@
         "passwordLabel": "Password",
         "passwordDescription": "At least 10 characters",
         "passwordConfirmLabel": "Confirm password",
+        "accessCodeLabel": "Access code",
         "showPasswordTooltip": "Show password",
         "hidePasswordTooltip": "Hide password",
         "signup": {
@@ -24,6 +25,11 @@
             "title": "Welcome back!",
             "signUpHint": "New here?",
             "forgotPassword": "Forgot your password?"
+        },
+        "groupaccess": {
+            "instructions": "Enter the code that you received",
+            "logInHint": "Already have an account?",
+            "accountHint": "You will receive a temporary, anonymous account without personal information. You can convert it into an actual account at any time after registration."
         }
     },
     "error": {

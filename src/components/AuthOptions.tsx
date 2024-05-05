@@ -20,7 +20,7 @@ export default async function AuthOptions(props: LocalizedProps) {
       <LoginOption
         optionText={props.translate("auth.groupAccessDescription")}
         buttonText={props.translate("auth.groupAccessButtonLabel")}
-        target="/"
+        target="/auth/group-access"
       />
     </Card>
   );

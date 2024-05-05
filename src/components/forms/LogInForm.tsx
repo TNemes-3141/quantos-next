@@ -19,7 +19,7 @@ import {
 } from "@/components/shadcn-ui/form"
 import { showPasswordAtomTwo } from "@/stores/showPasswordStore";
 
-type SignUpFormProps = {
+type LogInFormProps = {
     emailLabel: string,
     passwordLabel: string,
     showPasswordTooltip: string,
@@ -34,7 +34,7 @@ const formSchema = z.object({
     password: z.string(),
 })
 
-export default function LogInForm(props: SignUpFormProps) {
+export default function LogInForm(props: LogInFormProps) {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {

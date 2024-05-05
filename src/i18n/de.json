@@ -14,6 +14,7 @@
         "passwordLabel": "Passwort",
         "passwordDescription": "Mindestens 10 Zeichen",
         "passwordConfirmLabel": "Passwort bestätigen",
+        "accessCodeLabel": "Zugangscode",
         "showPasswordTooltip": "Passwort anzeigen",
         "hidePasswordTooltip": "Passwort verstecken",
         "signup": {
@@ -24,6 +25,11 @@
             "title": "Willkommen zurück!",
             "signUpHint": "Noch neu? Hier",
             "forgotPassword": "Passwort vergessen?"
+        },
+        "groupaccess": {
+            "instructions": "Gib den Code, den du erhalten hast, ein",
+            "logInHint": "Bereits ein Konto? Hier",
+            "accountHint": "Du erhältst ein temporäres, anonymes Konto ohne persönliche Informationen. Du kannst es nach Anmeldung jederzeit in ein richtiges Konto umwandeln."
         }
     },
     "error": {
