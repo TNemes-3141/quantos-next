@@ -15,7 +15,7 @@ export default async function AuthOptions(props: LocalizedProps) {
       <LoginOption
         optionText={props.translate("auth.logInDescription")}
         buttonText={props.translate("auth.logInButtonLabel")}
-        target="/"
+        target="/auth/login"
       />
       <LoginOption
         optionText={props.translate("auth.groupAccessDescription")}

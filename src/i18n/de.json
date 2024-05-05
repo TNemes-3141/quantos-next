@@ -22,7 +22,8 @@
         },
         "login": {
             "title": "Willkommen zurück!",
-            "signUpHint": "Noch neu? Hier"
+            "signUpHint": "Noch neu? Hier",
+            "forgotPassword": "Passwort vergessen?"
         }
     },
     "error": {
