@@ -1,11 +1,13 @@
 "use client";
 
+import { useRef, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { login } from "@/app/[locale]/auth/login/actions";
+import { submitAccessCode } from "@/app/[locale]/auth/group-access/actions";
+import { DbAccessCodeResponse } from "@/lib/types";
 
-import { Button } from "@/components/shadcn-ui/button"
+import ErrorDialog from "../ErrorDialog";
 import {
     Form,
     FormControl,
@@ -19,19 +21,23 @@ import {
     InputOTP,
     InputOTPGroup,
     InputOTPSeparator,
-    InputOTPSlot,
+    InputOTPSlot
 } from "@/components/shadcn-ui/input-otp"
 
 
 type LogInFormProps = {
     accessCodeLabel: string,
     submitLabel: string,
+    errorTitle: string,
+    errorTextCodeNotFound: string,
+    errorTextCodeNotActive: string,
+    errorTextCodeExpired: string,
+    errorTextUnknownError: string,
+    errorCloseButton: string,
 }
 
 const formSchema = z.object({
-    code: z.string().min(6, {
-        message: "Your access code must be 6 characters.",
-    }),
+    code: z.string().min(6),
 })
 
 export default function GroupAccessForm(props: LogInFormProps) {
@@ -40,46 +46,91 @@ export default function GroupAccessForm(props: LogInFormProps) {
         defaultValues: {
             code: "",
         },
-    })
+    });
 
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log(values)
+    const openDialogButtonRef = useRef<HTMLButtonElement>(null);
+    const [errorText, setErrorText] = useState("Default body text");
 
+    const handleChange = async (newValue: string) => {
+        if (newValue.length == 6) {
+            await onSubmit(newValue);
+        }
+    }
+
+    const onSubmit = async (code: string) => {
+        const status = await submitAccessCode(code);
+
+        if (status == DbAccessCodeResponse.CODE_NOT_FOUND ||
+            status == DbAccessCodeResponse.CODE_NOT_ACTIVE ||
+            status == DbAccessCodeResponse.CODE_EXPIRED ||
+            status == DbAccessCodeResponse.UNKNOWN_ERROR) {
+            openErrorDialog(status);
+        }
+    }
+
+    const openErrorDialog = (status: DbAccessCodeResponse) => {
+        switch (status) {
+            case DbAccessCodeResponse.CODE_NOT_FOUND:
+                setErrorText(props.errorTextCodeNotFound);
+                break;
+            case DbAccessCodeResponse.CODE_NOT_ACTIVE:
+                setErrorText(props.errorTextCodeNotActive);
+                break;
+            case DbAccessCodeResponse.CODE_EXPIRED:
+                setErrorText(props.errorTextCodeExpired);
+                break;
+            case DbAccessCodeResponse.UNKNOWN_ERROR:
+                setErrorText(props.errorTextUnknownError);
+                break;
+        }
+
+        if (openDialogButtonRef.current) {
+            openDialogButtonRef.current.click();
+        }
     }
 
     return (
-        <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-4">
-                <FormField
-                    control={form.control}
-                    name="code"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>{props.accessCodeLabel}</FormLabel>
-                            <FormControl>
-                                <InputOTP maxLength={6} {...field}>
-                                    <InputOTPGroup>
-                                        <InputOTPSlot index={0} />
-                                        <InputOTPSlot index={1} />
-                                        <InputOTPSlot index={2} />
-                                    </InputOTPGroup>
-                                    <InputOTPSeparator />
-                                    <InputOTPGroup>
-                                        <InputOTPSlot index={3} />
-                                        <InputOTPSlot index={4} />
-                                        <InputOTPSlot index={5} />
-                                    </InputOTPGroup>
-                                </InputOTP>
-                            </FormControl>
-                            <FormDescription />
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <div className="flex justify-end mt-15">
-                    <Button type="submit">{props.submitLabel}</Button>
-                </div>
-            </form>
-        </Form>
+        <>
+            <Form {...form}>
+                <form className="w-full space-y-4">
+                    <FormField
+                        control={form.control}
+                        name="code"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>{props.accessCodeLabel}</FormLabel>
+                                <FormControl>
+                                    <InputOTP
+                                        maxLength={6}
+                                        onChange={handleChange}
+                                        pattern="^[A-Z0-9]+$"
+                                    >
+                                        <InputOTPGroup>
+                                            <InputOTPSlot index={0} />
+                                            <InputOTPSlot index={1} />
+                                            <InputOTPSlot index={2} />
+                                        </InputOTPGroup>
+                                        <InputOTPSeparator />
+                                        <InputOTPGroup>
+                                            <InputOTPSlot index={3} />
+                                            <InputOTPSlot index={4} />
+                                            <InputOTPSlot index={5} />
+                                        </InputOTPGroup>
+                                    </InputOTP>
+                                </FormControl>
+                                <FormDescription />
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                </form>
+            </Form>
+            <ErrorDialog
+                title={props.errorTitle}
+                text={errorText}
+                closeButton={props.errorCloseButton}
+                triggerRef={openDialogButtonRef}
+            />
+        </>
     );
 }

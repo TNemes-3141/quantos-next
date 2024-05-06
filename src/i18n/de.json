@@ -30,11 +30,17 @@
             "instructions": "Gib den Code, den du erhalten hast, ein",
             "logInHint": "Bereits ein Konto? Hier",
             "accountHint": "Du erhältst ein temporäres, anonymes Konto ohne persönliche Informationen. Du kannst es nach Anmeldung jederzeit in ein richtiges Konto umwandeln.",
-            "enterButtonLabel": "Eingeben"
+            "enterButtonLabel": "Eingeben",
+            "errorCodeNotFound": "Der eingegebene Zugangscode ist nicht registriert. Überprüfe deine Zugangskarte erneut oder erstelle stattdessen ein eigenes Konto!",
+            "errorCodeNotActive": "Der eingegebene Zugangscode ist ungültig, da dieses Konto deaktiviert wurde. Bitte kontaktiere deinen Kursleiter. Wenn du glaubst, dass du diese Nachricht irrtümlich erhalten hast, kontaktiere uns bitte unter help@quantos.online.",
+            "errorCodeExpired": "Der eingegebene Zugangscode ist abgelaufen. Überprüfe deine Zugangskarte erneut oder erstelle stattdessen ein eigenes Konto!"
         }
     },
     "error": {
-        "pageText": "Sorry! Etwas ist schiefgelaufen...",
-        "pageCta": "Zurück zur Startseite"
+        "pageText": "Sorry! Etwas ist schief gelaufen...",
+        "pageCta": "Zurück zur Startseite",
+        "dialogTitle": "Fehler",
+        "unknownErrorDialogText": "Ups! Es scheint, dass etwas schief gelaufen ist... Bitte benachrichtige deinen Kursleiter und versuche es später noch einmal. Wenn das Problem weiterhin besteht, kontaktiere uns bitte unter help@quantos.online.",
+        "dialogCloseButton": "OK"
     }
 }

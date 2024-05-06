@@ -26,6 +26,12 @@ export default function GroupAccessCard(props: LocalizedProps) {
                 <GroupAccessForm
                     accessCodeLabel={props.translate("auth.accessCodeLabel")}
                     submitLabel={props.translate("auth.groupaccess.enterButtonLabel")}
+                    errorTitle={props.translate("error.dialogTitle")}
+                    errorCloseButton={props.translate("error.dialogCloseButton")}
+                    errorTextUnknownError={props.translate("error.unknownErrorDialogText")}
+                    errorTextCodeNotFound={props.translate("auth.groupaccess.errorCodeNotFound")}
+                    errorTextCodeNotActive={props.translate("auth.groupaccess.errorCodeNotActive")}
+                    errorTextCodeExpired={props.translate("auth.groupaccess.errorCodeExpired")}
                 />
             </CardContent>
             <CardFooter className="flex flex-col gap-4 items-start">
