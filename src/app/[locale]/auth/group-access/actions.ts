@@ -40,6 +40,9 @@ export async function submitAccessCode(code: string): Promise<DbAccessCodeRespon
   }
 
   if (!accessCode.firstAccessedAt) {
+    await db.update(accessCodes)
+      .set({ firstAccessedAt: new Date() })
+      .where(eq(accessCodes.code, code));
     response = DbAccessCodeResponse.OK_NEW_USER;
   }
 
