@@ -7,28 +7,47 @@ import { eq } from 'drizzle-orm'
 import { createClient } from '@/lib/supabase/server'
 import { db } from '@/lib/database/db'
 import { accessCodes } from '@/lib/database/schema'
+import { DbAccessCodeResponse } from '@/lib/types'
 
-enum DbResponse {
-  OK,
-  OK_NEW_USER,
-  CODE_NOT_FOUND,
-  CODE_NOT_ACTIVE,
-  UNKNOWN_ERROR,
-}
-
-export async function submitAccessCode(code: string): Promise<DbResponse> {
+export async function submitAccessCode(code: string): Promise<DbAccessCodeResponse> {
   console.log("Querying database for code " + code);
-  const accessCode = await db.query.accessCodes.findFirst({
-    where: eq(accessCodes.code, code),
-  })
+  let accessCode;
+  try {
+    accessCode = await db.query.accessCodes.findFirst({
+      where: eq(accessCodes.code, code),
+    })
+  } catch (error) {
+    return DbAccessCodeResponse.UNKNOWN_ERROR;
+  }
 
-  console.log(accessCode);
+  let response: DbAccessCodeResponse = DbAccessCodeResponse.OK;
 
-  //await anonymousSignIn();
-  return DbResponse.OK
+  if (!accessCode) {
+    response = DbAccessCodeResponse.CODE_NOT_FOUND;
+    return response;
+  }
+  if (!accessCode.active) {
+    response = DbAccessCodeResponse.CODE_NOT_ACTIVE;
+    return response;
+  }
+
+  const now = new Date();
+  const oldestAllowedCreationDate = new Date(now.setDate(now.getDate() - accessCode.expiresAfter));
+  console.log(oldestAllowedCreationDate);
+  if (accessCode.createdAt < oldestAllowedCreationDate) {
+    response = DbAccessCodeResponse.CODE_EXPIRED;
+    return response;
+  }
+
+  if (!accessCode.firstAccessedAt) {
+    response = DbAccessCodeResponse.OK_NEW_USER;
+  }
+
+  await anonymousSignIn(response);
+  return DbAccessCodeResponse.OK;
 }
 
-async function anonymousSignIn() {
+async function anonymousSignIn(dbResponse: DbAccessCodeResponse) {
   const supabase = createClient();
 
   const { data, error } = await supabase.auth.signInAnonymously()
@@ -39,6 +58,12 @@ async function anonymousSignIn() {
 
   console.log("Login successful!");
 
-  revalidatePath('/home', 'layout');
-  redirect('/home');
+  if (dbResponse == DbAccessCodeResponse.OK_NEW_USER) {
+    revalidatePath('/welcome', 'layout');
+    redirect('/welcome');
+  }
+  else {
+    revalidatePath('/home', 'layout');
+    redirect('/home');
+  }
 }

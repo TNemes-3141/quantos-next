@@ -1,4 +1,4 @@
-import { pgTable, serial, text, varchar, timestamp, boolean } from "drizzle-orm/pg-core";
+import { pgTable, serial, text, varchar, timestamp, boolean, integer } from "drizzle-orm/pg-core";
 
 export const accessCodes = pgTable('access_codes', {
   id: serial('id').primaryKey(),
@@ -7,4 +7,5 @@ export const accessCodes = pgTable('access_codes', {
   firstAccessedAt: timestamp('first_accessed_at', { withTimezone: true }),
   active: boolean('active').notNull(),
   team: text('team').default("").notNull(),
+  expiresAfter: integer('expires_after').default(30).notNull(),
 });
