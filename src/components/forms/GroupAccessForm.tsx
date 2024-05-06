@@ -1,11 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { login } from "@/app/[locale]/auth/login/actions";
 
-import { Button } from "@/components/shadcn-ui/button"
 import {
     Form,
     FormControl,
@@ -29,27 +29,34 @@ type LogInFormProps = {
 }
 
 const formSchema = z.object({
-    code: z.string().min(6, {
-        message: "Your access code must be 6 characters.",
-    }),
+    code: z.string().min(6),
 })
 
 export default function GroupAccessForm(props: LogInFormProps) {
+    const [code, setCode] = useState("");
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             code: "",
         },
-    })
+    });
 
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log(values)
+    const handleChange = (newValue: string) => {
+        setCode(newValue);
+
+        if (newValue.length == 6) {
+            onSubmit();
+        }
+    }
+
+    const onSubmit = () => {
+        console.log(code);
 
     }
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-4">
+            <form className="w-full space-y-4">
                 <FormField
                     control={form.control}
                     name="code"
@@ -57,7 +64,11 @@ export default function GroupAccessForm(props: LogInFormProps) {
                         <FormItem>
                             <FormLabel>{props.accessCodeLabel}</FormLabel>
                             <FormControl>
-                                <InputOTP maxLength={6} {...field}>
+                                <InputOTP
+                                    maxLength={6}
+                                    value={code}
+                                    onChange={handleChange}
+                                >
                                     <InputOTPGroup>
                                         <InputOTPSlot index={0} />
                                         <InputOTPSlot index={1} />
@@ -76,9 +87,6 @@ export default function GroupAccessForm(props: LogInFormProps) {
                         </FormItem>
                     )}
                 />
-                <div className="flex justify-end mt-15">
-                    <Button type="submit">{props.submitLabel}</Button>
-                </div>
             </form>
         </Form>
     );
