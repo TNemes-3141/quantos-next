@@ -10,7 +10,6 @@ import { accessCodes } from '@/lib/database/schema'
 import { DbAccessCodeResponse } from '@/lib/types'
 
 export async function submitAccessCode(code: string): Promise<DbAccessCodeResponse> {
-  console.log("Querying database for code " + code);
   let accessCode;
   try {
     accessCode = await db.query.accessCodes.findFirst({
@@ -58,8 +57,6 @@ async function anonymousSignIn(dbResponse: DbAccessCodeResponse) {
   if (error) {
     redirect('/error');
   }
-
-  console.log("Login successful!");
 
   if (dbResponse == DbAccessCodeResponse.OK_NEW_USER) {
     revalidatePath('/welcome', 'layout');
