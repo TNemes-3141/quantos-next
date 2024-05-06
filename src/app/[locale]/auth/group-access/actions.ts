@@ -32,8 +32,8 @@ export async function submitAccessCode(code: string): Promise<DbAccessCodeRespon
   }
 
   const now = new Date();
-  const oldestAllowedCreationDate = new Date(now.setDate(now.getDate() - accessCode.expiresAfter));
-  console.log(oldestAllowedCreationDate);
+  const oldestAllowedCreationDate = new Date(now);
+  oldestAllowedCreationDate.setDate(oldestAllowedCreationDate.getDate() - accessCode.expiresAfter);
   if (accessCode.createdAt < oldestAllowedCreationDate) {
     response = DbAccessCodeResponse.CODE_EXPIRED;
     return response;
