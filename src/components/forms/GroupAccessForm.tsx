@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { login } from "@/app/[locale]/auth/login/actions";
+import { submitAccessCode } from "@/app/[locale]/auth/group-access/actions";
 
 import {
     Form,
@@ -19,7 +18,7 @@ import {
     InputOTP,
     InputOTPGroup,
     InputOTPSeparator,
-    InputOTPSlot,
+    InputOTPSlot
 } from "@/components/shadcn-ui/input-otp"
 
 
@@ -33,7 +32,6 @@ const formSchema = z.object({
 })
 
 export default function GroupAccessForm(props: LogInFormProps) {
-    const [code, setCode] = useState("");
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -41,17 +39,15 @@ export default function GroupAccessForm(props: LogInFormProps) {
         },
     });
 
-    const handleChange = (newValue: string) => {
-        setCode(newValue);
-
+    const handleChange = async (newValue: string) => {
         if (newValue.length == 6) {
-            onSubmit();
+            await onSubmit(newValue);
         }
     }
 
-    const onSubmit = () => {
-        console.log(code);
-
+    const onSubmit = async (code: string) => {
+        const status = await submitAccessCode(code);
+        console.log(status);
     }
 
     return (
@@ -66,8 +62,8 @@ export default function GroupAccessForm(props: LogInFormProps) {
                             <FormControl>
                                 <InputOTP
                                     maxLength={6}
-                                    value={code}
                                     onChange={handleChange}
+                                    pattern="^[A-Z0-9]+$"
                                 >
                                     <InputOTPGroup>
                                         <InputOTPSlot index={0} />

@@ -2,13 +2,30 @@
 
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
+import { eq } from 'drizzle-orm'
 
 import { createClient } from '@/lib/supabase/server'
+import { db } from '@/lib/database/db'
+import { accessCodes } from '@/lib/database/schema'
 
-export async function submitAccessCode(code: string) {
-    
+enum DbResponse {
+  OK,
+  OK_NEW_USER,
+  CODE_NOT_FOUND,
+  CODE_NOT_ACTIVE,
+  UNKNOWN_ERROR,
+}
 
-    await anonymousSignIn();
+export async function submitAccessCode(code: string): Promise<DbResponse> {
+  console.log("Querying database for code " + code);
+  const accessCode = await db.query.accessCodes.findFirst({
+    where: eq(accessCodes.code, code),
+  })
+
+  console.log(accessCode);
+
+  //await anonymousSignIn();
+  return DbResponse.OK
 }
 
 async function anonymousSignIn() {
