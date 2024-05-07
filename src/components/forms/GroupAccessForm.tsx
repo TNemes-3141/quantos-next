@@ -58,13 +58,17 @@ export default function GroupAccessForm(props: LogInFormProps) {
     }
 
     const onSubmit = async (code: string) => {
-        const status = await submitAccessCode(code);
+        const { responseCode, errorMessage } = await submitAccessCode(code);
 
-        if (status == DbAccessCodeResponse.CODE_NOT_FOUND ||
-            status == DbAccessCodeResponse.CODE_NOT_ACTIVE ||
-            status == DbAccessCodeResponse.CODE_EXPIRED ||
-            status == DbAccessCodeResponse.UNKNOWN_ERROR) {
-            openErrorDialog(status);
+        if (errorMessage) {
+            console.log(errorMessage);
+        }
+
+        if (responseCode == DbAccessCodeResponse.CODE_NOT_FOUND ||
+            responseCode == DbAccessCodeResponse.CODE_NOT_ACTIVE ||
+            responseCode == DbAccessCodeResponse.CODE_EXPIRED ||
+            responseCode == DbAccessCodeResponse.UNKNOWN_ERROR) {
+            openErrorDialog(responseCode);
         }
     }
 

@@ -9,25 +9,34 @@ import { db } from '@/lib/database/db'
 import { accessCodes } from '@/lib/database/schema'
 import { DbAccessCodeResponse } from '@/lib/types'
 
-export async function submitAccessCode(code: string): Promise<DbAccessCodeResponse> {
+type SubmitAccessCodeResponse = {
+  responseCode: DbAccessCodeResponse,
+  errorMessage: string | undefined,
+}
+
+export async function submitAccessCode(code: string): Promise<SubmitAccessCodeResponse> {
   let accessCode;
   try {
     accessCode = await db.query.accessCodes.findFirst({
       where: eq(accessCodes.code, code),
     })
-  } catch (error) {
-    return DbAccessCodeResponse.UNKNOWN_ERROR;
+  } catch (error: any) {
+    console.error(error.message);
+    return {
+      responseCode: DbAccessCodeResponse.UNKNOWN_ERROR,
+      errorMessage: error.message,
+    };
   }
 
   let response: DbAccessCodeResponse = DbAccessCodeResponse.OK;
 
   if (!accessCode) {
     response = DbAccessCodeResponse.CODE_NOT_FOUND;
-    return response;
+    return {responseCode: response, errorMessage: undefined };
   }
   if (!accessCode.active) {
     response = DbAccessCodeResponse.CODE_NOT_ACTIVE;
-    return response;
+    return {responseCode: response, errorMessage: undefined };
   }
 
   const now = new Date();
@@ -35,7 +44,7 @@ export async function submitAccessCode(code: string): Promise<DbAccessCodeRespon
   oldestAllowedCreationDate.setDate(oldestAllowedCreationDate.getDate() - accessCode.expiresAfter);
   if (accessCode.createdAt < oldestAllowedCreationDate) {
     response = DbAccessCodeResponse.CODE_EXPIRED;
-    return response;
+    return {responseCode: response, errorMessage: undefined };
   }
 
   if (!accessCode.firstAccessedAt) {
@@ -46,7 +55,7 @@ export async function submitAccessCode(code: string): Promise<DbAccessCodeRespon
   }
 
   await anonymousSignIn(response);
-  return DbAccessCodeResponse.OK;
+  return { responseCode: DbAccessCodeResponse.OK, errorMessage: undefined };
 }
 
 async function anonymousSignIn(dbResponse: DbAccessCodeResponse) {
