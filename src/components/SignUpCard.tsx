@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { LocalizedProps } from "@/i18n";
 
 import SignUpForm from "./forms/SignUpForm";
 import {
@@ -9,7 +8,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/shadcn-ui/card"
-
+import { LocalizedProps } from "@/i18n";
 
 export default function SignUpCard(props: LocalizedProps) {
     return (

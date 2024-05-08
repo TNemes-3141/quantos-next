@@ -1,10 +1,12 @@
 "use client";
 
+import { useRef } from "react";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { login } from "@/app/[locale]/auth/login/actions";
 
+import PasswordAnimation from "../PasswordAnimation";
 import PasswordFormField from "./PasswordFormField";
 import { Input } from "@/components/shadcn-ui/input"
 import { Button } from "@/components/shadcn-ui/button"
@@ -51,40 +53,42 @@ export default function LogInForm(props: LogInFormProps) {
     }
 
     return (
-        <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-4">
-                <FormField
-                    control={form.control}
-                    name="email"
-                    render={({field}) => (
-                        <FormItem>
-                            <FormLabel>{props.emailLabel}</FormLabel>
-                            <FormControl>
-                                <Input type="email" {...field}/>
-                            </FormControl>
-                            <FormDescription/>
-                            <FormMessage/>
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="password"
-                    render={({field}) => (
-                        <PasswordFormField
-                            label={props.passwordLabel}
-                            description={undefined}
-                            showPasswordTooltip={props.showPasswordTooltip}
-                            hidePasswordTooltip={props.hidePasswordTooltip}
-                            field={field}
-                            atom={showPasswordAtomTwo}
-                        />
-                    )}
-                />
-                <div className="flex justify-end mt-15">
-                    <Button type="submit">{props.submitLabel}</Button>
-                </div>
-            </form>
-        </Form>
+        <>
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-4">
+                    <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>{props.emailLabel}</FormLabel>
+                                <FormControl>
+                                    <Input type="email" {...field}/>
+                                </FormControl>
+                                <FormDescription />
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="password"
+                        render={({ field }) => (
+                            <PasswordFormField
+                                label={props.passwordLabel}
+                                description={undefined}
+                                showPasswordTooltip={props.showPasswordTooltip}
+                                hidePasswordTooltip={props.hidePasswordTooltip}
+                                field={field}
+                                atom={showPasswordAtomTwo}
+                            />
+                        )}
+                    />
+                    <div className="flex justify-end mt-15">
+                        <Button type="submit">{props.submitLabel}</Button>
+                    </div>
+                </form>
+            </Form>
+        </>
     );
 }

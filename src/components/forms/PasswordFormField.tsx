@@ -19,10 +19,11 @@ type PasswordFormFieldProps = {
     showPasswordTooltip: string,
     hidePasswordTooltip: string,
     field: any,
-    atom: WritableAtom<boolean, [update: boolean], void>
+    atom: WritableAtom<boolean, [update: boolean], void>,
+    onClick: (event: any) => void,
 }
 
-export default function PasswordFormField({ field, label, description, showPasswordTooltip, hidePasswordTooltip, atom }: PasswordFormFieldProps) {
+export default function PasswordFormField({ field, label, description, showPasswordTooltip, hidePasswordTooltip, atom, onClick }: PasswordFormFieldProps) {
     const [showPassword, setShowPassword] = useAtom(atom);
 
     return (
@@ -30,7 +31,7 @@ export default function PasswordFormField({ field, label, description, showPassw
             <FormLabel>{label}</FormLabel>
             <FormControl>
                 <div className="flex w-full items-center space-x-2">
-                    <Input type={showPassword ? "text" : "password"} {...field} />
+                    <Input type={showPassword ? "text" : "password"} {...field} onClick={onClick}/>
                     <Button
                         type="button"
                         variant="outline"

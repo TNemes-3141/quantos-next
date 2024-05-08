@@ -1,10 +1,12 @@
 "use client";
 
+import { useRef } from "react";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { signup } from "@/app/[locale]/auth/signup/actions";
 
+import PasswordAnimation, { PasswordAnimationRef } from "../PasswordAnimation";
 import PasswordFormField from "./PasswordFormField";
 import { Input } from "@/components/shadcn-ui/input"
 import { Button } from "@/components/shadcn-ui/button"
@@ -51,6 +53,8 @@ export default function SignUpForm(props: SignUpFormProps) {
         },
     })
 
+    const passwordAnimationRef = useRef<PasswordAnimationRef>(null);
+
     const onSubmit = (values: z.infer<typeof formSchema>) => {
         console.log(values)
         //TODO: Verify password match
@@ -58,55 +62,74 @@ export default function SignUpForm(props: SignUpFormProps) {
         signup(values.email, values.password);
     }
 
+    const onPasswordClick = (event: any) => {
+        passwordAnimationRef.current?.firePasswordTyping();
+    };
+    const onFormError = () => {
+        passwordAnimationRef.current?.fireFormInvalid();
+    }
+    const onFormValid = () => {
+        passwordAnimationRef.current?.fireFormValid();
+    }
+
     return (
-        <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-4">
-                <FormField
-                    control={form.control}
-                    name="email"
-                    render={({field}) => (
-                        <FormItem>
-                            <FormLabel>{props.emailLabel}</FormLabel>
-                            <FormControl>
-                                <Input type="email" {...field}/>
-                            </FormControl>
-                            <FormDescription/>
-                            <FormMessage/>
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="password"
-                    render={({field}) => (
-                        <PasswordFormField
-                            label={props.passwordLabel}
-                            description={props.passwordDescription}
-                            showPasswordTooltip={props.showPasswordTooltip}
-                            hidePasswordTooltip={props.hidePasswordTooltip}
-                            field={field}
-                            atom={showPasswordAtomZero}
-                        />
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="confirmedPassword"
-                    render={({field}) => (
-                        <PasswordFormField
-                            label={props.passwordConfirmLabel}
-                            description={undefined}
-                            showPasswordTooltip={props.showPasswordTooltip}
-                            hidePasswordTooltip={props.hidePasswordTooltip}
-                            field={field}
-                            atom={showPasswordAtomOne}
-                        />
-                    )}
-                />
-                <div className="flex justify-end mt-15">
-                    <Button type="submit">{props.submitLabel}</Button>
-                </div>
-            </form>
-        </Form>
+        <>
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-4">
+                    <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>{props.emailLabel}</FormLabel>
+                                <FormControl>
+                                    <Input type="email" {...field} />
+                                </FormControl>
+                                <FormDescription />
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="password"
+                        render={({ field }) => (
+                            <PasswordFormField
+                                label={props.passwordLabel}
+                                description={props.passwordDescription}
+                                showPasswordTooltip={props.showPasswordTooltip}
+                                hidePasswordTooltip={props.hidePasswordTooltip}
+                                field={field}
+                                atom={showPasswordAtomZero}
+                                onClick={onPasswordClick}
+                            />
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="confirmedPassword"
+                        render={({ field }) => (
+                            <PasswordFormField
+                                label={props.passwordConfirmLabel}
+                                description={undefined}
+                                showPasswordTooltip={props.showPasswordTooltip}
+                                hidePasswordTooltip={props.hidePasswordTooltip}
+                                field={field}
+                                atom={showPasswordAtomOne}
+                                onClick={onPasswordClick}
+                            />
+                        )}
+                    />
+                    <div className="flex justify-end mt-15">
+                        <Button type="submit">{props.submitLabel}</Button>
+                    </div>
+                </form>
+            </Form>
+            <div className="mt-5" />
+            <PasswordAnimation
+                size={300}
+                ref={passwordAnimationRef}
+            />
+        </>
     );
 }
