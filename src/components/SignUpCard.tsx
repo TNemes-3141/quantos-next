@@ -25,6 +25,7 @@ export default function SignUpCard(props: LocalizedProps) {
                     emailLabel={props.translate("auth.emailLabel")}
                     passwordLabel={props.translate("auth.passwordLabel")}
                     passwordConfirmLabel={props.translate("auth.passwordConfirmLabel")}
+                    passwordsNotMatchingError={props.translate("auth.passwordsNotMatchingError")}
                     passwordDescription={props.translate("auth.passwordDescription")}
                     showPasswordTooltip={props.translate("auth.showPasswordTooltip")}
                     hidePasswordTooltip={props.translate("auth.hidePasswordTooltip")}

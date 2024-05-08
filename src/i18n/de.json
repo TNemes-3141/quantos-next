@@ -14,6 +14,7 @@
         "passwordLabel": "Passwort",
         "passwordDescription": "Mindestens 10 Zeichen",
         "passwordConfirmLabel": "Passwort bestätigen",
+        "passwordsNotMatchingError": "Passwörter stimmen nicht überein.",
         "accessCodeLabel": "Zugangscode",
         "showPasswordTooltip": "Passwort anzeigen",
         "hidePasswordTooltip": "Passwort verstecken",

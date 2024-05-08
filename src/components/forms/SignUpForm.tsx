@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -25,6 +25,7 @@ type SignUpFormProps = {
     emailLabel: string,
     passwordLabel: string,
     passwordConfirmLabel: string,
+    passwordsNotMatchingError: string,
     passwordDescription: string,
     showPasswordTooltip: string,
     hidePasswordTooltip: string,
@@ -38,9 +39,7 @@ const formSchema = z.object({
     password: z.string().min(10, {
         message: "Your password must be at least 10 characters long.",
     }),
-    confirmedPassword: z.string().min(10, {
-        message: "Your passwords do not match.",
-    }),
+    confirmedPassword: z.string(),
 })
 
 export default function SignUpForm(props: SignUpFormProps) {
@@ -54,28 +53,45 @@ export default function SignUpForm(props: SignUpFormProps) {
     })
 
     const passwordAnimationRef = useRef<PasswordAnimationRef>(null);
+    const passwordAnimationRef2 = useRef<PasswordAnimationRef>(null);
+    const [passwordsNotMatching, setPasswordsNotMatching] = useState(false);
 
     const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log(values)
-        //TODO: Verify password match
+        if (values.password !== values.confirmedPassword) {
+            setPasswordsNotMatching(true);
+            onFormError();
+            return;
+        }
 
+        setPasswordsNotMatching(false);
+        onFormValid();
         signup(values.email, values.password);
+    }
+
+    const onInvalidSubmit = () => {
+        if (passwordsNotMatching) {
+            setPasswordsNotMatching(false);
+        }
+        onFormError();
     }
 
     const onPasswordClick = (event: any) => {
         passwordAnimationRef.current?.firePasswordTyping();
+        passwordAnimationRef2.current?.firePasswordTyping();
     };
     const onFormError = () => {
         passwordAnimationRef.current?.fireFormInvalid();
+        passwordAnimationRef2.current?.fireFormInvalid();
     }
     const onFormValid = () => {
         passwordAnimationRef.current?.fireFormValid();
+        passwordAnimationRef2.current?.fireFormValid();
     }
 
     return (
         <>
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-4">
+                <form onSubmit={form.handleSubmit(onSubmit, onInvalidSubmit)} className="w-full space-y-4">
                     <FormField
                         control={form.control}
                         name="email"
@@ -90,6 +106,12 @@ export default function SignUpForm(props: SignUpFormProps) {
                             </FormItem>
                         )}
                     />
+                    <div className="sm:hidden">
+                        <PasswordAnimation
+                            size={300}
+                            ref={passwordAnimationRef2}
+                        />
+                    </div>
                     <FormField
                         control={form.control}
                         name="password"
@@ -120,16 +142,20 @@ export default function SignUpForm(props: SignUpFormProps) {
                             />
                         )}
                     />
+                    {passwordsNotMatching ? <p className="text-destructive text-sm">
+                        {props.passwordsNotMatchingError}
+                    </p> : <></>}
                     <div className="flex justify-end mt-15">
                         <Button type="submit">{props.submitLabel}</Button>
                     </div>
                 </form>
             </Form>
-            <div className="mt-5" />
-            <PasswordAnimation
-                size={300}
-                ref={passwordAnimationRef}
-            />
+            <div className="mt-5 hidden sm:block">
+                <PasswordAnimation
+                    size={300}
+                    ref={passwordAnimationRef}
+                />
+            </div>
         </>
     );
 }
