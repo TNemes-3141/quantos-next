@@ -6,3 +6,9 @@ export enum DbAccessCodeResponse {
     CODE_EXPIRED,
     UNKNOWN_ERROR,
 }
+
+export enum LoginResponse {
+    OK,
+    AUTH_API_ERROR,
+    UNKNOWN_ERROR,
+}

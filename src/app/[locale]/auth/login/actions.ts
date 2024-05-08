@@ -4,25 +4,38 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 import { createClient } from '@/lib/supabase/server'
+import { LoginResponse } from '@/lib/types'
 
-export async function login(userEmail: string, userPassword: string) {
+type SubmitCredentialsResponse = {
+  responseCode: LoginResponse,
+  errorMessage: string | undefined,
+}
+
+export async function login(userEmail: string, userPassword: string): Promise<SubmitCredentialsResponse> {
   const supabase = createClient();
 
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
   const data = {
     email: userEmail,
     password: userPassword,
+  };
+
+  try {
+    const { error } = await supabase.auth.signInWithPassword(data);
+
+    if (error) {
+      return {
+        responseCode: LoginResponse.AUTH_API_ERROR,
+        errorMessage: error.message,
+      };
+    }
+  } catch (error: any) {
+    redirect('/error');
   }
 
-  const { error } = await supabase.auth.signInWithPassword(data)
-
-  if (error) {
-    redirect('/error')
+  revalidatePath('/home', 'layout');
+  redirect('/home');
+  return {
+    responseCode: LoginResponse.OK,
+    errorMessage: undefined,
   }
-
-  console.log("Login successful!");
-
-  revalidatePath('/home', 'layout')
-  redirect('/home')
 }

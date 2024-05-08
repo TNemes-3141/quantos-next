@@ -19,7 +19,7 @@ export default function LogInCard(props: LocalizedProps) {
                 <CardTitle>{props.translate("auth.login.title")}</CardTitle>
                 <CardDescription>
                     {props.translate("auth.login.signUpHint")}&nbsp;
-                    <Link href="/auth/signUp" className="underline">{props.translate("auth.signUpButtonLabel")}</Link>
+                    <Link href="/auth/signup" className="underline">{props.translate("auth.signUpButtonLabel")}</Link>
                 </CardDescription>
             </CardHeader>
             <CardContent>
@@ -29,6 +29,9 @@ export default function LogInCard(props: LocalizedProps) {
                     showPasswordTooltip={props.translate("auth.showPasswordTooltip")}
                     hidePasswordTooltip={props.translate("auth.hidePasswordTooltip")}
                     submitLabel={props.translate("auth.logInButtonLabel")}
+                    errorTitle={props.translate("error.dialogTitle")}
+                    errorCloseButton={props.translate("error.dialogCloseButton")}
+                    errorText={props.translate("auth.login.error")}
                 />
             </CardContent>
             <CardFooter>

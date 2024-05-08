@@ -18,6 +18,7 @@
         "accessCodeLabel": "Zugangscode",
         "showPasswordTooltip": "Passwort anzeigen",
         "hidePasswordTooltip": "Passwort verstecken",
+        "unknown": "Unbekannt",
         "signup": {
             "title": "Willkommen!",
             "logInHint": "Bereits an Bord? Hier"
@@ -25,7 +26,8 @@
         "login": {
             "title": "Willkommen zurück!",
             "signUpHint": "Noch neu? Hier",
-            "forgotPassword": "Passwort vergessen?"
+            "forgotPassword": "Passwort vergessen?",
+            "error": "Bei der Anmeldung ist ein Fehler aufgetreten. Bitte überprüfe deine Angaben und versuche es noch einmal! Grund:"
         },
         "groupaccess": {
             "instructions": "Gib den Code, den du erhalten hast, ein",

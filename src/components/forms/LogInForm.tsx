@@ -1,13 +1,13 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { login } from "@/app/[locale]/auth/login/actions";
 
-import PasswordAnimation from "../PasswordAnimation";
 import PasswordFormField from "./PasswordFormField";
+import ErrorDialog from "../ErrorDialog";
 import { Input } from "@/components/shadcn-ui/input"
 import { Button } from "@/components/shadcn-ui/button"
 import {
@@ -20,6 +20,7 @@ import {
     FormMessage,
 } from "@/components/shadcn-ui/form"
 import { showPasswordAtomTwo } from "@/stores/showPasswordStore";
+import { LoginResponse } from "@/lib/types";
 
 type LogInFormProps = {
     emailLabel: string,
@@ -27,6 +28,9 @@ type LogInFormProps = {
     showPasswordTooltip: string,
     hidePasswordTooltip: string,
     submitLabel: string,
+    errorTitle: string,
+    errorText: string,
+    errorCloseButton: string,
 }
 
 const formSchema = z.object({
@@ -44,12 +48,16 @@ export default function LogInForm(props: LogInFormProps) {
             password: "",
         },
     })
+    const openDialogButtonRef = useRef<HTMLButtonElement>(null);
+    const [errorText, setErrorText] = useState(props.errorText);
 
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log(values)
-        //TODO: Verify password match
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+        const r = await login(values.email, values.password);
 
-        login(values.email, values.password);
+        if (r && r.responseCode == LoginResponse.AUTH_API_ERROR && openDialogButtonRef.current) {
+            setErrorText(props.errorText + " " + r.errorMessage ?? "");
+            openDialogButtonRef.current.click();
+        }
     }
 
     return (
@@ -81,6 +89,7 @@ export default function LogInForm(props: LogInFormProps) {
                                 hidePasswordTooltip={props.hidePasswordTooltip}
                                 field={field}
                                 atom={showPasswordAtomTwo}
+                                onClick={() => {}}
                             />
                         )}
                     />
@@ -89,6 +98,12 @@ export default function LogInForm(props: LogInFormProps) {
                     </div>
                 </form>
             </Form>
+            <ErrorDialog
+                title={props.errorTitle}
+                text={errorText}
+                closeButton={props.errorCloseButton}
+                triggerRef={openDialogButtonRef}
+            />
         </>
     );
 }

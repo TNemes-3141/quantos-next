@@ -18,6 +18,7 @@
         "accessCodeLabel": "Access code",
         "showPasswordTooltip": "Show password",
         "hidePasswordTooltip": "Hide password",
+        "unknown": "Unknown",
         "signup": {
             "title": "Welcome!",
             "logInHint": "Already on board?"
@@ -25,7 +26,8 @@
         "login": {
             "title": "Welcome back!",
             "signUpHint": "New here?",
-            "forgotPassword": "Forgot your password?"
+            "forgotPassword": "Forgot your password?",
+            "error": "An error has occurred during sign-in. Please check your details and try again! Reason:"
         },
         "groupaccess": {
             "instructions": "Enter the code that you received",
