@@ -3,22 +3,47 @@
         "copyrightNote": "Made with ❤️ with support from",
         "languageLabel": "Language:"
     },
-    "home": {
-        "authSignUpDescription": "New here?",
-        "authSignUpButtonLabel": "Sign up",
-        "authLogInDescription": "Already on board?",
-        "authLogInButtonLabel": "Log in",
-        "authGroupAccessDescription": "Part of a classroom or a team?",
-        "authGroupAccessButtonLabel": "Enter access code"
-    },
-    "signup": {
-        "title": "Welcome!",
-        "logInHint": "Already on board?",
+    "auth": {
+        "signUpDescription": "New here?",
+        "signUpButtonLabel": "Sign up",
+        "logInDescription": "Already on board?",
+        "logInButtonLabel": "Log in",
+        "groupAccessDescription": "Part of a classroom or a team?",
+        "groupAccessButtonLabel": "Enter access code",
         "emailLabel": "Email address",
         "passwordLabel": "Password",
         "passwordDescription": "At least 10 characters",
         "passwordConfirmLabel": "Confirm password",
+        "passwordsNotMatchingError": "The passwords no not match.",
+        "accessCodeLabel": "Access code",
         "showPasswordTooltip": "Show password",
-        "hidePasswordTooltip": "Hide password"
+        "hidePasswordTooltip": "Hide password",
+        "unknown": "Unknown",
+        "signup": {
+            "title": "Welcome!",
+            "logInHint": "Already on board?"
+        },
+        "login": {
+            "title": "Welcome back!",
+            "signUpHint": "New here?",
+            "forgotPassword": "Forgot your password?",
+            "error": "An error has occurred during sign-in. Please check your details and try again! Reason:"
+        },
+        "groupaccess": {
+            "instructions": "Enter the code that you received",
+            "logInHint": "Already have an account?",
+            "accountHint": "You will receive a temporary, anonymous account without personal information. You can convert it into an actual account at any time after registration.",
+            "enterButtonLabel": "Enter",
+            "errorCodeNotFound": "The access code you entered is not registered. Check your access card again or create your own account instead!",
+            "errorCodeNotActive": "The access code you entered is invalid as this account has been deactivated. Please notify your instructor. If you believe you have received this message in error, please contact us at help@quantos.online.",
+            "errorCodeExpired": "The access code you entered has expired. Check your access card again or create your own account instead!"
+        }
+    },
+    "error": {
+        "pageText": "Oops, sorry! Something went wrong...",
+        "pageCta": "Back to the starting page",
+        "dialogTitle": "Error",
+        "unknownErrorDialogText": "Oops! It seems that something went wrong... Please notify your instructor and try again later. If the problem persists, please contact us at help@quantos.online.",
+        "dialogCloseButton": "OK"
     }
 }

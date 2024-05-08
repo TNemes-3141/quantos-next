@@ -1,9 +1,12 @@
 "use client";
 
+import { useRef, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { signup } from "@/app/[locale]/auth/signup/actions";
 
+import PasswordAnimation, { PasswordAnimationRef } from "../PasswordAnimation";
 import PasswordFormField from "./PasswordFormField";
 import { Input } from "@/components/shadcn-ui/input"
 import { Button } from "@/components/shadcn-ui/button"
@@ -22,6 +25,7 @@ type SignUpFormProps = {
     emailLabel: string,
     passwordLabel: string,
     passwordConfirmLabel: string,
+    passwordsNotMatchingError: string,
     passwordDescription: string,
     showPasswordTooltip: string,
     hidePasswordTooltip: string,
@@ -35,9 +39,7 @@ const formSchema = z.object({
     password: z.string().min(10, {
         message: "Your password must be at least 10 characters long.",
     }),
-    confirmedPassword: z.string().min(10, {
-        message: "Your passwords do not match.",
-    }),
+    confirmedPassword: z.string(),
 })
 
 export default function SignUpForm(props: SignUpFormProps) {
@@ -50,59 +52,110 @@ export default function SignUpForm(props: SignUpFormProps) {
         },
     })
 
+    const passwordAnimationRef = useRef<PasswordAnimationRef>(null);
+    const passwordAnimationRef2 = useRef<PasswordAnimationRef>(null);
+    const [passwordsNotMatching, setPasswordsNotMatching] = useState(false);
+
     const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log(values)
+        if (values.password !== values.confirmedPassword) {
+            setPasswordsNotMatching(true);
+            onFormError();
+            return;
+        }
+
+        setPasswordsNotMatching(false);
+        onFormValid();
+        signup(values.email, values.password);
+    }
+
+    const onInvalidSubmit = () => {
+        if (passwordsNotMatching) {
+            setPasswordsNotMatching(false);
+        }
+        onFormError();
+    }
+
+    const onPasswordClick = (event: any) => {
+        passwordAnimationRef.current?.firePasswordTyping();
+        passwordAnimationRef2.current?.firePasswordTyping();
+    };
+    const onFormError = () => {
+        passwordAnimationRef.current?.fireFormInvalid();
+        passwordAnimationRef2.current?.fireFormInvalid();
+    }
+    const onFormValid = () => {
+        passwordAnimationRef.current?.fireFormValid();
+        passwordAnimationRef2.current?.fireFormValid();
     }
 
     return (
-        <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-4">
-                <FormField
-                    control={form.control}
-                    name="email"
-                    render={({field}) => (
-                        <FormItem>
-                            <FormLabel>{props.emailLabel}</FormLabel>
-                            <FormControl>
-                                <Input type="email" {...field}/>
-                            </FormControl>
-                            <FormDescription/>
-                            <FormMessage/>
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="password"
-                    render={({field}) => (
-                        <PasswordFormField
-                            label={props.passwordLabel}
-                            description={props.passwordDescription}
-                            showPasswordTooltip={props.showPasswordTooltip}
-                            hidePasswordTooltip={props.hidePasswordTooltip}
-                            field={field}
-                            atom={showPasswordAtomZero}
+        <>
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit, onInvalidSubmit)} className="w-full space-y-4">
+                    <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>{props.emailLabel}</FormLabel>
+                                <FormControl>
+                                    <Input type="email" {...field} />
+                                </FormControl>
+                                <FormDescription />
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <div className="sm:hidden">
+                        <PasswordAnimation
+                            size={300}
+                            ref={passwordAnimationRef2}
                         />
-                    )}
+                    </div>
+                    <FormField
+                        control={form.control}
+                        name="password"
+                        render={({ field }) => (
+                            <PasswordFormField
+                                label={props.passwordLabel}
+                                description={props.passwordDescription}
+                                showPasswordTooltip={props.showPasswordTooltip}
+                                hidePasswordTooltip={props.hidePasswordTooltip}
+                                field={field}
+                                atom={showPasswordAtomZero}
+                                onClick={onPasswordClick}
+                            />
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="confirmedPassword"
+                        render={({ field }) => (
+                            <PasswordFormField
+                                label={props.passwordConfirmLabel}
+                                description={undefined}
+                                showPasswordTooltip={props.showPasswordTooltip}
+                                hidePasswordTooltip={props.hidePasswordTooltip}
+                                field={field}
+                                atom={showPasswordAtomOne}
+                                onClick={onPasswordClick}
+                            />
+                        )}
+                    />
+                    {passwordsNotMatching ? <p className="text-destructive text-sm">
+                        {props.passwordsNotMatchingError}
+                    </p> : <></>}
+                    <div className="flex justify-end mt-15">
+                        <Button type="submit">{props.submitLabel}</Button>
+                    </div>
+                </form>
+            </Form>
+            <div className="mt-5 hidden sm:block">
+                <PasswordAnimation
+                    size={300}
+                    ref={passwordAnimationRef}
                 />
-                <FormField
-                    control={form.control}
-                    name="confirmedPassword"
-                    render={({field}) => (
-                        <PasswordFormField
-                            label={props.passwordConfirmLabel}
-                            description={undefined}
-                            showPasswordTooltip={props.showPasswordTooltip}
-                            hidePasswordTooltip={props.hidePasswordTooltip}
-                            field={field}
-                            atom={showPasswordAtomOne}
-                        />
-                    )}
-                />
-                <div className="flex justify-end mt-15">
-                    <Button type="submit">{props.submitLabel}</Button>
-                </div>
-            </form>
-        </Form>
+            </div>
+        </>
     );
 }

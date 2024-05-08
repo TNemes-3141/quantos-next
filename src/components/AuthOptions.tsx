@@ -8,19 +8,19 @@ export default async function AuthOptions(props: LocalizedProps) {
   return (
     <Card className="max-w-lg w-full space-y-12 p-10">
       <LoginOption
-        optionText={props.translate("home.authSignUpDescription")}
-        buttonText={props.translate("home.authSignUpButtonLabel")}
-        target="/signup"
+        optionText={props.translate("auth.signUpDescription")}
+        buttonText={props.translate("auth.signUpButtonLabel")}
+        target="/auth/signup"
       />
       <LoginOption
-        optionText={props.translate("home.authLogInDescription")}
-        buttonText={props.translate("home.authLogInButtonLabel")}
-        target="/"
+        optionText={props.translate("auth.logInDescription")}
+        buttonText={props.translate("auth.logInButtonLabel")}
+        target="/auth/login"
       />
       <LoginOption
-        optionText={props.translate("home.authGroupAccessDescription")}
-        buttonText={props.translate("home.authGroupAccessButtonLabel")}
-        target="/"
+        optionText={props.translate("auth.groupAccessDescription")}
+        buttonText={props.translate("auth.groupAccessButtonLabel")}
+        target="/auth/group-access"
       />
     </Card>
   );

@@ -1,37 +1,35 @@
 import Link from "next/link";
-import { LocalizedProps } from "@/i18n";
 
 import SignUpForm from "./forms/SignUpForm";
-import { Button } from "@/components/shadcn-ui/button"
 import {
     Card,
     CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/shadcn-ui/card"
-
+import { LocalizedProps } from "@/i18n";
 
 export default function SignUpCard(props: LocalizedProps) {
     return (
         <Card className="max-w-[350px] w-full">
             <CardHeader>
-                <CardTitle>{props.translate("signup.title")}</CardTitle>
+                <CardTitle>{props.translate("auth.signup.title")}</CardTitle>
                 <CardDescription>
-                    {props.translate("signup.logInHint")}&nbsp;
-                    <Link href="/login" className="underline">{props.translate("home.authLogInButtonLabel")}</Link>
+                    {props.translate("auth.signup.logInHint")}&nbsp;
+                    <Link href="/auth/login" className="underline">{props.translate("auth.logInButtonLabel")}</Link>
                 </CardDescription>
             </CardHeader>
             <CardContent>
                 <SignUpForm
-                    emailLabel={props.translate("signup.emailLabel")}
-                    passwordLabel={props.translate("signup.passwordLabel")}
-                    passwordConfirmLabel={props.translate("signup.passwordConfirmLabel")}
-                    passwordDescription={props.translate("signup.passwordDescription")}
-                    showPasswordTooltip={props.translate("signup.showPasswordTooltip")}
-                    hidePasswordTooltip={props.translate("signup.hidePasswordTooltip")}
-                    submitLabel={props.translate("home.authSignUpButtonLabel")}
+                    emailLabel={props.translate("auth.emailLabel")}
+                    passwordLabel={props.translate("auth.passwordLabel")}
+                    passwordConfirmLabel={props.translate("auth.passwordConfirmLabel")}
+                    passwordsNotMatchingError={props.translate("auth.passwordsNotMatchingError")}
+                    passwordDescription={props.translate("auth.passwordDescription")}
+                    showPasswordTooltip={props.translate("auth.showPasswordTooltip")}
+                    hidePasswordTooltip={props.translate("auth.hidePasswordTooltip")}
+                    submitLabel={props.translate("auth.signUpButtonLabel")}
                 />
             </CardContent>
         </Card>
