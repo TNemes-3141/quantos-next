@@ -74,6 +74,9 @@
             "optionBeginner": "Anfänger",
             "optionAdvanced": "Fortgeschritten",
             "optionSkilled": "Erfahren"
+        },
+        "finalPage": {
+            "title": "Es kann losgehen! 🎉"
         }
     },
     "error": {

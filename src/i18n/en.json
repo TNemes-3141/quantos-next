@@ -74,6 +74,9 @@
             "optionBeginner": "Beginner",
             "optionAdvanced": "Advanced",
             "optionSkilled": "Skilled"
+        },
+        "finalPage": {
+            "title": "You're all set! 🎉"
         }
     },
     "error": {

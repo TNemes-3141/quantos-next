@@ -1,4 +1,4 @@
-
+import PageContent from "./PageContent";
 import Footer from "@/components/layout/Footer";
 
 import { ValidLocale, getTranslator } from "@/i18n";
@@ -15,6 +15,9 @@ export default async function Home({
   const translate = await getTranslator(validLocale);
 
   return (
-    <Footer locale={validLocale} translate={translate} />
+    <>
+      <PageContent translate={translate} />
+      <Footer locale={validLocale} translate={translate} />
+    </>
   );
 }
