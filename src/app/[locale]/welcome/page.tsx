@@ -1,5 +1,6 @@
-import PageContent, { LocalizedStrings } from "./PageContent";
+import PageContent from "./PageContent";
 import Footer from "@/components/layout/Footer";
+import { WelcomeLocalizedStrings } from "@/lib/types";
 
 import { ValidLocale, getTranslator } from "@/i18n";
 import { validateUser } from "@/lib/validateUser";
@@ -14,7 +15,7 @@ export default async function Home({
   const validLocale = params.locale as ValidLocale
   const translate = await getTranslator(validLocale);
 
-  const localizedStrings: LocalizedStrings = {
+  const localizedStrings: WelcomeLocalizedStrings = {
     nextPageButton: translate("welcome.nextPageButton"),
     previousPageButton: translate("welcome.previousPageButton"),
     welcomePage: {
