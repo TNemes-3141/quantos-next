@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { signup } from "@/app/[locale]/auth/signup/actions";
 
+import { Loader2 } from "lucide-react";
 import PasswordAnimation, { PasswordAnimationRef } from "../PasswordAnimation";
 import PasswordFormField from "./PasswordFormField";
 import { Input } from "@/components/shadcn-ui/input"
@@ -55,8 +56,10 @@ export default function SignUpForm(props: SignUpFormProps) {
     const passwordAnimationRef = useRef<PasswordAnimationRef>(null);
     const passwordAnimationRef2 = useRef<PasswordAnimationRef>(null);
     const [passwordsNotMatching, setPasswordsNotMatching] = useState(false);
+    const [loading, setLoading] = useState(false);
 
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+        setLoading(true);
         if (values.password !== values.confirmedPassword) {
             setPasswordsNotMatching(true);
             onFormError();
@@ -65,7 +68,8 @@ export default function SignUpForm(props: SignUpFormProps) {
 
         setPasswordsNotMatching(false);
         onFormValid();
-        signup(values.email, values.password);
+        await signup(values.email, values.password);
+        setLoading(false);
     }
 
     const onInvalidSubmit = () => {
@@ -146,7 +150,10 @@ export default function SignUpForm(props: SignUpFormProps) {
                         {props.passwordsNotMatchingError}
                     </p> : <></>}
                     <div className="flex justify-end mt-15">
-                        <Button type="submit">{props.submitLabel}</Button>
+                        <Button type="submit" disabled={loading}>
+                            {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <></>}
+                            {props.submitLabel}
+                        </Button>
                     </div>
                 </form>
             </Form>

@@ -40,7 +40,7 @@ export default function GroupAccessCard(props: LocalizedProps) {
                     <Link href="/auth/login" className="underline">{props.translate("auth.logInButtonLabel")}</Link>
                 </div>
                 <div className="flex gap-4 items-top">
-                    <Info className="flex-shrink-0 h-[1.2rem] w-[1.2rem]" />
+                    <Info className="flex-shrink-0 h-[1.2rem] w-[1.2rem] mt-1" />
                     <p className="flex-grow">{props.translate("auth.groupaccess.accountHint")}</p>
                 </div>
             </CardFooter>

@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { login } from "@/app/[locale]/auth/login/actions";
 
+import { Loader2 } from "lucide-react";
 import PasswordFormField from "./PasswordFormField";
 import ErrorDialog from "../ErrorDialog";
 import { Input } from "@/components/shadcn-ui/input"
@@ -50,14 +51,17 @@ export default function LogInForm(props: LogInFormProps) {
     })
     const openDialogButtonRef = useRef<HTMLButtonElement>(null);
     const [errorText, setErrorText] = useState(props.errorText);
+    const [loading, setLoading] = useState(false);
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
+        setLoading(true);
         const r = await login(values.email, values.password);
 
         if (r && r.responseCode == LoginResponse.AUTH_API_ERROR && openDialogButtonRef.current) {
             setErrorText(props.errorText + " " + r.errorMessage ?? "");
             openDialogButtonRef.current.click();
         }
+        setLoading(false);
     }
 
     return (
@@ -94,7 +98,10 @@ export default function LogInForm(props: LogInFormProps) {
                         )}
                     />
                     <div className="flex justify-end mt-15">
-                        <Button type="submit">{props.submitLabel}</Button>
+                        <Button type="submit" disabled={loading}>
+                            {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <></>}
+                            {props.submitLabel}
+                        </Button>
                     </div>
                 </form>
             </Form>

@@ -7,6 +7,7 @@ import { z } from "zod"
 import { submitAccessCode } from "@/app/[locale]/auth/group-access/actions";
 import { DbAccessCodeResponse } from "@/lib/types";
 
+import { Loader2 } from "lucide-react";
 import ErrorDialog from "../ErrorDialog";
 import {
     Form,
@@ -50,6 +51,7 @@ export default function GroupAccessForm(props: LogInFormProps) {
 
     const openDialogButtonRef = useRef<HTMLButtonElement>(null);
     const [errorText, setErrorText] = useState("Default body text");
+    const [loading, setLoading] = useState(false);
 
     const handleChange = async (newValue: string) => {
         if (newValue.length == 6) {
@@ -58,6 +60,10 @@ export default function GroupAccessForm(props: LogInFormProps) {
     }
 
     const onSubmit = async (code: string) => {
+        if (loading) {
+            return;
+        }
+        setLoading(true);
         const { responseCode, errorMessage } = await submitAccessCode(code);
 
         if (errorMessage) {
@@ -70,6 +76,7 @@ export default function GroupAccessForm(props: LogInFormProps) {
             responseCode == DbAccessCodeResponse.UNKNOWN_ERROR) {
             openErrorDialog(responseCode);
         }
+        setLoading(false);
     }
 
     const openErrorDialog = (status: DbAccessCodeResponse) => {
@@ -129,6 +136,7 @@ export default function GroupAccessForm(props: LogInFormProps) {
                     />
                 </form>
             </Form>
+            {loading ? <div className="flex justify-center my-5"><Loader2 className="mr-2 h-4 w-4 animate-spin" /></div> : <></>}
             <ErrorDialog
                 title={props.errorTitle}
                 text={errorText}
