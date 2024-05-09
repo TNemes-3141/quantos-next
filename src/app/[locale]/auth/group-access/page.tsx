@@ -13,7 +13,7 @@ export default async function Home({
   
     return (
       <>
-        <main className="flex flex-col items-center justify-center p-12 sm:p-24 w-full space-y-12">
+        <main className="flex items-center justify-center p-12 sm:p-20 w-full space-y-12">
           <GroupAccessCard locale={validLocale} translate={translate}/>
         </main>
         <Footer locale={validLocale} translate={translate}/>
