@@ -39,6 +39,43 @@
             "errorCodeExpired": "Der eingegebene Zugangscode ist abgelaufen. Überprüfe deine Zugangskarte erneut oder erstelle stattdessen ein eigenes Konto!"
         }
     },
+    "welcome": {
+        "nextPageButton": "Weiter",
+        "previousPageButton": "Zurück",
+        "welcomePage": {
+            "title": "Hi! Lass uns loslegen 🚀",
+            "question": "Wir möchten dir zuerst ein paar Fragen stellen, um dein Nutzererlebnis anzupassen."
+        },
+        "namePage": {
+            "title": "Wie heißt du?",
+            "question": "Lass das Feld leer, wenn du nicht mit Namen angesprochen werden möchtest.",
+            "placeholder": "Vorname"
+        },
+        "accountTypePage": {
+            "titleWithName": "Welche Art von Konto möchtest du anlegen, {{ userName }}?",
+            "titleWithoutName": "Welche Art von Konto möchtest du anlegen?",
+            "optionStudentTitle": "Schüler/-in oder Lernende/-r",
+            "optionStudentDescription": "Ideal für Schüler/-innen, Student/-innen und Lernbegeisterte, die mehr über Quantencomputing erfahren möchten.",
+            "optionTeacherTitle": "Lehrperson",
+            "optionTeacherDescription": "Optimal für Lehrkräfte und Ausbilder, die Schulklassen, Fortbildungskurse oder Workshops betreuen. Ermöglicht zusätzlich das Erstellen und Verwalten von Zugangscodes für Teilnehmer/-innen."
+        },
+        "agePage": {
+            "title": "Wie alt bist du?",
+            "description": "Diese Frage ist optional, verbessert aber dein Lernerlebnis.",
+            "optionNotSpecified": "Keine Angabe",
+            "optionTeen": "15-18 Jahre",
+            "optionYoungAdult": "19-28 Jahre",
+            "optionAdult": "29-59 Jahre",
+            "optionElder": "60+ Jahre"
+        },
+        "experiencePage": {
+            "title": "Wie würdest du dich beschreiben?",
+            "description": "Genauer: Wie vertraut bist du mit dem Thema Quantencomputing im Allgemeinen?",
+            "optionBeginner": "Anfänger",
+            "optionAdvanced": "Fortgeschritten",
+            "optionSkilled": "Erfahren"
+        }
+    },
     "error": {
         "pageText": "Sorry! Etwas ist schief gelaufen...",
         "pageCta": "Zurück zur Startseite",

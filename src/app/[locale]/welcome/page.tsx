@@ -1,17 +1,20 @@
-import { redirect } from 'next/navigation'
 
-import { createClient } from '@/lib/supabase/server'
+import Footer from "@/components/layout/Footer";
 
-export default async function PrivatePage() {
-  const supabase = createClient();
+import { ValidLocale, getTranslator } from "@/i18n";
+import { validateUser } from "@/lib/validateUser";
 
-  const { data, error } = await supabase.auth.getUser();
-  console.log(data);
+export default async function Home({
+  params,
+}: {
+  params: { locale: string; };
+}) {
+  const user = await validateUser();
 
-  if (error || !data?.user) {
-    console.log("Error: " + error);
-    redirect('/auth/login');
-  }
+  const validLocale = params.locale as ValidLocale
+  const translate = await getTranslator(validLocale);
 
-  return <p>Welcome to your new account!</p>
+  return (
+    <Footer locale={validLocale} translate={translate} />
+  );
 }

@@ -39,6 +39,43 @@
             "errorCodeExpired": "The access code you entered has expired. Check your access card again or create your own account instead!"
         }
     },
+    "welcome": {
+        "nextPageButton": "Next",
+        "previousPageButton": "Back",
+        "welcomePage": {
+            "title": "Hi! Let's get started 🚀",
+            "question": "We'd like to ask you a few questions first to customize your user experience."
+        },
+        "namePage": {
+            "title": "What's your name?",
+            "question": "Leave this field blank if you don't want to be addressed by name.",
+            "placeholder": "First name" 
+        },
+        "accountTypePage": {
+            "titleWithName": "What type of account would you like to create, {{ userName }}?",
+            "titleWithoutName": "What type of account would you like to create?",
+            "optionStudentTitle": "Student or learner",
+            "optionStudentDescription": "Ideal for pupils, students and learning enthusiasts who want to find out more about quantum computing.",
+            "optionTeacherTitle": "Educator",
+            "optionTeacherDescription": "Perfect for teachers and educators who supervise school classes, training courses or workshops. Enables the creation and management of access codes for participants."
+        },
+        "agePage": {
+            "title": "How old are you?",
+            "description": "This question is optional, but improves your learning experience.",
+            "optionNotSpecified": "No specification",
+            "optionTeen": "15-18 years",
+            "optionYoungAdult": "19-28 years",
+            "optionAdult": "29-59 years",
+            "optionElder": "60+ years"
+        },
+        "experiencePage": {
+            "title": "How would you describe yourself?",
+            "description": "That is, how familiar are you with quantum computing in general?",
+            "optionBeginner": "Beginner",
+            "optionAdvanced": "Advanced",
+            "optionSkilled": "Skilled"
+        }
+    },
     "error": {
         "pageText": "Oops, sorry! Something went wrong...",
         "pageCta": "Back to the starting page",
