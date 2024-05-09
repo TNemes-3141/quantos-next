@@ -25,7 +25,7 @@ export default function WelcomeQuestionnaire(props: WelcomeQuestionnaireProps) {
         setAnimationState("enter");
     }, [currentQuestion]);
 
-    const goToNextQuestion = () => {
+    const goToNextQuestion = async () => {
         if (currentQuestion < totalQuestions - 1) {
             setAnimationState('exit');
             setTimeout(() => {
@@ -36,7 +36,7 @@ export default function WelcomeQuestionnaire(props: WelcomeQuestionnaireProps) {
         }
     };
 
-    const goToPreviousQuestion = () => {
+    const goToPreviousQuestion = async () => {
         if (currentQuestion > 0) {
             setAnimationState('exit');
             setTimeout(() => {
@@ -53,22 +53,21 @@ export default function WelcomeQuestionnaire(props: WelcomeQuestionnaireProps) {
         <div className="max-w-[700px] w-full">
             <div className={animationState === 'enter' ? 'animate-fade-slide-in' : 'animate-fade-slide-out'}>
                 {createElement(QuestionComponent, {
-                    data: props.strings,
-                    onChange: (answer: any) => console.log(answer)
+                    strings: props.strings,
                 })}
             </div>
-            <div className="flex justify-between mt-4">
+            <div className="flex justify-between mt-10">
                 {currentQuestion > 0 ?
                     <Button variant="ghost" onClick={goToPreviousQuestion} className="px-4 py-2">
                         <ArrowLeft className="mr-2 h-4 w-4" />
-                        Back
+                        {props.strings.previousPageButton}
                     </Button> :
                     <div></div>
                 }
                 {currentQuestion === totalQuestions - 1 ?
-                    <Button variant="default" className="px-4 py-2">Finish</Button> :
+                    <Button variant="default" className="px-4 py-2">{props.strings.finishButton}</Button> :
                     <Button variant="ghost" onClick={goToNextQuestion} className="px-4 py-2">
-                        Next
+                        {props.strings.nextPageButton}
                         <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                 }

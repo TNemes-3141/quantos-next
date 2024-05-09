@@ -42,6 +42,7 @@
     "welcome": {
         "nextPageButton": "Weiter",
         "previousPageButton": "Zurück",
+        "finishButton": "Fertig",
         "welcomePage": {
             "title": "Hi! Lass uns loslegen 🚀",
             "question": "Wir möchten dir zuerst ein paar Fragen stellen, um dein Nutzererlebnis anzupassen."

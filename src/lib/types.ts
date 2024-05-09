@@ -16,6 +16,7 @@ export enum LoginResponse {
 export type WelcomeLocalizedStrings = {
     nextPageButton: string,
     previousPageButton: string
+    finishButton: string,
     welcomePage: {
         title: string
         question: string

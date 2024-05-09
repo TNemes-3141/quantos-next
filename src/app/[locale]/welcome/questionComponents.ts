@@ -1,8 +1,8 @@
 import { FC } from "react";
+import { WelcomeLocalizedStrings } from "@/lib/types";
 
 export interface QuestionItemProps {
-    data: any;
-    onChange: (value: any) => void;
+    strings: WelcomeLocalizedStrings,
 }
 
 export type QuestionComponentType = FC<QuestionItemProps>;

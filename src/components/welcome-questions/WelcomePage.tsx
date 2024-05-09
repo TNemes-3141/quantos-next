@@ -1,7 +1,12 @@
 import { QuestionComponentType } from "@/app/[locale]/welcome/questionComponents";
+import { secondary_font } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
 
-export const WelcomePage: QuestionComponentType = ({data, onChange}) => {
+export const WelcomePage: QuestionComponentType = ({ strings }) => {
     return (
-        <p>{data.welcomePage.title}</p>
+        <div className="flex flex-col justify-start items-center">
+            <p className={cn("text-3xl mb-10", secondary_font.className)}>{strings.welcomePage.title}</p>
+            <p>{strings.welcomePage.question}</p>
+        </div>
     );
 }

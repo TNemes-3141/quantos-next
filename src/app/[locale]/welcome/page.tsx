@@ -4,6 +4,7 @@ import { WelcomeLocalizedStrings } from "@/lib/types";
 
 import { ValidLocale, getTranslator } from "@/i18n";
 import { validateUser } from "@/lib/validateUser";
+import { createUserEntryIfMissing } from "./actions";
 
 export default async function Home({
   params,
@@ -11,6 +12,7 @@ export default async function Home({
   params: { locale: string; };
 }) {
   const user = await validateUser();
+  await createUserEntryIfMissing(user);
 
   const validLocale = params.locale as ValidLocale
   const translate = await getTranslator(validLocale);
@@ -18,6 +20,7 @@ export default async function Home({
   const localizedStrings: WelcomeLocalizedStrings = {
     nextPageButton: translate("welcome.nextPageButton"),
     previousPageButton: translate("welcome.previousPageButton"),
+    finishButton: translate("welcome.finishButton"),
     welcomePage: {
       title: translate("welcome.welcomePage.title"),
       question: translate("welcome.welcomePage.question")
