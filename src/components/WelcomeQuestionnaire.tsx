@@ -1,10 +1,11 @@
 "use client";
 
-import { createElement, useState, useEffect } from "react";
+import { createElement, useState, useEffect, useRef } from "react";
 import { WelcomeLocalizedStrings } from "@/lib/types"
 
 import { QuestionComponentType } from "@/app/[locale]/welcome/questionComponents";
 import { WelcomePage } from "./welcome-questions/WelcomePage";
+import { NamePage } from "./welcome-questions/NamePage";
 
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "./shadcn-ui/button";
@@ -14,11 +15,12 @@ type WelcomeQuestionnaireProps = {
     setProgress: any,
 }
 
-const questionComponents: QuestionComponentType[] = [WelcomePage, WelcomePage, WelcomePage];
+const questionComponents: QuestionComponentType[] = [WelcomePage, NamePage];
 
 export default function WelcomeQuestionnaire(props: WelcomeQuestionnaireProps) {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [animationState, setAnimationState] = useState<"enter" | "exit">("enter");
+    const submitRef = useRef<HTMLButtonElement>(null);
     const totalQuestions = 6;
 
     useEffect(() => {
@@ -27,6 +29,9 @@ export default function WelcomeQuestionnaire(props: WelcomeQuestionnaireProps) {
 
     const goToNextQuestion = async () => {
         if (currentQuestion < totalQuestions - 1) {
+            if (submitRef.current) {
+                submitRef.current.click();
+            } // Notify question components to submit
             setAnimationState('exit');
             setTimeout(() => {
                 const nextQuestion = currentQuestion + 1;
@@ -38,6 +43,9 @@ export default function WelcomeQuestionnaire(props: WelcomeQuestionnaireProps) {
 
     const goToPreviousQuestion = async () => {
         if (currentQuestion > 0) {
+            if (submitRef.current) {
+                submitRef.current.click();
+            } // Notify question components to submit
             setAnimationState('exit');
             setTimeout(() => {
                 const prevQuestion = currentQuestion - 1;
@@ -54,6 +62,7 @@ export default function WelcomeQuestionnaire(props: WelcomeQuestionnaireProps) {
             <div className={animationState === 'enter' ? 'animate-fade-slide-in' : 'animate-fade-slide-out'}>
                 {createElement(QuestionComponent, {
                     strings: props.strings,
+                    submitRef: submitRef,
                 })}
             </div>
             <div className="flex justify-between mt-10">
