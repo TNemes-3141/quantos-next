@@ -1,6 +1,7 @@
 "use client";
 
 import { createElement, useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import { WelcomeLocalizedStrings } from "@/lib/types"
 
 import { QuestionComponentType } from "@/app/[locale]/welcome/questionComponents";
@@ -8,16 +9,26 @@ import { WelcomePage } from "./welcome-questions/WelcomePage";
 import { NamePage } from "./welcome-questions/NamePage";
 import { AccountTypePage } from "./welcome-questions/AccountTypePage";
 import { AgePage } from "./welcome-questions/AgePage";
+import { ExperiencePage } from "./welcome-questions/ExperiencePage";
+import { FinalPage } from "./welcome-questions/FinalPage";
 
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "./shadcn-ui/button";
+
 
 type WelcomeQuestionnaireProps = {
     strings: WelcomeLocalizedStrings,
     setProgress: any,
 }
 
-const questionComponents: QuestionComponentType[] = [WelcomePage, NamePage, AccountTypePage, AgePage];
+const questionComponents: QuestionComponentType[] = [
+    WelcomePage,
+    NamePage,
+    AccountTypePage,
+    AgePage,
+    ExperiencePage,
+    FinalPage
+];
 
 export default function WelcomeQuestionnaire(props: WelcomeQuestionnaireProps) {
     const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -76,7 +87,9 @@ export default function WelcomeQuestionnaire(props: WelcomeQuestionnaireProps) {
                     <div></div>
                 }
                 {currentQuestion === totalQuestions - 1 ?
-                    <Button variant="default" className="px-4 py-2">{props.strings.finishButton}</Button> :
+                    <Link href={"/home"}>
+                        <Button variant="default" className="px-4 py-2">{props.strings.finishButton}</Button>
+                    </Link> :
                     <Button variant="ghost" onClick={goToNextQuestion} className="px-4 py-2">
                         {props.strings.nextPageButton}
                         <ArrowRight className="ml-2 h-4 w-4" />

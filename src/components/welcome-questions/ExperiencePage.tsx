@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import { useAtomValue } from "jotai";
 import { userDataAtom } from "@/stores/userDataStore";
 import { QuestionComponentType } from "@/app/[locale]/welcome/questionComponents";
-import { updateAgeGroup, updateExperienceLevel } from "@/app/[locale]/welcome/actions";
+import { updateExperienceLevel } from "@/app/[locale]/welcome/actions";
 
 import { secondary_font } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
@@ -13,7 +13,7 @@ import { Slider } from "../shadcn-ui/slider";
 import { Label } from "../shadcn-ui/label";
 
 
-export const AgePage: QuestionComponentType = ({ strings, submitRef }) => {
+export const ExperiencePage: QuestionComponentType = ({ strings, submitRef }) => {
     const userData = useAtomValue(userDataAtom);
     const [level, setLevel] = useState(0);
 
