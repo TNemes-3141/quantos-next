@@ -37,7 +37,7 @@ export type WelcomeLocalizedStrings = {
     },
     agePage: {
         title: string
-        description: string
+        question: string
         optionNotSpecified: string
         optionTeen: string
         optionYoungAdult: string
@@ -46,7 +46,7 @@ export type WelcomeLocalizedStrings = {
     },
     experiencePage: {
         title: string
-        description: string
+        question: string
         optionBeginner: string
         optionAdvanced: string
         optionSkilled: string

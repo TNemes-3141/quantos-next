@@ -41,7 +41,7 @@ export default async function Home({
     },
     agePage: {
       title: translate("welcome.agePage.title"),
-      description: translate("welcome.agePage.description"),
+      question: translate("welcome.agePage.question"),
       optionNotSpecified: translate("welcome.agePage.optionNotSpecified"),
       optionTeen: translate("welcome.agePage.optionTeen"),
       optionYoungAdult: translate("welcome.agePage.optionYoungAdult"),
@@ -50,7 +50,7 @@ export default async function Home({
     },
     experiencePage: {
       title: translate("welcome.experiencePage.title"),
-      description: translate("welcome.experiencePage.description"),
+      question: translate("welcome.experiencePage.question"),
       optionBeginner: translate("welcome.experiencePage.optionBeginner"),
       optionAdvanced: translate("welcome.experiencePage.optionAdvanced"),
       optionSkilled: translate("welcome.experiencePage.optionSkilled")

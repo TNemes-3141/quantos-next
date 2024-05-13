@@ -57,3 +57,13 @@ export async function updateAccountType(type: "student" | "educator", userId: st
         redirect("/error");
     }
 }
+
+export async function updateAgeGroup(group: "teen" | "young_adult" | "adult" | "elder" | null, userId: string) {
+    try {
+        await db.update(userData)
+            .set({ageGroup: group})
+            .where(eq(userData.userId, userId));
+    } catch (error) {
+        redirect("/error");
+    }
+}

@@ -63,8 +63,8 @@
         },
         "agePage": {
             "title": "How old are you?",
-            "description": "This question is optional, but improves your learning experience.",
-            "optionNotSpecified": "No specification",
+            "question": "This question is optional, but improves your learning experience.",
+            "optionNotSpecified": "Not specified",
             "optionTeen": "15-18 years",
             "optionYoungAdult": "19-28 years",
             "optionAdult": "29-59 years",
@@ -72,7 +72,7 @@
         },
         "experiencePage": {
             "title": "How would you describe yourself?",
-            "description": "That is, how familiar are you with quantum computing in general?",
+            "question": "That is, how familiar are you with quantum computing in general?",
             "optionBeginner": "Beginner",
             "optionAdvanced": "Advanced",
             "optionSkilled": "Skilled"

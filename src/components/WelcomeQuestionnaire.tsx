@@ -7,6 +7,7 @@ import { QuestionComponentType } from "@/app/[locale]/welcome/questionComponents
 import { WelcomePage } from "./welcome-questions/WelcomePage";
 import { NamePage } from "./welcome-questions/NamePage";
 import { AccountTypePage } from "./welcome-questions/AccountTypePage";
+import { AgePage } from "./welcome-questions/AgePage";
 
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "./shadcn-ui/button";
@@ -16,7 +17,7 @@ type WelcomeQuestionnaireProps = {
     setProgress: any,
 }
 
-const questionComponents: QuestionComponentType[] = [WelcomePage, NamePage, AccountTypePage];
+const questionComponents: QuestionComponentType[] = [WelcomePage, NamePage, AccountTypePage, AgePage];
 
 export default function WelcomeQuestionnaire(props: WelcomeQuestionnaireProps) {
     const [currentQuestion, setCurrentQuestion] = useState(0);

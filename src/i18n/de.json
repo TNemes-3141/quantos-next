@@ -63,7 +63,7 @@
         },
         "agePage": {
             "title": "Wie alt bist du?",
-            "description": "Diese Frage ist optional, verbessert aber dein Lernerlebnis.",
+            "question": "Diese Frage ist optional, verbessert aber dein Lernerlebnis.",
             "optionNotSpecified": "Keine Angabe",
             "optionTeen": "15-18 Jahre",
             "optionYoungAdult": "19-28 Jahre",
@@ -72,7 +72,7 @@
         },
         "experiencePage": {
             "title": "Wie würdest du dich beschreiben?",
-            "description": "Genauer: Wie vertraut bist du mit dem Thema Quantencomputing im Allgemeinen?",
+            "question": "Genauer: Wie vertraut bist du mit dem Thema Quantencomputing im Allgemeinen?",
             "optionBeginner": "Anfänger",
             "optionAdvanced": "Fortgeschritten",
             "optionSkilled": "Erfahren"

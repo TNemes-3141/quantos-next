@@ -121,6 +121,7 @@ export const AccountTypePage: QuestionComponentType = ({ strings, submitRef }) =
                     </PopoverContent>
                 </Popover>
             </div>
+            <button className="hidden" ref={submitRef} onClick={handleSubmit}></button>
         </div>
     );
 }
