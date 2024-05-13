@@ -67,3 +67,13 @@ export async function updateAgeGroup(group: "teen" | "young_adult" | "adult" | "
         redirect("/error");
     }
 }
+
+export async function updateExperienceLevel(level: "beginner" | "advanced" | "skilled", userId: string) {
+    try {
+        await db.update(userData)
+            .set({experienceLevel: level})
+            .where(eq(userData.userId, userId));
+    } catch (error) {
+        redirect("/error");
+    }
+}

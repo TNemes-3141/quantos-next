@@ -23,7 +23,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "../shadcn-ui/popover";
-import { Check, ChevronsUpDown, Apple, GraduationCap } from "lucide-react"
+import { Check, ChevronDown, Apple, GraduationCap } from "lucide-react"
 
 type AccountTypes = "student" | "educator" | undefined;
 
@@ -86,7 +86,7 @@ export const AccountTypePage: QuestionComponentType = ({ strings, submitRef }) =
                             {value
                                 ? accountTypes.find((accountType) => accountType.value === value)?.label
                                 : strings.accountTypePage.chooseOption}
-                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                            <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                         </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-full max-w-[350px] p-0">
