@@ -8,6 +8,7 @@
         "signUpButtonLabel": "Registrieren",
         "logInDescription": "Bereits an Bord?",
         "logInButtonLabel": "Einloggen",
+        "logOutButtonLabel": "Abmelden",
         "groupAccessDescription": "Teil einer Klasse oder eines Teams?",
         "groupAccessButtonLabel": "Zugangscode eingeben",
         "emailLabel": "Email-Adresse",
@@ -81,11 +82,48 @@
             "title": "Super, es kann losgehen! 🎉"
         }
     },
+    "home": {
+        "tabLearn": "Lernen",
+        "tabCode": "Coden",
+        "tabStatistics": "Statistiken",
+        "tabSettings": "Einstellungen",
+        "topNavigation": {
+            "searchPlaceholder": "Suchen...",
+            "noResultsMessage": "ಥ_ಥ Keine Ergebnisse",
+            "commandHeaderNavigation": "Navigation",
+            "commandHeaderShortcuts": "Hilfreiche Schnellzugriffe",
+            "commandHeaderLections": "Lektionen",
+            "commands": {
+                "personalSettings": "Profileinstellungen bearbeiten",
+                "password": "Passwort ändern",
+                "accessCodes": "Zugangscodes verwalten",
+                "lowVision": "Sehschwäche-Modus aktivieren",
+                "colorBlindness": "Farbenblindheit ausgleichen",
+                "help": "Hilfe anfordern",
+                "info": "App-Informationen ansehen"
+            }
+        },
+        "profilePanel": {
+            "personalSettingsOption": "Profileinstellungen",
+            "helpCenterOption": "Hilfe-Center"
+        }
+    },
     "error": {
         "pageText": "Sorry! Etwas ist schief gelaufen...",
         "pageCta": "Zurück zur Startseite",
         "dialogTitle": "Fehler",
         "unknownErrorDialogText": "Ups! Es scheint, dass etwas schief gelaufen ist... Bitte benachrichtige deinen Kursleiter und versuche es später noch einmal. Wenn das Problem weiterhin besteht, kontaktiere uns bitte unter help@quantos.online.",
         "dialogCloseButton": "OK"
+    },
+    "themeSelection": {
+        "tooltip": "Farbschema umschalten",
+        "dark": "Dunkel",
+        "light": "Hell",
+        "system": "System"
+    },
+    "profilePanel": {
+        "tooltip": "Profilaktionen",
+        "personalSettings": "Profileinstellungen",
+        "helpCenter": "Hilfe-Center"
     }
 }

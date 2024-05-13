@@ -8,6 +8,7 @@
         "signUpButtonLabel": "Sign up",
         "logInDescription": "Already on board?",
         "logInButtonLabel": "Log in",
+        "logOutButtonLabel": "Log out",
         "groupAccessDescription": "Part of a classroom or a team?",
         "groupAccessButtonLabel": "Enter access code",
         "emailLabel": "Email address",
@@ -81,11 +82,48 @@
             "title": "You're all set! 🎉"
         }
     },
+    "home": {
+        "tabLearn": "Learn",
+        "tabCode": "Code",
+        "tabStatistics": "Statistics",
+        "tabSettings": "Settings",
+        "topNavigation": {
+            "searchPlaceholder": "Search...",
+            "noResultsMessage": "ಥ_ಥ No results found",
+            "commandHeaderNavigation": "Navigation",
+            "commandHeaderShortcuts": "Helpful shortcuts",
+            "commandHeaderLections": "Lections",
+            "commands": {
+                "personalSettings": "Change personal settings",
+                "password": "Change password",
+                "accessCodes": "Manage access codes",
+                "lowVision": "Activate low vision mode",
+                "colorBlindness": "Adjust for color blindness",
+                "help": "Get help",
+                "info": "View app information"
+            }
+        },
+        "profilePanel": {
+            "personalSettingsOption": "Profile settings",
+            "helpCenterOption": "Help center"
+        }
+    },
     "error": {
         "pageText": "Oops, sorry! Something went wrong...",
         "pageCta": "Back to the starting page",
         "dialogTitle": "Error",
         "unknownErrorDialogText": "Oops! It seems that something went wrong... Please notify your instructor and try again later. If the problem persists, please contact us at help@quantos.online.",
         "dialogCloseButton": "OK"
+    },
+    "themeSelection": {
+        "tooltip": "Toggle theme",
+        "dark": "Dark",
+        "light": "Light",
+        "system": "System"
+    },
+    "profilePanel": {
+        "tooltip": "Profile actions",
+        "personalSettings": "Profile settings",
+        "helpCenter": "Help center"
     }
 }

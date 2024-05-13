@@ -12,29 +12,34 @@ import {
 } from "./shadcn-ui/dropdown-menu"
 import { CircleUser, LogOut } from "lucide-react";
 
-import { LocalizedProps } from "@/i18n";
 
+type ProfilePanelProps = {
+    tooltip: string,
+    personalSettings: string,
+    helpCenter: string,
+    logOut: string,
+}
 
-export default function ProfilePanel() {
+export default function ProfilePanel(props: ProfilePanelProps) {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="icon" aria-label="Profile actions">
+                <Button variant="outline" size="icon" aria-label={props.tooltip}>
                     <CircleUser className="h-[1.2rem] w-[1.2rem]" />
-                    <span className="sr-only">Profile actions</span>
+                    <span className="sr-only">{props.tooltip}</span>
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => redirect("/")}>
-                    Personal settings
+                    {props.personalSettings}
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => redirect("/")}>
-                    Help center
+                    {props.helpCenter}
                 </DropdownMenuItem>
-                <DropdownMenuSeparator/>
+                <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => redirect("/")}>
-                    <LogOut className="mr-2 h-4 w-4" color="#e7184c"/>
-                    <span className="text-destructive">Log out</span>
+                    <LogOut className="mr-2 h-4 w-4" color="#e7184c" />
+                    <span className="text-destructive">{props.logOut}</span>
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
