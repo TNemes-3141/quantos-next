@@ -111,7 +111,7 @@ export const AccountTypePage: QuestionComponentType = ({ strings, submitRef }) =
                                                     {accountType.icon}
                                                     <p className="font-bold">{accountType.label}</p>
                                                 </div>
-                                                <p>{accountType.description}</p>
+                                                <p className="text-muted-foreground">{accountType.description}</p>
                                             </div>
                                         </CommandItem>
                                     ))}
