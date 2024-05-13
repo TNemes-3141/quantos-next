@@ -57,3 +57,13 @@ export const getLocalePartsFrom = ({ pathname, locale }: LocaleSource) => {
         };
     }
 };
+
+export const format = (name: string, params: { [key: string]: string | number }) => {
+    if (Object.entries(params).length) {
+        Object.entries(params).forEach(([key, value]) => {
+            name = name.replace(`{{ ${key} }}`, String(value));
+        });
+    }
+
+    return name;
+}
