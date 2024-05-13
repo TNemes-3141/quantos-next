@@ -50,7 +50,7 @@ export const ExperiencePage: QuestionComponentType = ({ strings, submitRef }) =>
 
     return (
         <div className="flex flex-col justify-start items-center space-y-10">
-            <p className={cn("text-3xl", secondary_font.className)}>{strings.experiencePage.title}</p>
+            <p className={cn("text-3xl font-bold", secondary_font.className)}>{strings.experiencePage.title}</p>
             <p>{strings.experiencePage.question}</p>
             <div className="flex flex-col items-center space-y-6 w-full pb-10">
                 <ExperienceSelectionAnimation

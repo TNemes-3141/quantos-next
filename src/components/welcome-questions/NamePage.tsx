@@ -31,7 +31,7 @@ export const NamePage: QuestionComponentType = ({ strings, submitRef }) => {
 
     return (
         <div className="flex flex-col justify-start items-center space-y-10">
-            <p className={cn("text-3xl", secondary_font.className)}>{strings.namePage.title}</p>
+            <p className={cn("text-3xl font-bold", secondary_font.className)}>{strings.namePage.title}</p>
             <p>{strings.namePage.question}</p>
             <div className="w-full max-w-[200px] py-10">
                 <Input

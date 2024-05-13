@@ -68,7 +68,7 @@ export const AccountTypePage: QuestionComponentType = ({ strings, submitRef }) =
 
     return (
         <div className="flex flex-col justify-start items-center space-y-10">
-            <p className={cn("text-3xl", secondary_font.className)}>
+            <p className={cn("text-3xl font-bold", secondary_font.className)}>
                 {userData.name ?
                     format(strings.accountTypePage.titleWithName, { "userName": userData.name }) :
                     strings.accountTypePage.titleWithoutName
