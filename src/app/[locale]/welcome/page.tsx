@@ -33,6 +33,7 @@ export default async function Home({
     accountTypePage: {
       titleWithName: translate("welcome.accountTypePage.titleWithName"),
       titleWithoutName: translate("welcome.accountTypePage.titleWithoutName"),
+      chooseOption: translate("welcome.accountTypePage.chooseOption"),
       optionStudentTitle: translate("welcome.accountTypePage.optionStudentTitle"),
       optionStudentDescription: translate("welcome.accountTypePage.optionStudentDescription"),
       optionTeacherTitle: translate("welcome.accountTypePage.optionTeacherTitle"),

@@ -23,6 +23,10 @@ export const NamePage: QuestionComponentType = ({ strings, submitRef }) => {
             setUser({id: user.id, name: name})
             await updateUserName(name);
         }
+        else {
+            setUser({id: user.id, name: null})
+            await updateUserName(null);
+        }
     }
 
     return (

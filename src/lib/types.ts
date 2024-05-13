@@ -29,6 +29,7 @@ export type WelcomeLocalizedStrings = {
     accountTypePage: {
         titleWithName: string
         titleWithoutName: string
+        chooseOption: string
         optionStudentTitle: string
         optionStudentDescription: string
         optionTeacherTitle: string

@@ -55,6 +55,7 @@
         "accountTypePage": {
             "titleWithName": "What type of account would you like to create, {{ userName }}?",
             "titleWithoutName": "What type of account would you like to create?",
+            "chooseOption": "Choose an account...",
             "optionStudentTitle": "Student or learner",
             "optionStudentDescription": "Ideal for pupils, students and learning enthusiasts who want to find out more about quantum computing.",
             "optionTeacherTitle": "Educator",

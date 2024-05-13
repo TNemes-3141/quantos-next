@@ -55,6 +55,7 @@
         "accountTypePage": {
             "titleWithName": "Welche Art von Konto möchtest du anlegen, {{ userName }}?",
             "titleWithoutName": "Welche Art von Konto möchtest du anlegen?",
+            "chooseOption": "Konto auswählen...",
             "optionStudentTitle": "Schüler/-in oder Lernende/-r",
             "optionStudentDescription": "Ideal für Schüler/-innen, Student/-innen und Lernbegeisterte, die mehr über Quantencomputing erfahren möchten.",
             "optionTeacherTitle": "Lehrperson",

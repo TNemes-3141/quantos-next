@@ -26,7 +26,7 @@ export async function createUserEntryIfMissing(user: User) {
     }
 }
 
-export async function updateUserName(name: string) {
+export async function updateUserName(name: string | null) {
     const supabase = createClient();
     
     const { data, error } = await supabase.auth.updateUser({
@@ -43,6 +43,16 @@ export async function updateUserName(name: string) {
         await db.update(userData)
             .set({displayName: name})
             .where(eq(userData.userId, data.user.id));
+    } catch (error) {
+        redirect("/error");
+    }
+}
+
+export async function updateAccountType(type: "student" | "educator", userId: string) {
+    try {
+        await db.update(userData)
+            .set({accountType: type})
+            .where(eq(userData.userId, userId));
     } catch (error) {
         redirect("/error");
     }
