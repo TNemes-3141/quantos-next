@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ReactNode } from "react";
+import TabIconAnimation from "./TabIconAnimation";
+
 import { cn } from "@/lib/utils";
 import { secondary_font } from "@/lib/fonts";
 
-import TabIconAnimation from "./TabIconAnimation";
 
 type NavigationLinksProps = {
     tabLearn: string,
