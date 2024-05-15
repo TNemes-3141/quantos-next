@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { secondary_font } from "@/lib/fonts";
 
 import TabIconAnimation from "./TabIconAnimation";
 
@@ -67,7 +68,7 @@ export default function NavigationLinks(props: NavigationLinksProps) {
                             source={link.iconSource}
                             stateMachine={link.iconStateMachine}
                         />
-                        <p className="uppercase hidden lg:block">{link.name}</p>
+                        <p className={cn("uppercase hidden lg:block", secondary_font.className)}>{link.name}</p>
                     </div>
                 </Link>
             ))}
