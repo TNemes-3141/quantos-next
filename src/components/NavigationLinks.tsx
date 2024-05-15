@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import TabIconAnimation from "./TabIconAnimation";
 
 import { cn } from "@/lib/utils";
 import { secondary_font } from "@/lib/fonts";
+import useMediaQuery from "@/lib/useMediaQuery";
 
 
 type NavigationLinksProps = {
@@ -13,12 +15,14 @@ type NavigationLinksProps = {
     tabCode: string,
     tabStatistics: string,
     tabSettings: string,
+    orientation: "horizontal" | "vertical",
 }
 
 type NavigationLink = {
     name: string,
     href: string,
     iconSource: string,
+    svgSource: string,
     iconStateMachine: string,
 }
 
@@ -30,44 +34,55 @@ const getPathnameWithoutLocale = (path: string): string => {
 
 export default function NavigationLinks(props: NavigationLinksProps) {
     const pathName = getPathnameWithoutLocale(usePathname());
+    const isDesktop = useMediaQuery("(min-width: 768px)");
+
     const links: NavigationLink[] = [
         {
             name: props.tabLearn,
             href: "/home",
             iconSource: "/assets/icons/tab_home.riv",
+            svgSource: "/assets/icons/tab_home.svg",
             iconStateMachine: "HoverStates",
         },
         {
             name: props.tabCode,
             href: "/home/code",
             iconSource: "/assets/icons/tab_code.riv",
+            svgSource: "/assets/icons/tab_code.svg",
             iconStateMachine: "HoverStates",
         },
         {
             name: props.tabStatistics,
             href: "/home/stats",
             iconSource: "/assets/icons/tab_statistics.riv",
+            svgSource: "/assets/icons/tab_statistics.svg",
             iconStateMachine: "HoverStates",
         },
         {
             name: props.tabSettings,
             href: "/home/settings",
             iconSource: "/assets/icons/tab_settings.riv",
+            svgSource: "/assets/icons/tab_settings.svg",
             iconStateMachine: "HoverStates",
         },
     ];
 
     return (
-        <div className="flex flex-col gap-4">
+        <div className={cn("flex gap-4", props.orientation === "vertical" ? "flex-col justify-start" : " justify-around items-center")}>
             {links.map((link) => (
                 <Link key={link.name} href={link.href}>
-                    <div className={cn("flex gap-4 justify-center lg:justify-start items-center px-4 py-2 mx-4 rounded-md cursor-pointer",
+                    <div className={cn("flex gap-4 justify-center lg:justify-start items-center px-4 py-2 md:mx-4 rounded-md cursor-pointer",
                         pathName === link.href ? "bg-muted" : "hover:bg-card bg-transparent")}>
-                        <TabIconAnimation
+                        {isDesktop ? <TabIconAnimation
                             size={40}
                             source={link.iconSource}
                             stateMachine={link.iconStateMachine}
-                        />
+                        /> : <Image
+                            src={link.svgSource}
+                            alt="Quantos Logo"
+                            width={40}
+                            height={40}
+                        />}
                         <p className={cn("uppercase hidden lg:block", secondary_font.className)}>{link.name}</p>
                     </div>
                 </Link>

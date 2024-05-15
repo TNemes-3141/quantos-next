@@ -9,7 +9,7 @@ export default function SideNavigation(props: LocalizedProps) {
         <div className="h-full hidden md:block md:border-r-[1.5px] md:border-border lg:w-64 md:w-24">
             <div className="flex justify-center px-5 pt-5 pb-10">
                 <div className="hidden lg:block">
-                    <ResponsiveLogo/>
+                    <ResponsiveLogo />
                 </div>
                 <div className="lg:hidden">
                     <Image
@@ -21,6 +21,7 @@ export default function SideNavigation(props: LocalizedProps) {
                 </div>
             </div>
             <NavigationLinks
+                orientation="vertical"
                 tabLearn={props.translate("home.tabLearn")}
                 tabCode={props.translate("home.tabCode")}
                 tabStatistics={props.translate("home.tabStatistics")}

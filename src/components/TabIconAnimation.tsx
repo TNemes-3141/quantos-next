@@ -15,9 +15,10 @@ export default function TabIconAnimation(props: TabIconAnimationProps) {
         autoplay: true,
     }, {
         fitCanvasToArtboardHeight: true,
+        shouldResizeCanvasToContainer: true,
     });
 
     return (
-        <RiveComponent style={{ maxWidth: `${props.size}px` }} />
+        <RiveComponent style={{maxWidth: `${props.size}px` }} />
     );
 }
