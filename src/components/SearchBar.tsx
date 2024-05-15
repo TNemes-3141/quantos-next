@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 import {
     CommandDialog,
@@ -69,22 +70,30 @@ export default function SearchBar({ strings }: SearchBarProps) {
                 <CommandList>
                     <CommandEmpty>{strings.noResultsMessage}</CommandEmpty>
                     <CommandGroup heading={strings.commandHeaderNavigation}>
-                        <CommandItem>
-                            <Atom className="mr-2 h-4 w-4" />
-                            <span>{strings.tabLearn}</span>
-                        </CommandItem>
-                        <CommandItem>
-                            <CodeXml className="mr-2 h-4 w-4" />
-                            <span>{strings.tabCode}</span>
-                        </CommandItem>
-                        <CommandItem>
-                            <LineChart className="mr-2 h-4 w-4" />
-                            <span>{strings.tabStatistics}</span>
-                        </CommandItem>
-                        <CommandItem>
-                            <Settings className="mr-2 h-4 w-4" />
-                            <span>{strings.tabSettings}</span>
-                        </CommandItem>
+                        <Link href={"/home"}>
+                            <CommandItem>
+                                <Atom className="mr-2 h-4 w-4" />
+                                <span>{strings.tabLearn}</span>
+                            </CommandItem>
+                        </Link>
+                        <Link href={"/home/code"}>
+                            <CommandItem>
+                                <CodeXml className="mr-2 h-4 w-4" />
+                                <span>{strings.tabCode}</span>
+                            </CommandItem>
+                        </Link>
+                        <Link href={"/home/stats"}>
+                            <CommandItem>
+                                <LineChart className="mr-2 h-4 w-4" />
+                                <span>{strings.tabStatistics}</span>
+                            </CommandItem>
+                        </Link>
+                        <Link href={"/home/settings"}>
+                            <CommandItem>
+                                <Settings className="mr-2 h-4 w-4" />
+                                <span>{strings.tabSettings}</span>
+                            </CommandItem>
+                        </Link>
                     </CommandGroup>
                     <CommandGroup heading={strings.commandHeaderShortcuts}>
                         <CommandItem>
