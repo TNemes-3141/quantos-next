@@ -1,4 +1,5 @@
 import Layout from "./Layout";
+import PageContent from "./PageContent";
 
 import { ValidLocale, getTranslator } from "@/i18n";
 import { validateUser } from "@/lib/validateUser";
@@ -13,6 +14,8 @@ export default async function Home({
   const translate = await getTranslator(validLocale);
 
   return (
-    <Layout locale={validLocale} translate={translate} userName={user.user_metadata.display_name}/>
+    <Layout locale={validLocale} translate={translate} >
+      <PageContent locale={validLocale} translate={translate} userName={user.user_metadata.display_name}/>
+    </Layout>
   );
 }
