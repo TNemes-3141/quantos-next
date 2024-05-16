@@ -55,3 +55,9 @@ export type WelcomeLocalizedStrings = {
         title: string
     }
 }
+
+export enum DifficultyLevel {
+    EASY,
+    ADVANCED,
+    CHALLENGING,
+}

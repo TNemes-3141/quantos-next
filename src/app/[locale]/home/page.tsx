@@ -14,6 +14,6 @@ export default async function Home({
   const translate = await getTranslator(validLocale);
 
   return (
-    <Layout locale={validLocale} translate={translate} />
+    <Layout locale={validLocale} translate={translate} userName={user.user_metadata.display_name}/>
   );
 }

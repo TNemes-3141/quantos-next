@@ -108,6 +108,14 @@
             "helpCenterOption": "Hilfe-Center"
         }
     },
+    "learn": {
+        "difficultyEasy": "Einfach",
+        "difficultyAdvanced": "Fortgeschritten",
+        "difficultyChallenging": "Herausfordernd",
+        "subheadingChapters": "Kapitel",
+        "greetingWithName": "Hallo, {{ userName }}! 👋",
+        "greetingWithoutName": "Hallo! 👋"
+    },
     "error": {
         "pageText": "Sorry! Etwas ist schief gelaufen...",
         "pageCta": "Zurück zur Startseite",

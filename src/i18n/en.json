@@ -108,6 +108,14 @@
             "helpCenterOption": "Help center"
         }
     },
+    "learn": {
+        "difficultyEasy": "easy",
+        "difficultyAdvanced": "advaced",
+        "difficultyChallenging": "challenging",
+        "subheadingChapters": "Chapters",
+        "greetingWithName": "Hi there, {{ userName }}! 👋",
+        "greetingWithoutName": "Hi there! 👋"
+    },
     "error": {
         "pageText": "Oops, sorry! Something went wrong...",
         "pageCta": "Back to the starting page",
