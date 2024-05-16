@@ -7,6 +7,7 @@ import { chapters } from "@/lib/database/schema";
 
 
 type ChapterCardData = {
+    id: string,
     title: string;
     description: string;
     difficulty: "advanced" | "easy" | "challenging";
@@ -15,6 +16,7 @@ type ChapterCardData = {
 
 export async function getChapterCardData(locale: ValidLocale): Promise<ChapterCardData[]> {
     const result = await db.select({
+        id: chapters.chapterId,
         title: chapters.title,
         description: chapters.description,
         difficulty: chapters.difficulty,

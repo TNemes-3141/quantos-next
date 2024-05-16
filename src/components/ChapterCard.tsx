@@ -1,18 +1,16 @@
 import { createClient } from "@/lib/supabase/server"
 
-import { Badge } from "./shadcn-ui/badge"
 import { Progress } from "./shadcn-ui/progress"
-import { Button } from "./shadcn-ui/button"
 import {
     Card,
     CardContent,
-    CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/shadcn-ui/card"
-import { Trophy, ChevronRight } from "lucide-react"
+import { Trophy } from "lucide-react"
 import ChapterIconAnimation from "./ChapterIconAnimation"
+import ChapterSelectButton from "./ChapterSelectButton"
 
 import { DifficultyLevel } from "@/lib/types"
 import { TranslatorFunction } from "@/i18n"
@@ -20,6 +18,7 @@ import { cn } from "@/lib/utils"
 
 
 type ChapterCardProps = {
+    chapterId: string,
     title: string,
     description: string,
     difficulty: DifficultyLevel,
@@ -87,10 +86,7 @@ export default function ChapterCard(props: ChapterCardProps) {
                 <div className="w-full flex gap-4 items-center justify-stretch">
                     <Trophy className="h-[1.5rem] w-[1.5rem] flex-shrink-0" />
                     <Progress className="w-full" value={20} />
-                    <Button variant="outline" size="icon" aria-label="Go to chapter">
-                        <ChevronRight className="h-[1.2rem] w-[1.2rem]" />
-                        <span className="sr-only">Go to chapter</span>
-                    </Button>
+                    <ChapterSelectButton chapterId={props.chapterId}/>
                 </div>
             </CardFooter>
         </Card>

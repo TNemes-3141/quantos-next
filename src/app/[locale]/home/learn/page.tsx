@@ -1,4 +1,4 @@
-import Layout from "./Layout";
+import Layout from "../Layout";
 import PageContent from "./PageContent";
 
 import { ValidLocale, getTranslator } from "@/i18n";

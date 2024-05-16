@@ -1,4 +1,3 @@
-
 import ChapterCard from "@/components/ChapterCard";
 
 import { LocalizedProps } from "@/i18n";
@@ -37,6 +36,7 @@ export default async function PageContent(props: PageContentProps) {
             <div className="grid gap-4 grid-cols-1 md:grid-cols-[repeat(auto-fit,_minmax(400px,_1fr))]">
                 {chapters.map((chapter, index) => (<ChapterCard
                     key={index}
+                    chapterId={chapter.id}
                     title={chapter.title}
                     description={chapter.description}
                     difficulty={dbDifficultyLevelEnumToNativeEnum(chapter.difficulty)}
