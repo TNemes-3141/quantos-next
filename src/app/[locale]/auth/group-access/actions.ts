@@ -78,7 +78,7 @@ async function anonymousSignIn(dbResponse: DbAccessCodeResponse, code: string) {
     redirect('/welcome');
   }
   else {
-    revalidatePath('/home', 'layout');
-    redirect('/home');
+    revalidatePath('/home/learn', 'layout');
+    redirect('/home/learn');
   }
 }

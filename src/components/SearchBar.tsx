@@ -70,7 +70,7 @@ export default function SearchBar({ strings }: SearchBarProps) {
                 <CommandList>
                     <CommandEmpty>{strings.noResultsMessage}</CommandEmpty>
                     <CommandGroup heading={strings.commandHeaderNavigation}>
-                        <Link href={"/home"}>
+                        <Link href={"/home/learn"}>
                             <CommandItem>
                                 <Atom className="mr-2 h-4 w-4" />
                                 <span>{strings.tabLearn}</span>

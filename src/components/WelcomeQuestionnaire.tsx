@@ -87,7 +87,7 @@ export default function WelcomeQuestionnaire(props: WelcomeQuestionnaireProps) {
                     <div></div>
                 }
                 {currentQuestion === totalQuestions - 1 ?
-                    <Link href={"/home"}>
+                    <Link href={"/home/learn"}>
                         <Button variant="default" className="px-4 py-2">{props.strings.finishButton}</Button>
                     </Link> :
                     <Button variant="ghost" onClick={goToNextQuestion} className="px-4 py-2">

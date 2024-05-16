@@ -1,5 +1,4 @@
 import Layout from "./Layout";
-import Footer from "@/components/layout/Footer";
 
 import { ValidLocale, getTranslator } from "@/i18n";
 import { validateUser } from "@/lib/validateUser";

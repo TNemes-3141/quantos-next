@@ -39,7 +39,7 @@ export default function NavigationLinks(props: NavigationLinksProps) {
     const links: NavigationLink[] = [
         {
             name: props.tabLearn,
-            href: "/home",
+            href: "/home/learn",
             iconSource: "/assets/icons/tab_home.riv",
             svgSource: "/assets/icons/tab_home.svg",
             iconStateMachine: "HoverStates",

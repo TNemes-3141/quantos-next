@@ -32,8 +32,8 @@ export async function login(userEmail: string, userPassword: string): Promise<Su
     redirect('/error');
   }
 
-  revalidatePath('/home', 'layout');
-  redirect('/home');
+  revalidatePath('/home/learn', 'layout');
+  redirect('/home/learn');
   return {
     responseCode: LoginResponse.OK,
     errorMessage: undefined,
