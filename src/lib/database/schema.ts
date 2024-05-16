@@ -1,11 +1,12 @@
-import { pgTable, pgEnum, serial, text, varchar, timestamp, boolean, integer, uuid } from "drizzle-orm/pg-core";
+import { sql } from "drizzle-orm";
+import { pgTable, pgEnum, serial, text, varchar, timestamp, boolean, integer, uuid, smallint } from "drizzle-orm/pg-core";
 
 export const accessCodes = pgTable('access_codes', {
   id: serial('id').primaryKey(),
   code: varchar('code', { length: 6 }).unique().notNull(),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
   firstAccessedAt: timestamp('first_accessed_at', { withTimezone: true }),
-  active: boolean('active').notNull(),
+  active: boolean('active').default(true).notNull(),
   team: text('team').default("").notNull(),
   expiresAfter: integer('expires_after').default(30).notNull(),
 });
@@ -13,6 +14,7 @@ export const accessCodes = pgTable('access_codes', {
 export const accountTypeEnum = pgEnum('account_type', ['not_provided', 'student', 'educator']);
 export const ageGroupEnum = pgEnum('age_group', ['teen', 'young_adult', 'adult', 'elder']);
 export const experienceLevelEnum = pgEnum('experience_level', ['beginner', 'advanced', 'skilled']);
+export const difficultyLevelEnum = pgEnum('difficulty_level', ['easy', 'advanced', 'challenging']);
 
 export const userData = pgTable("user_data", {
   userId: uuid("user_id").primaryKey(),
@@ -21,4 +23,26 @@ export const userData = pgTable("user_data", {
   ageGroup: ageGroupEnum("age_group"),
   experienceLevel: experienceLevelEnum("experience_level").default("beginner").notNull(),
   accountType: accountTypeEnum("account_type").default("student").notNull(),
-})
+});
+
+export const chapters = pgTable("chapters", {
+  chapterId: text("chapter_id").primaryKey(),
+  active: boolean("active").default(true).notNull(),
+  locale: varchar("locale", { length: 2 }).notNull(),
+  title: text("title").default("").notNull(),
+  description: text("description").default("").notNull(),
+  difficulty: difficultyLevelEnum("difficulty").default("easy").notNull(),
+  iconPath: text("icon_path"),
+  thumbnailPath: text("thumbnail_path"),
+  lessons: text("lessons").array().notNull().default(sql`'{}'::text[]`),
+  position: smallint("position").notNull(),
+});
+
+export const lessons = pgTable("lessons", {
+  lessonId: text("lesson_id").primaryKey(),
+  active: boolean("active").default(true),
+  chapter: text("chapter").references(() => chapters.chapterId).notNull(),
+  title: text("title").default("").notNull(),
+  readTime: smallint("read_time").notNull(),
+  position: smallint("position").notNull(),
+});
