@@ -27,6 +27,7 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
     "drizzle-orm": "^0.30.10",
+    "embla-carousel-react": "^8.0.4",
     "input-otp": "^1.2.4",
     "jotai": "^2.8.0",
     "lucide": "^0.376.1",

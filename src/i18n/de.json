@@ -113,6 +113,8 @@
         "difficultyAdvanced": "Fortgeschritten",
         "difficultyChallenging": "Herausfordernd",
         "subheadingChapters": "Kapitel",
+        "subheadingLessons": "Lektionen",
+        "readtimeLabel": "Lesezeit: {{ readTime }} Min.",
         "greetingWithName": "Hallo, {{ userName }}! 👋",
         "greetingWithoutName": "Hallo! 👋"
     },

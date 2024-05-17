@@ -1,7 +1,9 @@
 import Layout from "../../Layout";
+import PageContent from "./PageContent";
 
 import { ValidLocale, getTranslator } from "@/i18n";
 import { validateUser } from "@/lib/validateUser";
+
 
 export default async function Home({
     params,
@@ -17,7 +19,11 @@ export default async function Home({
 
     return (
         <Layout locale={validLocale} translate={translate} >
-            <p>{params.chapterId}</p>
+            <PageContent
+                chapterId={params.chapterId}
+                locale={validLocale}
+                translate={translate}
+            />
         </Layout>
     );
 }
