@@ -7,17 +7,17 @@ type LessonCardProps = {
     lessonId: string,
     index: number,
     title: string,
-    readTime: number,
-    translate: TranslatorFunction,
+    readTimeLabel: string,
+    isSquare: boolean,
 }
 
 export default function LessonCard(props: LessonCardProps) {
     return (
-        <Card className="aspect-square">
+        <Card className={props.isSquare ? "aspect-square" : ""}>
             <CardHeader>
                 <CardTitle className="text-primary">{props.index}</CardTitle>
                 <CardDescription>
-                    {props.translate("learn.readtimeLabel", { readTime: props.readTime })}
+                    {props.readTimeLabel}
                 </CardDescription>
             </CardHeader>
             <CardContent>

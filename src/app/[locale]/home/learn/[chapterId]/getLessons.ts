@@ -7,7 +7,7 @@ import { db } from "@/lib/database/db";
 import { lessons } from "@/lib/database/schema";
 
 
-type LessonCardData = {
+export type LessonCardData = {
     id: string,
     title: string,
     readTime: number
