@@ -135,5 +135,6 @@
         "tooltip": "Profilaktionen",
         "personalSettings": "Profileinstellungen",
         "helpCenter": "Hilfe-Center"
-    }
+    },
+    "backButtonLabel": "Zurück"
 }
