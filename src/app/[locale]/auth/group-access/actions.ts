@@ -8,13 +8,14 @@ import { createClient } from '@/lib/supabase/server'
 import { db } from '@/lib/database/db'
 import { accessCodes, userData } from '@/lib/database/schema'
 import { DbAccessCodeResponse } from '@/lib/types'
+import { ValidLocale } from '@/i18n'
 
 type SubmitAccessCodeResponse = {
   responseCode: DbAccessCodeResponse,
   errorMessage: string | undefined,
 }
 
-export async function submitAccessCode(code: string): Promise<SubmitAccessCodeResponse> {
+export async function submitAccessCode(code: string, locale: ValidLocale): Promise<SubmitAccessCodeResponse> {
   let accessCode;
   try {
     accessCode = await db.query.accessCodes.findFirst({
@@ -54,31 +55,31 @@ export async function submitAccessCode(code: string): Promise<SubmitAccessCodeRe
     response = DbAccessCodeResponse.OK_NEW_USER;
   }
 
-  await anonymousSignIn(response, code);
+  await anonymousSignIn(response, code, locale);
   return { responseCode: DbAccessCodeResponse.OK, errorMessage: undefined };
 }
 
-async function anonymousSignIn(dbResponse: DbAccessCodeResponse, code: string) {
+async function anonymousSignIn(dbResponse: DbAccessCodeResponse, code: string, locale: ValidLocale) {
   const supabase = createClient();
 
   const { data, error } = await supabase.auth.signInAnonymously()
 
   if (error) {
-    redirect('/error');
+    redirect(`${locale}/error`);
   }
 
   if (dbResponse == DbAccessCodeResponse.OK_NEW_USER) {
     try {
       await db.insert(userData).values({ userId: data.user!.id, registeredAccessCode: code});
     } catch (error) {
-      redirect('/error');
+      redirect(`${locale}/error`);
     }
 
-    revalidatePath('/welcome', 'layout');
-    redirect('/welcome');
+    revalidatePath(`${locale}/welcome`, 'layout');
+    redirect(`${locale}/welcome`);
   }
   else {
-    revalidatePath('/home/learn', 'layout');
-    redirect('/home/learn');
+    revalidatePath(`${locale}/home/learn`, 'layout');
+    redirect(`${locale}/home/learn`);
   }
 }

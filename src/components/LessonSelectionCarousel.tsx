@@ -1,4 +1,6 @@
-"useClient";
+"use client";
+
+import { useState, useEffect } from "react";
 
 import {
     Carousel,
@@ -19,27 +21,19 @@ type LessonSelectionCarouselProps = {
 }
 
 export default function LessonSelectionCarousel(props: LessonSelectionCarouselProps) {
-    const isDesktop = useMediaQuery("(min-width: 768px)"); //TODO: Replace with breakpoint for large
-
+    //grid gap-4 grid-cols-1 md:grid-cols-[repeat(auto-fit,_minmax(400px,_1fr))]
     return (
-        <Carousel className="xl:w-full xl:max-w-4xl mx-auto" orientation={isDesktop ? "horizontal" : "vertical"}>
-            <CarouselContent className="-ml-4">
-                {props.lessons.map((lesson, index) => (
-                    <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                        <div className="p-1">
-                            <LessonCard
-                                lessonId={lesson.id}
-                                index={index + 1}
-                                title={lesson.title}
-                                readTimeLabel={props.readTimeLabel.replace("{{ readTime }}", `${lesson.readTime}`)}
-                                isSquare={isDesktop}
-                            />
-                        </div>
-                    </CarouselItem>
-                ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-        </Carousel>
+        <div className="grid gap-4 grid-cols-1 md:grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))]">
+            {props.lessons.map((lesson, index) => (
+                <LessonCard
+                    key={index}
+                    lessonId={lesson.id}
+                    index={index + 1}
+                    title={lesson.title}
+                    readTimeLabel={props.readTimeLabel.replace("{{ readTime }}", `${lesson.readTime}`)}
+                    isSquare={false}
+                />
+            ))}
+        </div>
     );
 }

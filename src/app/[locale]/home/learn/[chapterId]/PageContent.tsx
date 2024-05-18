@@ -19,10 +19,9 @@ export default async function PageContent(props: PageContentProps) {
             <p className={cn("text-2xl mt-5", secondary_font.className)}>
                 {props.translate("learn.subheadingLessons")}
             </p>
-            <Separator/>
             <LessonSelectionCarousel
                 lessons={lessons}
-                readTimeLabel={props.translate("readTimeLabel")}
+                readTimeLabel={props.translate("learn.readtimeLabel")}
             />
         </div>
     );

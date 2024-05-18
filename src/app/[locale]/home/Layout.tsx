@@ -3,7 +3,6 @@ import { ReactNode } from "react";
 import TopNavigation from "@/components/layout/TopNavigation";
 import SideNavigation from "@/components/layout/SideNavigation";
 import BottomNavigation from "@/components/layout/BottomNavigation";
-import PageContent from "./PageContent";
 
 import { LocalizedProps } from "@/i18n";
 
@@ -22,6 +21,7 @@ export default function Layout({ locale, translate, children}: LayoutProps) {
                     { children }
                 </main>
                 <BottomNavigation locale={locale} translate={translate}/>
+                <div className="h-32 md:h-0"></div>
             </div>
         </div>
     );

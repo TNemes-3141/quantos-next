@@ -32,6 +32,7 @@ export default function GroupAccessCard(props: LocalizedProps) {
                     errorTextCodeNotFound={props.translate("auth.groupaccess.errorCodeNotFound")}
                     errorTextCodeNotActive={props.translate("auth.groupaccess.errorCodeNotActive")}
                     errorTextCodeExpired={props.translate("auth.groupaccess.errorCodeExpired")}
+                    locale={props.locale}
                 />
             </CardContent>
             <CardFooter className="flex flex-col gap-4 items-start">

@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { submitAccessCode } from "@/app/[locale]/auth/group-access/actions";
 import { DbAccessCodeResponse } from "@/lib/types";
+import { ValidLocale } from "@/i18n";
 
 import { Loader2 } from "lucide-react";
 import ErrorDialog from "../ErrorDialog";
@@ -26,6 +27,7 @@ import {
 } from "@/components/shadcn-ui/input-otp"
 
 
+
 type LogInFormProps = {
     accessCodeLabel: string,
     submitLabel: string,
@@ -35,6 +37,7 @@ type LogInFormProps = {
     errorTextCodeExpired: string,
     errorTextUnknownError: string,
     errorCloseButton: string,
+    locale: ValidLocale
 }
 
 const formSchema = z.object({
@@ -64,7 +67,7 @@ export default function GroupAccessForm(props: LogInFormProps) {
             return;
         }
         setLoading(true);
-        const { responseCode, errorMessage } = await submitAccessCode(code);
+        const { responseCode, errorMessage } = await submitAccessCode(code, props.locale);
 
         if (errorMessage) {
             console.log(errorMessage);

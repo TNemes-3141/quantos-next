@@ -40,7 +40,6 @@ export async function middleware(request: NextRequest) {
 
     if (pathnameIsMissingValidLocale) {
         console.log("Missing valid locale in Middleware");
-        // rewrite it so next.js will render `/` as if it was `/en/us` 
         const matchedLocale = findBestMatchingLocale(
             request.headers.get("Accept-Language") || defaultLocale
         );
