@@ -6,7 +6,12 @@ import LanguageSelector from "../LanugageSelector";
 import ThemeSelector from "../ThemeSelector";
 import { LocalizedProps } from "@/i18n";
 
-export default function TopNavigation({ locale, translate }: LocalizedProps) {
+
+type TopNavigationProps = LocalizedProps & {
+    withButtons: boolean,
+}
+
+export default function TopNavigation({ locale, translate, withButtons }: TopNavigationProps) {
     const searchBarStrings: SearchBarStrings = {
         searchPlaceholder: translate("home.topNavigation.searchPlaceholder"),
         noResultsMessage: translate("home.topNavigation.noResultsMessage"),
@@ -34,7 +39,7 @@ export default function TopNavigation({ locale, translate }: LocalizedProps) {
                 <div className="max-w-xl w-full">
                     <SearchBar strings={searchBarStrings}/>
                 </div>
-                <div className="flex gap-4 h-full items-center">
+                {withButtons ? <div className="flex gap-4 h-full items-center">
                     <Separator orientation="vertical" />
                     <ThemeSelector
                         dark={translate("themeSelection.dark")}
@@ -49,7 +54,7 @@ export default function TopNavigation({ locale, translate }: LocalizedProps) {
                         helpCenter={translate("profilePanel.helpCenter")}
                         logOut={translate("auth.logOutButtonLabel")}
                     />
-                </div>
+                </div> : <></>}
             </div>
             <Separator />
         </>

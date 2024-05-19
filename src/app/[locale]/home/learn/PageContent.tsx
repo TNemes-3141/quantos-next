@@ -24,7 +24,7 @@ export default async function PageContent(props: PageContentProps) {
 
     return (
         <div className="flex flex-col space-y-6">
-            <p className={cn("text-4xl mx-auto font-bold", secondary_font.className)}>
+            <p className={cn("text-4xl mx-auto font-bold text-center", secondary_font.className)}>
                 {props.userName ?
                     props.translate("learn.greetingWithName", { userName: props.userName }) :
                     props.translate("learn.greetingWithoutName")}

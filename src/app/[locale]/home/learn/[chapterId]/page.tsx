@@ -18,7 +18,7 @@ export default async function Home({
     const translate = await getTranslator(validLocale);
 
     return (
-        <Layout locale={validLocale} translate={translate} >
+        <Layout locale={validLocale} translate={translate} withButtons={false}>
             <PageContent
                 chapterId={params.chapterId}
                 locale={validLocale}

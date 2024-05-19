@@ -68,22 +68,22 @@ export default async function PageContent(props: PageContentProps) {
                     }]}
                 />
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center pt-5">
                 {
                     publicUrl ? <ChapterThumbnailAnimation
                         size={300}
                         source={publicUrl}
-                    /> : <Skeleton className="w-full h-full max-w-[300px] max-h-[300px] rounded-xl"/>
+                    /> : <Skeleton className="w-full max-w-[300px] aspect-square rounded-xl"/>
                 }
             </div>
             <div className="flex flex-col items-center space-y-4">
-                <p className={cn("text-4xl", secondary_font.className)}>{chapterData.title}</p>
+                <p className={cn("text-4xl text-center", secondary_font.className)}>{chapterData.title}</p>
                 <Badge variant={difficultyLevelToVariant(chapterData.difficulty)}>
                     {difficultyLevelToLocalizedString(chapterData.difficulty)}
                 </Badge>
                 <p className="text-center">{chapterData.description}</p>
             </div>
-            <p className={cn("text-2xl mt-5", secondary_font.className)}>
+            <p className={cn("text-2xl pt-5", secondary_font.className)}>
                 {props.translate("learn.subheadingLessons")}
             </p>
             <LessonSelectionCarousel
