@@ -116,7 +116,13 @@
         "subheadingLessons": "Lektionen",
         "readtimeLabel": "Lesezeit: {{ readTime }} Min.",
         "greetingWithName": "Hallo, {{ userName }}! 👋",
-        "greetingWithoutName": "Hallo! 👋"
+        "greetingWithoutName": "Hallo! 👋",
+        "navigationBar": {
+            "outlineTooltip": "Abschnitt wählen",
+            "outlineDescription": "Springe zu einem Abschnitt",
+            "nextPageTooltip": "Nächste Seite",
+            "previousPageTooltip": "Vorherige Seite"
+        }
     },
     "error": {
         "pageText": "Sorry! Etwas ist schief gelaufen...",

@@ -116,7 +116,13 @@
         "subheadingLessons": "Lessons",
         "readtimeLabel": "Reading time: {{ readTime }} min.",
         "greetingWithName": "Hi there, {{ userName }}! 👋",
-        "greetingWithoutName": "Hi there! 👋"
+        "greetingWithoutName": "Hi there! 👋",
+        "navigationBar": {
+            "outlineTooltip": "Select section",
+            "outlineDescription": "Jump to a section",
+            "nextPageTooltip": "Next page",
+            "previousPageTooltip": "Previous page"
+        }
     },
     "error": {
         "pageText": "Oops, sorry! Something went wrong...",
