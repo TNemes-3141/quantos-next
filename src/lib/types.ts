@@ -61,3 +61,11 @@ export enum DifficultyLevel {
     ADVANCED,
     CHALLENGING,
 }
+
+export enum ContentElementType {
+    PARAGRAPH,
+    SECTION_TITLE,
+    IMAGE,
+    EQUATION,
+    INTERACTIVE,
+}

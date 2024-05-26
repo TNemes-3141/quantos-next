@@ -1,0 +1,88 @@
+"use server";
+
+import { redirect } from "next/navigation";
+
+import { createClient } from "@/lib/supabase/server";
+import { ValidLocale } from "@/i18n";
+import { LessonContent,
+    LessonContentElement,
+    OutlineElement,
+    ParagraphElement,
+    SectionTitleElement,
+    ImageElement,
+    EquationElement,
+    InteractiveElement
+} from "@/lib/contentTypes";
+import { ContentElementType } from "@/lib/types";
+
+
+export async function getLessonContentElements(locale: ValidLocale, chapterId: string, lessonId: string): Promise<LessonContent> {
+    const supabase = createClient();
+    const jsonLocation = `${locale}/${chapterId}/${lessonId}.json`;
+
+    const { data, error } = await supabase.storage
+        .from("learning-content")
+        .download(jsonLocation);
+
+    if (error) {
+        redirect("/error");
+    }
+
+    const lessonJson = await data.text();
+    const lessonData = JSON.parse(lessonJson);
+
+    try {
+        const outlineElements: OutlineElement[] = parseOutlineElements(lessonData);
+        const pageContents: LessonContentElement[][] = parseLessonContent(lessonData);
+
+        return { outlineElements, pageContents };
+    } catch (error) {
+        console.log(error);
+        redirect("/error");
+    }
+}
+
+function parseOutlineElements(jsonData: any): OutlineElement[] {
+    return jsonData.outline.map((outlineItem: any) => ({
+        sectiontitle: outlineItem.sectiontitle,
+        pagenumber: outlineItem.pagenumber
+    }));
+}
+
+function parseLessonContent(jsonData: any): LessonContentElement[][] {
+    return jsonData.pages.map((page: any) => 
+        page.elements.map((element: any) => {
+            switch (element.type) {
+                case 'paragraph': return parseParagraph(element);
+                case 'sectiontitle': return parseSectionTitle(element);
+                case 'image': return parseImage(element);
+                case 'equation': return parseEquation(element);
+                case 'interactive': return parseInteractive(element);
+                default:
+                    throw new Error(`Unknown content type: ${element.type}`);
+            }
+        })
+    );
+}
+
+// CONTENT ELEMENTS
+
+function parseParagraph(element: any): ParagraphElement {
+    return { type: ContentElementType.PARAGRAPH, text: element.text } as ParagraphElement;
+}
+
+function parseSectionTitle(element: any): SectionTitleElement {
+    return { type: ContentElementType.SECTION_TITLE, title: element.title } as SectionTitleElement;
+}
+
+function parseImage(element: any): ImageElement {
+    return { type: ContentElementType.IMAGE, asset: element.asset, caption: element.caption, alttext: element.alttext } as ImageElement;
+}
+
+function parseEquation(element: any): EquationElement {
+    return { type: ContentElementType.EQUATION, tex: element.tex, alttext: element.alttext } as EquationElement;
+}
+
+function parseInteractive(element: any): InteractiveElement {
+    return { type: ContentElementType.INTERACTIVE, asset: element.asset, caption: element.caption, alttext: element.alttext } as InteractiveElement;
+}
