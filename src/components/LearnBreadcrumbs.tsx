@@ -33,7 +33,7 @@ export default function LearnBreadcrumbs(props: LearnBreadcrumbsProps) {
                             <BreadcrumbSeparator/>
                             <BreadcrumbItem>
                                 <BreadcrumbLink asChild>
-                                    <Link href={`/${props.locale}/home/learn${item.path}`}>{props.items[index].title}</Link>
+                                    <Link href={`/${props.locale}/home/learn/${item.path}`}>{props.items[index].title}</Link>
                                 </BreadcrumbLink>
                             </BreadcrumbItem>
                         </>);

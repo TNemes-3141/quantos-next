@@ -1,9 +1,11 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { eq } from "drizzle-orm";
 
 import { createClient } from "@/lib/supabase/server";
-import { ValidLocale } from "@/i18n";
+import { db } from "@/lib/database/db";
+import { chapters, lessons } from "@/lib/database/schema";
 import { LessonContent,
     LessonContentElement,
     OutlineElement,
@@ -14,7 +16,44 @@ import { LessonContent,
     InteractiveElement
 } from "@/lib/contentTypes";
 import { ContentElementType } from "@/lib/types";
+import { ValidLocale } from "@/i18n";
 
+
+type BreadcrumbData = {
+    chapterTitle: string,
+    lessonTitle: string,
+}
+
+export async function getBreadcrumbData(chapterId: string, lessonId: string): Promise<BreadcrumbData> {
+    try {
+        const chapter = await db.query.chapters.findFirst({
+            columns: {
+                title: true,
+            },
+            where: eq(chapters.chapterId, chapterId),
+        });
+        if (!chapter) {
+            redirect("/error");
+        }
+
+        const lesson = await db.query.lessons.findFirst({
+            columns: {
+                title: true,
+            },
+            where: eq(lessons.lessonId, lessonId),
+        });
+        if (!lesson) {
+            redirect("/error");
+        }
+
+        return {
+            chapterTitle: chapter.title,
+            lessonTitle: lesson.title,
+        }
+    } catch (error) {
+        redirect("/error");
+    }
+}
 
 export async function getLessonContentElements(locale: ValidLocale, chapterId: string, lessonId: string): Promise<LessonContent> {
     const supabase = createClient();
