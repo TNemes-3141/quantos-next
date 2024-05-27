@@ -13,7 +13,8 @@ type LessonContentNavigatorProps = {
         outlineTooltip: string,
         outlineDescription: string,
         nextPageTooltip: string,
-        previousPageTooltip: string
+        previousPageTooltip: string,
+        closeButtonLabel: string,
     }
 }
 
@@ -48,17 +49,30 @@ export default function LessonContentNavigator(props: LessonContentNavigatorProp
         }
     };
 
+    const jumpToPage = async (page: number) => {
+        if (page >= 0 && page < totalPages) {
+            setAnimationState('exit');
+            setTimeout(() => {
+                setCurrentPage(page);
+                //props.setProgress(nextQuestion + 1);
+            }, 300);
+        }
+    }
+
     return (
         <div className="flex flex-col space-y-6">
             <LessonContentNavbar
                 lessonTitle={props.title}
-                lessonSections={totalPages}
+                lessonPages={totalPages}
+                outline={props.content.outlineElements}
                 outlineTooltip={props.strings.outlineTooltip}
                 outlineDescription={props.strings.outlineDescription}
                 nextPageTooltip={props.strings.nextPageTooltip}
                 previousPageTooltip={props.strings.previousPageTooltip}
+                closeButtonLabel={props.strings.closeButtonLabel}
                 goToNextPage={goToNextPage}
                 goToPreviousPage={goToPreviousPage}
+                jumpToPage={jumpToPage}
             />
         </div>
     );

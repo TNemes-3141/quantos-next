@@ -15,7 +15,7 @@ import { LessonContent,
     EquationElement,
     InteractiveElement
 } from "@/lib/contentTypes";
-import { ContentElementType } from "@/lib/types";
+import { ContentElementType, ImageModifier } from "@/lib/types";
 import { ValidLocale } from "@/i18n";
 
 
@@ -91,10 +91,12 @@ function parseOutlineElements(jsonData: any): OutlineElement[] {
 function parseLessonContent(jsonData: any): LessonContentElement[][] {
     return jsonData.pages.map((page: any) => 
         page.elements.map((element: any) => {
-            switch (element.type) {
+            const typeStrings = (element.type as String).split(":");
+
+            switch (typeStrings[0]) {
                 case 'paragraph': return parseParagraph(element);
                 case 'sectiontitle': return parseSectionTitle(element);
-                case 'image': return parseImage(element);
+                case 'image': return parseImage(element, typeStrings);
                 case 'equation': return parseEquation(element);
                 case 'interactive': return parseInteractive(element);
                 default:
@@ -114,8 +116,20 @@ function parseSectionTitle(element: any): SectionTitleElement {
     return { type: ContentElementType.SECTION_TITLE, title: element.title } as SectionTitleElement;
 }
 
-function parseImage(element: any): ImageElement {
-    return { type: ContentElementType.IMAGE, asset: element.asset, caption: element.caption, alttext: element.alttext } as ImageElement;
+function parseImage(element: any, modifier: string[]): ImageElement {
+    let mod = null;
+    if (modifier.length > 1) {
+        switch (modifier[1]) {
+            case "dark":
+                mod = ImageModifier.DARK;
+                break;
+            case "light":
+                mod = ImageModifier.LIGHT;
+                break;
+        }
+    }
+
+    return { type: ContentElementType.IMAGE, modifier: mod, asset: element.asset, caption: element.caption, alttext: element.alttext } as ImageElement;
 }
 
 function parseEquation(element: any): EquationElement {

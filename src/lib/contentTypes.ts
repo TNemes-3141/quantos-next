@@ -1,4 +1,4 @@
-import { ContentElementType } from "./types";
+import { ContentElementType, ImageModifier } from "./types";
 
 interface ContentElement {
     type: ContentElementType;
@@ -16,6 +16,7 @@ export interface SectionTitleElement extends ContentElement {
 
 export interface ImageElement extends ContentElement {
     type: ContentElementType.IMAGE;
+    modifier: ImageModifier | null;
     asset: string;
     caption: string;
     alttext: string;

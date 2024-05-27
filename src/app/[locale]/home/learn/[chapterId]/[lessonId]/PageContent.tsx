@@ -15,7 +15,7 @@ export default async function PageContent({ locale, translate, chapterId, lesson
     const lessonContent = await getLessonContentElements(locale, chapterId, lessonId);
 
     return (
-        <div className="flex flex-col flex-1 overflow-y-auto p-12 sm:p-20 space-y-8">
+        <div className="flex flex-col flex-1 overflow-y-auto p-6 sm:p-20 space-y-8">
             <div className="flex flex-col md:flex-row gap-6 items-left md:items-center">
                 <BackButton label={translate("backButtonLabel")} />
                 <LearnBreadcrumbs
@@ -39,6 +39,7 @@ export default async function PageContent({ locale, translate, chapterId, lesson
                     outlineDescription: translate("learn.navigationBar.outlineDescription"),
                     nextPageTooltip: translate("learn.navigationBar.nextPageTooltip"),
                     previousPageTooltip: translate("learn.navigationBar.previousPageTooltip"),
+                    closeButtonLabel: translate("closeButtonLabel"),
                 }}
             />
         </div>

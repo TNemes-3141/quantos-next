@@ -69,3 +69,8 @@ export enum ContentElementType {
     EQUATION,
     INTERACTIVE,
 }
+
+export enum ImageModifier {
+    LIGHT,
+    DARK
+}

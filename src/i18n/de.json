@@ -142,5 +142,6 @@
         "personalSettings": "Profileinstellungen",
         "helpCenter": "Hilfe-Center"
     },
-    "backButtonLabel": "Zurück"
+    "backButtonLabel": "Zurück",
+    "closeButtonLabel": "Schließen"
 }
