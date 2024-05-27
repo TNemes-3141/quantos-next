@@ -19,6 +19,7 @@ import { OutlineElement } from "@/lib/contentTypes";
 type LessonContentNavbarProps = {
     lessonTitle: string,
     lessonPages: number,
+    currentPage: number,
     outline: OutlineElement[],
     outlineTooltip: string,
     outlineDescription: string,
@@ -31,6 +32,16 @@ type LessonContentNavbarProps = {
 }
 
 export default function LessonContentNavbar(props: LessonContentNavbarProps) {
+    
+    const onGotoNextPage = async () => {
+
+        await props.goToNextPage();
+    }
+
+    const onGotoPrevPage = async () => {
+
+        await props.goToPreviousPage();
+    }
 
     const onJumpToPage = async (page: number) => {
 
@@ -65,7 +76,13 @@ export default function LessonContentNavbar(props: LessonContentNavbarProps) {
                 <div className="flex-shrink-0 flex space-x-2">
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <Button variant="outline" size="icon" aria-label={props.previousPageTooltip} className="rounded-full">
+                            <Button
+                                variant="outline"
+                                size="icon"
+                                aria-label={props.previousPageTooltip}
+                                className="rounded-full"
+                                onClick={onGotoPrevPage}
+                                disabled={props.currentPage == 0}>
                                 <ArrowLeft className="h-[1.2rem] w-[1.2rem]" />
                                 <span className="sr-only">{props.previousPageTooltip}</span>
                             </Button>
@@ -74,7 +91,13 @@ export default function LessonContentNavbar(props: LessonContentNavbarProps) {
                     </Tooltip>
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <Button variant="outline" size="icon" aria-label={props.nextPageTooltip} className="rounded-full">
+                            <Button
+                                variant="outline"
+                                size="icon"
+                                aria-label={props.nextPageTooltip} 
+                                className="rounded-full"
+                                onClick={onGotoNextPage}
+                                disabled={props.currentPage == props.lessonPages - 1}>
                                 <ArrowRight className="h-[1.2rem] w-[1.2rem]" />
                                 <span className="sr-only">{props.nextPageTooltip}</span>
                             </Button>

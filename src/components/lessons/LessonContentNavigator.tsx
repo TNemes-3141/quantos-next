@@ -65,6 +65,7 @@ export default function LessonContentNavigator(props: LessonContentNavigatorProp
             <LessonContentNavbar
                 lessonTitle={props.title}
                 lessonPages={totalPages}
+                currentPage={currentPage}
                 outline={props.content.outlineElements}
                 outlineTooltip={props.strings.outlineTooltip}
                 outlineDescription={props.strings.outlineDescription}
