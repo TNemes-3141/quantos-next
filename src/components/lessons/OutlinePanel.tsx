@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode } from 'react';
+import { ReactNode, useRef } from 'react';
 import useMediaQuery from '@/lib/useMediaQuery';
 
 import { secondary_font } from '@/lib/fonts';
@@ -28,11 +28,21 @@ type OutlinePanelProps = {
     text: string,
     outline: OutlineElement[]
     closeButton: string,
+    jumpToPage: (page: number) => Promise<void>;
     children: ReactNode
 }
 
 export default function OutlinePanel(props: OutlinePanelProps) {
     const isDesktop = useMediaQuery("(min-width: 768px)");
+    const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+    const onJumpToPage = async (page: number) => {
+        if (closeButtonRef.current) {
+            closeButtonRef.current.click();
+        }
+
+        await props.jumpToPage(page);
+    }
 
     if (isDesktop) {
         return (
@@ -50,7 +60,7 @@ export default function OutlinePanel(props: OutlinePanelProps) {
                                     <li
                                         key={index}
                                         className="flex items-center space-x-4 cursor-pointer hover:bg-accent p-2 rounded-md"
-                                        onClick={() => {}}
+                                        onClick={async () => await onJumpToPage(outlineItem.pagenumber)}
                                     >
                                         <div className='bg-secondary rounded-full w-[40px] h-[40px] flex-shrink-0 flex items-center justify-center'>
                                             <p className={cn("font-bold", secondary_font.className)}>{index + 1}</p>
@@ -84,7 +94,7 @@ export default function OutlinePanel(props: OutlinePanelProps) {
                                     <li
                                         key={index}
                                         className="flex items-center space-x-4 cursor-pointer hover:bg-accent p-2 rounded-md"
-                                        onClick={() => {}}
+                                        onClick={async () => await onJumpToPage(outlineItem.pagenumber)}
                                     >
                                         <div className='bg-secondary rounded-full w-[40px] h-[40px] flex-shrink-0 flex items-center justify-center'>
                                             <p className={cn("font-bold", secondary_font.className)}>{index + 1}</p>
@@ -96,7 +106,7 @@ export default function OutlinePanel(props: OutlinePanelProps) {
                         </div>
                     <DrawerFooter>
                         <DrawerClose asChild>
-                            <Button type='button' variant="secondary">{props.closeButton}</Button>
+                            <Button ref={closeButtonRef} type='button' variant="secondary">{props.closeButton}</Button>
                         </DrawerClose>
                     </DrawerFooter>
                 </DrawerContent>

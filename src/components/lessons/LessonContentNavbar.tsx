@@ -32,6 +32,10 @@ type LessonContentNavbarProps = {
 
 export default function LessonContentNavbar(props: LessonContentNavbarProps) {
 
+    const onJumpToPage = async (page: number) => {
+
+        await props.jumpToPage(page);
+    }
 
     return (
         <TooltipProvider>
@@ -41,7 +45,8 @@ export default function LessonContentNavbar(props: LessonContentNavbarProps) {
                         title={props.outlineTooltip}
                         text={props.outlineDescription}
                         outline={props.outline}
-                        closeButton={props.closeButtonLabel}>
+                        closeButton={props.closeButtonLabel}
+                        jumpToPage={onJumpToPage}>
                         <Button variant="outline" size="icon" aria-label={props.outlineTooltip} className="rounded-full">
                             <BookMarked className="h-[1.2rem] w-[1.2rem]" />
                             <span className="sr-only">{props.outlineTooltip}</span>

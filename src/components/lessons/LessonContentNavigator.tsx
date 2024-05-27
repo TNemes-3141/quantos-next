@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import LessonContentNavbar from "./LessonContentNavbar";
+import LessonContentRenderer from "./LessonContentRenderer";
 
 import { LessonContent } from "@/lib/contentTypes";
 
@@ -74,6 +75,9 @@ export default function LessonContentNavigator(props: LessonContentNavigatorProp
                 goToPreviousPage={goToPreviousPage}
                 jumpToPage={jumpToPage}
             />
+            <div className={animationState === 'enter' ? 'animate-fade-in' : 'animate-fade-out'}>
+                <LessonContentRenderer elements={props.content.pageContents[currentPage]}/>
+            </div>
         </div>
     );
 }
