@@ -18,7 +18,7 @@ export default function Layout({ locale, translate, withButtons, children}: Layo
             <SideNavigation locale={locale} translate={translate}/>
             <div className="flex flex-col flex-1">
                 <TopNavigation withButtons={withButtons} locale={locale} translate={translate} />
-                <main className="flex-1 overflow-y-auto p-12 sm:p-20">
+                <main className="flex-1 overflow-y-auto p-6 sm:p-20">
                     { children }
                 </main>
                 <BottomNavigation locale={locale} translate={translate}/>
