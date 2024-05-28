@@ -1,33 +1,124 @@
-import { LessonContentElement } from "@/lib/contentTypes"
+"use client";
+
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { BlockMath } from 'react-katex';
+import 'katex/dist/katex.min.css';
+
+import { Skeleton } from '../shadcn-ui/skeleton';
+
+import { createClient } from '@/lib/supabase/client';
+import { cn } from '@/lib/utils';
+import { secondary_font } from '@/lib/fonts';
+import {
+    LessonContentElement,
+    ImageElement,
+    ParagraphElement,
+    SectionTitleElement,
+    EquationElement,
+    InteractiveElement,
+} from '@/lib/contentTypes';
+import { ContentElementType, ImageModifier } from '@/lib/types';
+import { SupabaseClient } from '@supabase/supabase-js';
 
 
 type LessonContentRendererProps = {
     elements: LessonContentElement[],
 }
 
-export default function LessonContentRenderer(props: LessonContentRendererProps) {
+const fetchImageUrls = async (elements: LessonContentElement[], client: SupabaseClient): Promise<string[]> => {
+    return Promise.all(
+        elements.map(async (element) => {
+            if (element.type === ContentElementType.IMAGE) {
+                const { data, error } = await client.storage
+                    .from('lesson-materials')
+                    .createSignedUrl((element as ImageElement).asset, 60); // URL valid for 60 seconds
+                if (error) {
+                    console.error('Error fetching image URL:', error);
+                    return '';
+                }
+                return data.signedUrl;
+            }
+            return '';
+        })
+    );
+};
+
+const renderParagraph = (element: ParagraphElement, key: number) => {
+    return <p key={key}>{element.text}</p>;
+};
+
+const renderSectionTitle = (element: SectionTitleElement, key: number) => {
+    return <h2
+        key={key}
+        className={cn('font-semibold text-2xl tracking-tight', secondary_font.className)}
+    >
+        {element.title}
+    </h2>;
+};
+
+const renderImage = (element: ImageElement, url: string, key: number) => {
     return (
-        <p>A page with {props.elements.length} elements
-            <br/><br/>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-            <br/><br/>
-            Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-            <br/><br/>
-            Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-            <br/><br/>
-            Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-            <br/><br/>
-            Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.
-            <br/><br/>
-            At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, At accusam aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren, kasd magna no rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-            <br/><br/>
-            Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-            <br/><br/>
-            Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-            <br/><br/>
-            Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.
-            <br/><br/>
-            At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, At accusam aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren, kasd magna no rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-            </p>
+        <div
+            key={key}
+            className={cn("flex flex-col space-y-2 items-center w-full", {
+                'block light:hidden': element.modifier === ImageModifier.DARK,
+                'block dark:hidden': element.modifier === ImageModifier.LIGHT,
+            })}
+        >
+            <div className="relative w-full flex justify-center px-6">
+                {url ? <Image
+                    src={url}
+                    alt={element.alttext}
+                    priority={true}
+                    width={400}
+                    height={100}
+                /> : <Skeleton className='w-[400px] h-[400px] rounded-md'/>}
+            </div>
+            <p className="text-sm text-muted-foreground text-center">{element.caption}</p>
+        </div>
+    );
+};
+
+export default function LessonContentRenderer({ elements }: LessonContentRendererProps) {
+    const supabase = createClient();
+    const [imageUrls, setImageUrls] = useState<string[]>([]);
+
+    //console.log(elements);
+
+    useEffect(() => {
+        const loadUrls = async () => {
+            const urls = await fetchImageUrls(elements, supabase);
+            //console.log(urls.length);
+            setImageUrls(urls);
+        };
+
+        loadUrls();
+    }, [elements]);
+
+    return (
+        <div className="flex flex-col justify-start items-start gap-6">
+            {elements.map((element, index) => {
+                switch (element.type) {
+                    case ContentElementType.PARAGRAPH:
+                        return renderParagraph(element as ParagraphElement, index);
+
+                    case ContentElementType.SECTION_TITLE:
+                        return renderSectionTitle(element as SectionTitleElement, index);
+
+                    case ContentElementType.IMAGE:
+                        return renderImage(element as ImageElement, imageUrls[index], index);
+
+                    /*case ContentElementType.EQUATION:
+                      return renderEquation(element as EquationElement);
+          
+                    case ContentElementType.INTERACTIVE:
+                      return renderInteractive(element as InteractiveElement);*/
+
+                    default:
+                        return null;
+                }
+            })}
+        </div>
     );
 }
