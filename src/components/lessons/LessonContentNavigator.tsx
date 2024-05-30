@@ -111,7 +111,7 @@ export default function LessonContentNavigator(props: LessonContentNavigatorProp
                 goToPreviousPage={goToPreviousPage}
                 jumpToPage={jumpToPage}
             />
-            <div className={cn(animationState === 'enter' ? 'animate-fade-in' : 'animate-fade-out')}>
+            <div className={cn("max-w-[1000px]", animationState === 'enter' ? 'animate-fade-in' : 'animate-fade-out')}>
                 <LessonContentRenderer elements={elements} imageUrls={imageUrls}/>
             </div>
         </div>
