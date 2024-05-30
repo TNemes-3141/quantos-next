@@ -24,25 +24,8 @@ import { SupabaseClient } from '@supabase/supabase-js';
 
 type LessonContentRendererProps = {
     elements: LessonContentElement[],
+    imageUrls: string[],
 }
-
-const fetchImageUrls = async (elements: LessonContentElement[], client: SupabaseClient): Promise<string[]> => {
-    return Promise.all(
-        elements.map(async (element) => {
-            if (element.type === ContentElementType.IMAGE) {
-                const { data, error } = await client.storage
-                    .from('lesson-materials')
-                    .createSignedUrl((element as ImageElement).asset, 60); // URL valid for 60 seconds
-                if (error) {
-                    console.error('Error fetching image URL:', error);
-                    return '';
-                }
-                return data.signedUrl;
-            }
-            return '';
-        })
-    );
-};
 
 const renderParagraph = (element: ParagraphElement, key: number) => {
     return <p key={key}>{element.text}</p>;
@@ -57,7 +40,7 @@ const renderSectionTitle = (element: SectionTitleElement, key: number) => {
     </h2>;
 };
 
-const renderImage = (element: ImageElement, url: string, key: number) => {
+const renderImage = (element: ImageElement, url: string | undefined, key: number) => {
     return (
         <div
             key={key}
@@ -77,21 +60,7 @@ const renderImage = (element: ImageElement, url: string, key: number) => {
     );
 };
 
-export default function LessonContentRenderer({ elements }: LessonContentRendererProps) {
-    const supabase = createClient();
-    const [imageUrls, setImageUrls] = useState<string[]>([]);
-
-    //console.log(elements);
-
-    useEffect(() => {
-        const loadUrls = async () => {
-            const urls = await fetchImageUrls(elements, supabase);
-            //console.log(urls.length);
-            setImageUrls(urls);
-        };
-
-        loadUrls();
-    }, [elements]);
+export default function LessonContentRenderer({ elements, imageUrls }: LessonContentRendererProps) {
 
     return (
         <div className="flex flex-col justify-start items-start gap-6">
@@ -104,7 +73,7 @@ export default function LessonContentRenderer({ elements }: LessonContentRendere
                         return renderSectionTitle(element as SectionTitleElement, index);
 
                     case ContentElementType.IMAGE:
-                        return renderImage(element as ImageElement, imageUrls[index], index);
+                        return renderImage(element as ImageElement, index < imageUrls.length ? imageUrls[index] : undefined, index);
 
                     /*case ContentElementType.EQUATION:
                       return renderEquation(element as EquationElement);

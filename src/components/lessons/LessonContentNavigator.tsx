@@ -1,10 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { SupabaseClient } from '@supabase/supabase-js';
 import LessonContentNavbar from "./LessonContentNavbar";
 import LessonContentRenderer from "./LessonContentRenderer";
 
-import { LessonContent } from "@/lib/contentTypes";
+import { LessonContent, LessonContentElement, ImageElement } from "@/lib/contentTypes";
+import { ContentElementType } from "@/lib/types";
+import { createClient } from "@/lib/supabase/client";
 
 
 type LessonContentNavigatorProps = {
@@ -19,14 +22,44 @@ type LessonContentNavigatorProps = {
     }
 }
 
+const fetchImageUrls = async (elements: LessonContentElement[], client: SupabaseClient): Promise<string[]> => {
+    return Promise.all(
+        elements.map(async (element) => {
+            if (element.type === ContentElementType.IMAGE) {
+                const { data, error } = await client.storage
+                    .from('lesson-materials')
+                    .createSignedUrl((element as ImageElement).asset, 60); // URL valid for 60 seconds
+                if (error) {
+                    console.error('Error fetching image URL:', error);
+                    return '';
+                }
+                return data.signedUrl;
+            }
+            return '';
+        })
+    );
+};
+
 export default function LessonContentNavigator(props: LessonContentNavigatorProps) {
     const [currentPage, setCurrentPage] = useState(0);
     const [animationState, setAnimationState] = useState<"enter" | "exit">("enter");
+    const [elements, setElements] = useState<LessonContentElement[]>(props.content.pageContents[currentPage]);
     const totalPages = props.content.pageContents.length;
 
     useEffect(() => {
+        const loadUrls = async (elements: LessonContentElement[]) => {
+            const urls = await fetchImageUrls(elements, supabase);
+            setImageUrls(urls);
+        };
+
         setAnimationState("enter");
+        setElements(props.content.pageContents[currentPage]);
+        loadUrls(props.content.pageContents[currentPage]);
     }, [currentPage]);
+
+    const supabase = createClient();
+    const [imageUrls, setImageUrls] = useState<string[]>([]);
+
 
     const goToNextPage = async () => {
         if (currentPage < totalPages - 1) {
@@ -34,7 +67,7 @@ export default function LessonContentNavigator(props: LessonContentNavigatorProp
             setTimeout(() => {
                 const nextPage = currentPage + 1;
                 setCurrentPage(nextPage);
-                //props.setProgress(nextQuestion + 1);
+                setImageUrls([]);
             }, 300); // Match timeout to animation duration
         }
     };
@@ -45,7 +78,7 @@ export default function LessonContentNavigator(props: LessonContentNavigatorProp
             setTimeout(() => {
                 const prevPage = currentPage - 1;
                 setCurrentPage(prevPage);
-                //props.setProgress(prevQuestion + 1);
+                setImageUrls([]);
             }, 300); // Match timeout to animation duration
         }
     };
@@ -55,11 +88,12 @@ export default function LessonContentNavigator(props: LessonContentNavigatorProp
             setAnimationState('exit');
             setTimeout(() => {
                 setCurrentPage(page);
-                //props.setProgress(nextQuestion + 1);
+                setImageUrls([]);
             }, 300);
         }
     }
 
+    
     return (
         <div className="flex flex-col space-y-6">
             <LessonContentNavbar
@@ -77,7 +111,7 @@ export default function LessonContentNavigator(props: LessonContentNavigatorProp
                 jumpToPage={jumpToPage}
             />
             <div className={animationState === 'enter' ? 'animate-fade-in' : 'animate-fade-out'}>
-                <LessonContentRenderer elements={props.content.pageContents[currentPage]}/>
+                <LessonContentRenderer elements={elements} imageUrls={imageUrls}/>
             </div>
         </div>
     );
