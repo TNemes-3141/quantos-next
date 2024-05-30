@@ -8,6 +8,7 @@ import LessonContentRenderer from "./LessonContentRenderer";
 import { LessonContent, LessonContentElement, ImageElement } from "@/lib/contentTypes";
 import { ContentElementType } from "@/lib/types";
 import { createClient } from "@/lib/supabase/client";
+import { cn } from "@/lib/utils";
 
 
 type LessonContentNavigatorProps = {
@@ -95,7 +96,7 @@ export default function LessonContentNavigator(props: LessonContentNavigatorProp
 
     
     return (
-        <div className="flex flex-col space-y-6">
+        <div className="flex flex-col space-y-6 items-center">
             <LessonContentNavbar
                 lessonTitle={props.title}
                 lessonPages={totalPages}
@@ -110,7 +111,7 @@ export default function LessonContentNavigator(props: LessonContentNavigatorProp
                 goToPreviousPage={goToPreviousPage}
                 jumpToPage={jumpToPage}
             />
-            <div className={animationState === 'enter' ? 'animate-fade-in' : 'animate-fade-out'}>
+            <div className={cn(animationState === 'enter' ? 'animate-fade-in' : 'animate-fade-out')}>
                 <LessonContentRenderer elements={elements} imageUrls={imageUrls}/>
             </div>
         </div>

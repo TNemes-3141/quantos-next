@@ -116,7 +116,7 @@ export default function LessonContentNavbar(props: LessonContentNavbarProps) {
     if (isDesktop) {
         return (
             <TooltipProvider>
-                <div className="sticky z-10 top-12 mx-2 w-full p-2 rounded-full flex items-center space-x-4 bg-card/50 backdrop-blur-md border-border border h-14">
+                <div className="sticky z-10 top-12 max-w-[1200px] w-full p-2 rounded-full flex items-center space-x-4 bg-card/50 backdrop-blur-md border-border border h-14">
                     {outlineButton}
                     <div className="flex-shrink-0 h-full">
                         <Separator orientation="vertical" />
@@ -139,7 +139,7 @@ export default function LessonContentNavbar(props: LessonContentNavbarProps) {
     else {
         return (
             <TooltipProvider>
-                <div className="sticky z-10 top-6 mx-2 p-2 rounded-3xl flex flex-col items-stretch space-y-2 bg-card/50 backdrop-blur-md border-border border">
+                <div className="sticky z-10 top-6 max-w-[1200px] w-full p-2 rounded-3xl flex flex-col items-stretch space-y-2 bg-card/50 backdrop-blur-md border-border border">
                     <div className="flex items-center gap-2">
                         <div className="flex-shrink-0">
                             {outlineButton}

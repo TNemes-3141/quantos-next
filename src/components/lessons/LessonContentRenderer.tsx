@@ -53,7 +53,7 @@ const renderImage = (element: ImageElement, url: string | undefined, key: number
                 {url ? <BlurImage
                     src={url}
                     alttext={element.alttext}
-                /> : <Skeleton className='w-[400px] h-[400px] rounded-md'/>}
+                /> : <Skeleton className='w-[250px] h-[250px] md:w-[400px] md:h-[400px] rounded-md'/>}
             </div>
             <p className="text-sm text-muted-foreground text-center">{element.caption}</p>
         </div>

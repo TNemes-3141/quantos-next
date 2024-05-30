@@ -15,11 +15,10 @@ export default function BlurImage({ src, alttext }: BlurImageProps) {
     const [isLoading, setLoading] = useState(true);
 
     return (
-        <div className="w-[400px] h-[400px] aspect-w-1 aspect-h-1 bg-container rounded-lg overflow-hidden relative">
+        <div className="w-[250px] h-[250px] md:w-[400px] md:h-[400px] aspect-w-1 aspect-h-1 bg-container rounded-lg overflow-hidden relative">
             <Image
                 src={src}
                 alt={alttext}
-                priority={true}
                 fill={true}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 style={{objectFit: "contain"}}
