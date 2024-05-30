@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { BlockMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
 
 import { Skeleton } from '../shadcn-ui/skeleton';
+import BlurImage from './BlurImage';
 
 import { createClient } from '@/lib/supabase/client';
 import { cn } from '@/lib/utils';
@@ -62,17 +62,14 @@ const renderImage = (element: ImageElement, url: string, key: number) => {
         <div
             key={key}
             className={cn("flex flex-col space-y-2 items-center w-full", {
-                'block light:hidden': element.modifier === ImageModifier.DARK,
+                'hidden dark:block': element.modifier === ImageModifier.DARK,
                 'block dark:hidden': element.modifier === ImageModifier.LIGHT,
             })}
         >
-            <div className="relative w-full flex justify-center px-6">
-                {url ? <Image
+            <div className="w-full flex justify-center px-6">
+                {url ? <BlurImage
                     src={url}
-                    alt={element.alttext}
-                    priority={true}
-                    width={400}
-                    height={100}
+                    alttext={element.alttext}
                 /> : <Skeleton className='w-[400px] h-[400px] rounded-md'/>}
             </div>
             <p className="text-sm text-muted-foreground text-center">{element.caption}</p>
