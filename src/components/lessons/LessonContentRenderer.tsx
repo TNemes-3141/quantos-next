@@ -25,7 +25,26 @@ type LessonContentRendererProps = {
 }
 
 const renderParagraph = (element: ParagraphElement, key: number) => {
-    return <p key={key}>{element.text}</p>;
+    const parts = element.text.split(/(\n|[*]{2}.*?[*]{2}|\$\$.*?\$\$)/g);
+
+    return (<p key={key}>
+        {parts.map((part, index) => {
+            if (part === '\n') {
+                return <br key={index} />;
+            } else if (part.startsWith('**') && part.endsWith('**')) {
+                return (
+                    <span key={index} className="font-bold">
+                        {part.substring(2, part.length - 2)}
+                    </span>
+                );
+            } else if (part.startsWith('$$') && part.endsWith('$$')) {
+                const math = part.substring(2, part.length - 2);
+                return <TeX key={index}>{math}</TeX>;
+            } else {
+                return part;
+            }
+        })}
+    </p>);
 };
 
 const renderSectionTitle = (element: SectionTitleElement, key: number) => {
@@ -50,7 +69,7 @@ const renderImage = (element: ImageElement, url: string | undefined, key: number
                 {url ? <BlurImage
                     src={url}
                     alttext={element.alttext}
-                /> : <Skeleton className='w-[250px] h-[250px] md:w-[400px] md:h-[400px] rounded-md'/>}
+                /> : <Skeleton className='w-[250px] h-[250px] md:w-[400px] md:h-[400px] rounded-md' />}
             </div>
             <p className="text-sm text-muted-foreground text-center">{element.caption}</p>
         </div>
@@ -61,7 +80,7 @@ const renderEquation = (element: EquationElement, key: number) => {
     return <div key={key} className='w-full flex justify-center text-center break-all whitespace-normal'>
         <TeX math={element.tex} block />
     </div>;
-  };
+};
 
 export default function LessonContentRenderer({ elements, imageUrls }: LessonContentRendererProps) {
 
@@ -79,8 +98,8 @@ export default function LessonContentRenderer({ elements, imageUrls }: LessonCon
                         return renderImage(element as ImageElement, index < imageUrls.length ? imageUrls[index] : undefined, index);
 
                     case ContentElementType.EQUATION:
-                      return renderEquation(element as EquationElement, index);
-          
+                        return renderEquation(element as EquationElement, index);
+
                     /*case ContentElementType.INTERACTIVE:
                       return renderInteractive(element as InteractiveElement);*/
 
