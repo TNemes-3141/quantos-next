@@ -78,7 +78,7 @@ const renderImage = (element: ImageElement, url: string | undefined, key: number
 
 const renderEquation = (element: EquationElement, key: number) => {
     return <div key={key} className='w-full flex justify-center text-center break-all whitespace-normal'>
-        <TeX math={element.tex} block />
+        <TeX math={element.tex} block aria-label={element.alttext}/>
     </div>;
 };
 

@@ -15,7 +15,7 @@ export default function BlurImage({ src, alttext }: BlurImageProps) {
     const [isLoading, setLoading] = useState(true);
 
     return (
-        <div className="w-[250px] h-[250px] md:w-[400px] md:h-[400px] aspect-w-1 aspect-h-1 bg-container rounded-lg overflow-hidden relative">
+        <div className="w-[250px] h-[250px] md:w-[400px] md:h-[400px] bg-container rounded-lg overflow-hidden relative">
             <Image
                 src={src}
                 alt={alttext}
