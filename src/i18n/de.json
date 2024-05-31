@@ -122,6 +122,11 @@
             "outlineDescription": "Springe zu einem Abschnitt",
             "nextPageTooltip": "Nächste Seite",
             "previousPageTooltip": "Vorherige Seite"
+        },
+        "finishPanel": {
+            "finishLessonText": "Geschafft! Klicke hier zum Abschließen:",
+            "ratingQuestion": "Wie fandest du diese Lektion?",
+            "finishButtonLabel": "Fertig"
         }
     },
     "error": {

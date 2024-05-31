@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { SupabaseClient } from '@supabase/supabase-js';
 import LessonContentNavbar from "./LessonContentNavbar";
 import LessonContentRenderer from "./LessonContentRenderer";
+import LessonFinishPanel from "./LessonFinishPanel";
 
 import { LessonContent, LessonContentElement, ImageElement } from "@/lib/contentTypes";
 import { ContentElementType } from "@/lib/types";
@@ -20,6 +21,9 @@ type LessonContentNavigatorProps = {
         nextPageTooltip: string,
         previousPageTooltip: string,
         closeButtonLabel: string,
+        finishLessonText: string,
+        finishButtonLabel: string,
+        ratingQuestion: string,
     }
 }
 
@@ -93,7 +97,7 @@ export default function LessonContentNavigator(props: LessonContentNavigatorProp
             }, 300);
         }
     }
-    
+
     return (
         <div className="flex flex-col space-y-6 items-center">
             <LessonContentNavbar
@@ -111,7 +115,14 @@ export default function LessonContentNavigator(props: LessonContentNavigatorProp
                 jumpToPage={jumpToPage}
             />
             <div className={cn("max-w-[1000px]", animationState === 'enter' ? 'animate-fade-in' : 'animate-fade-out')}>
-                <LessonContentRenderer elements={elements} imageUrls={imageUrls}/>
+                <LessonContentRenderer elements={elements} imageUrls={imageUrls} />
+                <div className="flex justify-center mt-12">
+                    {currentPage === totalPages - 1 ? <LessonFinishPanel
+                        finishLessonText={props.strings.finishLessonText}
+                        finishButtonLabel={props.strings.finishButtonLabel}
+                        ratingQuestion={props.strings.ratingQuestion}
+                    /> : null}
+                </div>
             </div>
         </div>
     );

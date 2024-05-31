@@ -40,6 +40,9 @@ export default async function PageContent({ locale, translate, chapterId, lesson
                     nextPageTooltip: translate("learn.navigationBar.nextPageTooltip"),
                     previousPageTooltip: translate("learn.navigationBar.previousPageTooltip"),
                     closeButtonLabel: translate("closeButtonLabel"),
+                    finishLessonText: translate("learn.finishPanel.finishLessonText"),
+                    ratingQuestion: translate("learn.finishPanel.ratingQuestion"),
+                    finishButtonLabel: translate("learn.finishPanel.finishButtonLabel"),
                 }}
             />
         </div>

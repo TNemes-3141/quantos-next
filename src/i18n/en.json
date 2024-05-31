@@ -122,6 +122,11 @@
             "outlineDescription": "Jump to a section",
             "nextPageTooltip": "Next page",
             "previousPageTooltip": "Previous page"
+        },
+        "finishPanel": {
+            "finishLessonText": "Well done! Click here to complete:",
+            "ratingQuestion": "How would you rate this lesson?",
+            "finishButtonLabel": "Finish"
         }
     },
     "error": {
