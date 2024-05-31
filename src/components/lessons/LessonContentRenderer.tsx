@@ -1,13 +1,11 @@
 "use client";
 
-import { useEffect, useState } from 'react';
-import { BlockMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
+import TeX from '@matejmazur/react-katex';
 
 import { Skeleton } from '../shadcn-ui/skeleton';
 import BlurImage from './BlurImage';
 
-import { createClient } from '@/lib/supabase/client';
 import { cn } from '@/lib/utils';
 import { secondary_font } from '@/lib/fonts';
 import {
@@ -19,7 +17,6 @@ import {
     InteractiveElement,
 } from '@/lib/contentTypes';
 import { ContentElementType, ImageModifier } from '@/lib/types';
-import { SupabaseClient } from '@supabase/supabase-js';
 
 
 type LessonContentRendererProps = {
@@ -60,6 +57,12 @@ const renderImage = (element: ImageElement, url: string | undefined, key: number
     );
 };
 
+const renderEquation = (element: EquationElement, key: number) => {
+    return <div key={key} className='w-full flex justify-center text-center break-all whitespace-normal'>
+        <TeX math={element.tex} block />
+    </div>;
+  };
+
 export default function LessonContentRenderer({ elements, imageUrls }: LessonContentRendererProps) {
 
     return (
@@ -75,10 +78,10 @@ export default function LessonContentRenderer({ elements, imageUrls }: LessonCon
                     case ContentElementType.IMAGE:
                         return renderImage(element as ImageElement, index < imageUrls.length ? imageUrls[index] : undefined, index);
 
-                    /*case ContentElementType.EQUATION:
-                      return renderEquation(element as EquationElement);
+                    case ContentElementType.EQUATION:
+                      return renderEquation(element as EquationElement, index);
           
-                    case ContentElementType.INTERACTIVE:
+                    /*case ContentElementType.INTERACTIVE:
                       return renderInteractive(element as InteractiveElement);*/
 
                     default:

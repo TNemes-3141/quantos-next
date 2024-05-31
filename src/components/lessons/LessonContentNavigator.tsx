@@ -93,7 +93,6 @@ export default function LessonContentNavigator(props: LessonContentNavigatorProp
             }, 300);
         }
     }
-
     
     return (
         <div className="flex flex-col space-y-6 items-center">
