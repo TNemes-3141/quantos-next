@@ -78,9 +78,18 @@ const renderImage = (element: ImageElement, url: string | undefined, key: number
 
 const renderEquation = (element: EquationElement, key: number) => {
     return <div key={key} className='w-full flex justify-center text-center break-all whitespace-normal'>
-        <TeX math={element.tex} block aria-label={element.alttext}/>
+        <TeX math={element.tex} block aria-label={element.alttext} />
     </div>;
 };
+
+const renderInteractive = (element: InteractiveElement, key: number) => {
+    return (
+        <div key={key} className='flex flex-col space-y-2 items-center w-full'>
+            <div className='w-[250px] h-[250px] md:w-[400px] md:h-[400px] bg-card'></div>
+            <p className='text-sm text-muted-foreground text-center'>{element.caption}</p>
+        </div>
+    );
+}
 
 export default function LessonContentRenderer({ elements, imageUrls }: LessonContentRendererProps) {
 
@@ -100,8 +109,8 @@ export default function LessonContentRenderer({ elements, imageUrls }: LessonCon
                     case ContentElementType.EQUATION:
                         return renderEquation(element as EquationElement, index);
 
-                    /*case ContentElementType.INTERACTIVE:
-                      return renderInteractive(element as InteractiveElement);*/
+                    case ContentElementType.INTERACTIVE:
+                      return renderInteractive(element as InteractiveElement, index);
 
                     default:
                         return null;
