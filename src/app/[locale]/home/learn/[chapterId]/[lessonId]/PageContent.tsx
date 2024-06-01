@@ -1,6 +1,6 @@
 import BackButton from "@/components/BackButton";
 import LearnBreadcrumbs from "@/components/LearnBreadcrumbs";
-import LessonContentNavigator from "@/components/lessons/LessonContentNavigator";
+import LessonContentDisplay from "@/components/lessons/LessonContentDisplay";
 
 import { LocalizedProps } from "@/i18n";
 import { getLessonContentElements, getBreadcrumbData } from "./getLessonContents";
@@ -31,7 +31,7 @@ export default async function PageContent({ locale, translate, chapterId, lesson
                     }]}
                 />
             </div>
-            <LessonContentNavigator
+            <LessonContentDisplay
                 title={breadcrumbData.lessonTitle}
                 content={lessonContent}
                 strings={{

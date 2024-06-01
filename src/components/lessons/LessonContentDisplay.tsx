@@ -46,7 +46,7 @@ const fetchImageUrls = async (elements: LessonContentElement[], client: Supabase
     );
 };
 
-export default function LessonContentNavigator(props: LessonContentNavigatorProps) {
+export default function LessonContentDisplay(props: LessonContentNavigatorProps) {
     const lessonContentNavbarRef = useRef<LessonContentNavbarRef>(null);
     const router = useRouter();
     const [currentPage, setCurrentPage] = useState(0);
@@ -105,7 +105,7 @@ export default function LessonContentNavigator(props: LessonContentNavigatorProp
         lessonContentNavbarRef.current?.setProgressToFullAndSave();
         setTimeout(() => {
             router.back();
-        }, 500);
+        }, 700);
     }
 
     return (
