@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { SupabaseClient } from '@supabase/supabase-js';
-import LessonContentNavbar from "./LessonContentNavbar";
+import { LessonContentNavbar, LessonContentNavbarRef } from "./LessonContentNavbar";
 import LessonContentRenderer from "./LessonContentRenderer";
 import LessonFinishPanel from "./LessonFinishPanel";
 
@@ -46,6 +47,8 @@ const fetchImageUrls = async (elements: LessonContentElement[], client: Supabase
 };
 
 export default function LessonContentNavigator(props: LessonContentNavigatorProps) {
+    const lessonContentNavbarRef = useRef<LessonContentNavbarRef>(null);
+    const router = useRouter();
     const [currentPage, setCurrentPage] = useState(0);
     const [animationState, setAnimationState] = useState<"enter" | "exit">("enter");
     const [elements, setElements] = useState<LessonContentElement[]>(props.content.pageContents[currentPage]);
@@ -98,9 +101,17 @@ export default function LessonContentNavigator(props: LessonContentNavigatorProp
         }
     }
 
+    const onFinish = async () => {
+        lessonContentNavbarRef.current?.setProgressToFullAndSave();
+        setTimeout(() => {
+            router.back();
+        }, 500);
+    }
+
     return (
         <div className="flex flex-col space-y-6 items-center">
             <LessonContentNavbar
+                ref={lessonContentNavbarRef}
                 lessonTitle={props.title}
                 lessonPages={totalPages}
                 currentPage={currentPage}
@@ -121,6 +132,7 @@ export default function LessonContentNavigator(props: LessonContentNavigatorProp
                         finishLessonText={props.strings.finishLessonText}
                         finishButtonLabel={props.strings.finishButtonLabel}
                         ratingQuestion={props.strings.ratingQuestion}
+                        onFinish={onFinish}
                     /> : null}
                 </div>
             </div>

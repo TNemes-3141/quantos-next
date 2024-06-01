@@ -14,6 +14,8 @@ export interface LessonContentProgressBarRef {
     setProgressOnNextPage: () => void,
     setProgressOnPreviousPage: () => void,
     setProgressOnJumpPage: (page: number) => void,
+    setProgressToFullAndSave: () => void;
+    saveProgress: () => void;
 }
 
 export const LessonContentProgressBar = forwardRef((props: LessonContentProgressBarProps, ref) => {
@@ -35,6 +37,12 @@ export const LessonContentProgressBar = forwardRef((props: LessonContentProgress
                 setCompletedSections(page);
             }
             setProgressCurrent(0);
+        },
+        setProgressToFullAndSave: () => {
+            setCompletedSections(props.numSections);
+        },
+        saveProgress: () => {
+            //...
         }
     }));
 

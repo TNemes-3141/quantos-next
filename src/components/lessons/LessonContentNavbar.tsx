@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, forwardRef, useImperativeHandle } from "react";
 import OutlinePanel from "./OutlinePanel";
 import { LessonContentProgressBar, LessonContentProgressBarRef } from "./LessonContentProgressBar";
 import { Button } from "../shadcn-ui/button";
@@ -34,7 +34,12 @@ type LessonContentNavbarProps = {
     jumpToPage: (page: number) => Promise<void>;
 }
 
-export default function LessonContentNavbar(props: LessonContentNavbarProps) {
+export interface LessonContentNavbarRef {
+    setProgressToFullAndSave: () => void;
+    saveProgress: () => void;
+}
+
+export const LessonContentNavbar = forwardRef((props: LessonContentNavbarProps, ref) => {
     const lessonContentProgressBarRef = useRef<LessonContentProgressBarRef>(null);
     const isDesktop = useMediaQuery("(min-width: 768px)");
 
@@ -59,6 +64,12 @@ export default function LessonContentNavbar(props: LessonContentNavbarProps) {
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
+
+    useImperativeHandle(ref, () => ({
+        setProgressToFullAndSave: () => lessonContentProgressBarRef.current?.setProgressToFullAndSave(),
+        saveProgress: () => lessonContentProgressBarRef.current?.saveProgress(),
+    }));
+
 
     const outlineButton = <div className="flex-shrink-0">
         <OutlinePanel
@@ -158,4 +169,4 @@ export default function LessonContentNavbar(props: LessonContentNavbarProps) {
             </TooltipProvider>
         );
     }
-}
+});
