@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Card, CardContent } from "../shadcn-ui/card";
 import { Button } from "../shadcn-ui/button";
 import { Check, Loader2 } from "lucide-react";
+import FeedbackButtons from "./FeedbackButtons";
 
 
 type LessonFinishPanelProps = {
@@ -34,6 +35,7 @@ export default function LessonFinishPanel(props: LessonFinishPanelProps) {
                         }
                     </Button>
                     <p className="text-muted-foreground">{props.ratingQuestion}</p>
+                    <FeedbackButtons size={150}/>
                 </div>
             </CardContent>
         </Card>
