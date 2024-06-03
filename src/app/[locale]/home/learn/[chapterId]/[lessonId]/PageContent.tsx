@@ -3,14 +3,15 @@ import LearnBreadcrumbs from "@/components/LearnBreadcrumbs";
 import LessonContentDisplay from "@/components/lessons/LessonContentDisplay";
 
 import { LocalizedProps } from "@/i18n";
-import { getLessonContentElements, getBreadcrumbData } from "./getLessonContents";
+import { getLessonContentElements, getBreadcrumbData } from "./actions";
 
 type PageContentProps = LocalizedProps & {
+    userId: string,
     chapterId: string,
     lessonId: string,
 }
 
-export default async function PageContent({ locale, translate, chapterId, lessonId }: PageContentProps) {
+export default async function PageContent({ locale, translate, userId, chapterId, lessonId }: PageContentProps) {
     const breadcrumbData = await getBreadcrumbData(chapterId, lessonId);
     const lessonContent = await getLessonContentElements(locale, chapterId, lessonId);
 
@@ -33,6 +34,8 @@ export default async function PageContent({ locale, translate, chapterId, lesson
             </div>
             <LessonContentDisplay
                 title={breadcrumbData.lessonTitle}
+                id={lessonId}
+                user={userId}
                 content={lessonContent}
                 strings={{
                     outlineTooltip: translate("learn.navigationBar.outlineTooltip"),

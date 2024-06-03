@@ -29,14 +29,15 @@ type LessonContentNavbarProps = {
     nextPageTooltip: string,
     previousPageTooltip: string,
     closeButtonLabel: string,
+    lessonId: string,
+    userId: string,
     goToNextPage: () => Promise<void>;
     goToPreviousPage: () => Promise<void>;
     jumpToPage: (page: number) => Promise<void>;
 }
 
 export interface LessonContentNavbarRef {
-    setProgressToFullAndSave: () => void;
-    saveProgress: () => void;
+    setProgressToFullAndSave: (userId: string, lessonId: string) => void;
 }
 
 export const LessonContentNavbar = forwardRef((props: LessonContentNavbarProps, ref) => {
@@ -45,7 +46,7 @@ export const LessonContentNavbar = forwardRef((props: LessonContentNavbarProps, 
 
     const onGotoNextPage = async () => {
         scrollToTop();
-        lessonContentProgressBarRef.current?.setProgressOnNextPage();
+        lessonContentProgressBarRef.current?.setProgressOnNextPage(props.userId, props.lessonId);
         await props.goToNextPage();
     }
 
@@ -57,7 +58,7 @@ export const LessonContentNavbar = forwardRef((props: LessonContentNavbarProps, 
 
     const onJumpToPage = async (page: number) => {
         scrollToTop();
-        lessonContentProgressBarRef.current?.setProgressOnJumpPage(page);
+        lessonContentProgressBarRef.current?.setProgressOnJumpPage(props.userId, props.lessonId, page);
         await props.jumpToPage(page);
     }
 
@@ -66,8 +67,7 @@ export const LessonContentNavbar = forwardRef((props: LessonContentNavbarProps, 
     };
 
     useImperativeHandle(ref, () => ({
-        setProgressToFullAndSave: () => lessonContentProgressBarRef.current?.setProgressToFullAndSave(),
-        saveProgress: () => lessonContentProgressBarRef.current?.saveProgress(),
+        setProgressToFullAndSave: (userId: string, lessonId: string) => lessonContentProgressBarRef.current?.setProgressToFullAndSave(userId, lessonId),
     }));
 
 

@@ -1,11 +1,11 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { eq } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
 
 import { createClient } from "@/lib/supabase/server";
 import { db } from "@/lib/database/db";
-import { chapters, lessons } from "@/lib/database/schema";
+import { chapters, lessons, progressRecords } from "@/lib/database/schema";
 import { LessonContent,
     LessonContentElement,
     OutlineElement,
@@ -22,6 +22,82 @@ import { ValidLocale } from "@/i18n";
 type BreadcrumbData = {
     chapterTitle: string,
     lessonTitle: string,
+}
+
+export async function createProgressEntryIfNotPresent(userId: string, lessonId: string): Promise<void> {
+    try {
+        const existingProgressEntry = await db.query.progressRecords.findFirst({
+            columns: {
+                id: true,
+            },
+            where: eq(progressRecords.lesson, lessonId),
+        });
+        if (existingProgressEntry) {
+            return;
+        }
+
+        const lesson = await db.query.lessons.findFirst({
+            columns: {
+                linkedLessons: true,
+            },
+            where: eq(lessons.lessonId, lessonId),
+        });
+        if (!lesson) {
+            redirect("/error");
+        }
+        if (!lesson.linkedLessons) {
+            lesson.linkedLessons = [];
+        }
+
+        const allLessonIds = [lessonId, ...lesson.linkedLessons];
+        const progressEntries = allLessonIds.map(id => ({
+            user: userId,
+            lesson: id,
+        }));
+
+        await db.insert(progressRecords).values(progressEntries);
+    } catch (error) {
+        return;
+    }
+}
+
+export async function updateProgress(userId: string, lessonId: string, newProgress: number): Promise<void> {
+    try {
+        const existingProgressEntry = await db.query.progressRecords.findFirst({
+            columns: {
+                progress: true,
+            },
+            where: eq(progressRecords.lesson, lessonId),
+        });
+        if (!existingProgressEntry) {
+            return;
+        }
+        if (newProgress < existingProgressEntry.progress) {
+            return;
+        }
+
+        const lesson = await db.query.lessons.findFirst({
+            columns: {
+                linkedLessons: true,
+            },
+            where: eq(lessons.lessonId, lessonId),
+        });
+        if (!lesson) {
+            redirect("/error");
+        }
+        if (!lesson.linkedLessons) {
+            lesson.linkedLessons = [];
+        }
+
+        const allLessonIds = [lessonId, ...lesson.linkedLessons];
+        for (const id of allLessonIds) {
+            await db.update(progressRecords)
+                .set({progress: newProgress})
+                .where(and(eq(progressRecords.user, userId), eq(progressRecords.lesson, id)));
+        }
+    } catch (error) {
+        return;
+    }
 }
 
 export async function getBreadcrumbData(chapterId: string, lessonId: string): Promise<BreadcrumbData> {

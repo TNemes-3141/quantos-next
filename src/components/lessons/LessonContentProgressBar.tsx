@@ -3,6 +3,7 @@
 import { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 
 import { Progress } from "../shadcn-ui/progress";
+import { updateProgress } from "@/app/[locale]/home/learn/[chapterId]/[lessonId]/actions";
 
 
 type LessonContentProgressBarProps = {
@@ -11,11 +12,10 @@ type LessonContentProgressBarProps = {
 }
 
 export interface LessonContentProgressBarRef {
-    setProgressOnNextPage: () => void,
+    setProgressOnNextPage: (userId: string, lessonId: string) => void,
     setProgressOnPreviousPage: () => void,
-    setProgressOnJumpPage: (page: number) => void,
-    setProgressToFullAndSave: () => void;
-    saveProgress: () => void;
+    setProgressOnJumpPage: (userId: string, lessonId: string, page: number) => void,
+    setProgressToFullAndSave: (userId: string, lessonId: string) => void;
 }
 
 export const LessonContentProgressBar = forwardRef((props: LessonContentProgressBarProps, ref) => {
@@ -23,27 +23,28 @@ export const LessonContentProgressBar = forwardRef((props: LessonContentProgress
     const [progressCurrent, setProgressCurrent] = useState(0);
 
     useImperativeHandle(ref, () => ({
-        setProgressOnNextPage: () => {
+        setProgressOnNextPage: (userId: string, lessonId: string) => {
             if (props.currentPage == completedSections) {
                 setCompletedSections(completedSections + 1);
+                updateProgress(userId, lessonId, (completedSections + 1) / props.numSections);
             }
             setProgressCurrent(0);
         },
         setProgressOnPreviousPage: () => {
             setProgressCurrent(0);
         },
-        setProgressOnJumpPage: (page: number) => {
+        setProgressOnJumpPage: (userId: string, lessonId: string, page: number) => {
             if (page > completedSections) {
                 setCompletedSections(page);
+                console.log(page);
+                updateProgress(userId, lessonId, page / props.numSections);
             }
             setProgressCurrent(0);
         },
-        setProgressToFullAndSave: () => {
+        setProgressToFullAndSave: (userId: string, lessonId: string) => {
             setCompletedSections(props.numSections);
+            updateProgress(userId, lessonId, 1);
         },
-        saveProgress: () => {
-            //...
-        }
     }));
 
     useEffect(() => {

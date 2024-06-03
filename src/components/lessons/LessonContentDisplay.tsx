@@ -15,6 +15,8 @@ import { cn } from "@/lib/utils";
 
 type LessonContentNavigatorProps = {
     title: string,
+    id: string,
+    user: string,
     content: LessonContent,
     strings: {
         outlineTooltip: string,
@@ -53,6 +55,7 @@ export default function LessonContentDisplay(props: LessonContentNavigatorProps)
     const [animationState, setAnimationState] = useState<"enter" | "exit">("enter");
     const [elements, setElements] = useState<LessonContentElement[]>(props.content.pageContents[currentPage]);
     const totalPages = props.content.pageContents.length;
+
 
     useEffect(() => {
         const loadUrls = async (elements: LessonContentElement[]) => {
@@ -102,7 +105,7 @@ export default function LessonContentDisplay(props: LessonContentNavigatorProps)
     }
 
     const onFinish = async () => {
-        lessonContentNavbarRef.current?.setProgressToFullAndSave();
+        lessonContentNavbarRef.current?.setProgressToFullAndSave(props.user, props.id);
         setTimeout(() => {
             router.back();
         }, 700);
@@ -121,6 +124,8 @@ export default function LessonContentDisplay(props: LessonContentNavigatorProps)
                 nextPageTooltip={props.strings.nextPageTooltip}
                 previousPageTooltip={props.strings.previousPageTooltip}
                 closeButtonLabel={props.strings.closeButtonLabel}
+                userId={props.user}
+                lessonId={props.id}
                 goToNextPage={goToNextPage}
                 goToPreviousPage={goToPreviousPage}
                 jumpToPage={jumpToPage}

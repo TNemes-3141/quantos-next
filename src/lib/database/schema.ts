@@ -1,5 +1,11 @@
 import { sql } from "drizzle-orm";
-import { pgTable, pgEnum, serial, text, varchar, timestamp, boolean, integer, uuid, smallint } from "drizzle-orm/pg-core";
+import { pgTable, pgEnum, serial, text, varchar, timestamp, boolean, integer, uuid, smallint, real } from "drizzle-orm/pg-core";
+
+
+export const accountTypeEnum = pgEnum('account_type', ['not_provided', 'student', 'educator']);
+export const ageGroupEnum = pgEnum('age_group', ['teen', 'young_adult', 'adult', 'elder']);
+export const experienceLevelEnum = pgEnum('experience_level', ['beginner', 'advanced', 'skilled']);
+export const difficultyLevelEnum = pgEnum('difficulty_level', ['easy', 'advanced', 'challenging']);
 
 export const accessCodes = pgTable('access_codes', {
   id: serial('id').primaryKey(),
@@ -10,11 +16,6 @@ export const accessCodes = pgTable('access_codes', {
   team: text('team').default("").notNull(),
   expiresAfter: integer('expires_after').default(30).notNull(),
 });
-
-export const accountTypeEnum = pgEnum('account_type', ['not_provided', 'student', 'educator']);
-export const ageGroupEnum = pgEnum('age_group', ['teen', 'young_adult', 'adult', 'elder']);
-export const experienceLevelEnum = pgEnum('experience_level', ['beginner', 'advanced', 'skilled']);
-export const difficultyLevelEnum = pgEnum('difficulty_level', ['easy', 'advanced', 'challenging']);
 
 export const userData = pgTable("user_data", {
   userId: uuid("user_id").primaryKey(),
@@ -45,4 +46,12 @@ export const lessons = pgTable("lessons", {
   title: text("title").default("").notNull(),
   readTime: smallint("read_time").notNull(),
   position: smallint("position").notNull(),
+  linkedLessons: text("linked_lessons").array(),
+});
+
+export const progressRecords = pgTable("progress_records", {
+  id: serial('id').primaryKey(),
+  user: uuid("user").references(() => userData.userId).notNull(),
+  lesson: text("lesson").references(() => lessons.lessonId).notNull(),
+  progress: real("progress").default(0.0).notNull(),
 });
