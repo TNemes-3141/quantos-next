@@ -5,8 +5,10 @@ import TeX from '@matejmazur/react-katex';
 
 import { Skeleton } from '../shadcn-ui/skeleton';
 import BlurImage from './BlurImage';
+import InteractiveAnimation from './InteractiveAnimation';
 
 import { cn } from '@/lib/utils';
+import useMediaQuery from '@/lib/useMediaQuery';
 import { secondary_font } from '@/lib/fonts';
 import {
     LessonContentElement,
@@ -17,11 +19,13 @@ import {
     InteractiveElement,
 } from '@/lib/contentTypes';
 import { ContentElementType, ImageModifier } from '@/lib/types';
+import { ValidLocale } from '@/i18n';
 
 
 type LessonContentRendererProps = {
     elements: LessonContentElement[],
-    imageUrls: string[],
+    assetUrls: string[],
+    locale: ValidLocale,
 }
 
 const renderParagraph = (element: ParagraphElement, key: number) => {
@@ -82,16 +86,24 @@ const renderEquation = (element: EquationElement, key: number) => {
     </div>;
 };
 
-const renderInteractive = (element: InteractiveElement, key: number) => {
+const renderInteractive = (element: InteractiveElement, url: string | undefined, locale: ValidLocale, size: number, key: number) => {
     return (
         <div key={key} className='flex flex-col space-y-2 items-center w-full'>
-            <div className='w-[250px] h-[250px] md:w-[400px] md:h-[400px] bg-card'></div>
+            {url ? (url.length > 0 ? <InteractiveAnimation
+                source={url}
+                locale={locale}
+                size={size}
+            />
+                : <div className='w-[250px] h-[250px] md:w-[400px] md:h-[400px] bg-card rounded-md' />
+            )
+                : <Skeleton className='w-[250px] h-[250px] md:w-[400px] md:h-[400px] rounded-md' />}
             <p className='text-sm text-muted-foreground text-center'>{element.caption}</p>
         </div>
     );
 }
 
-export default function LessonContentRenderer({ elements, imageUrls }: LessonContentRendererProps) {
+export default function LessonContentRenderer({ elements, assetUrls, locale }: LessonContentRendererProps) {
+    const isDesktop = useMediaQuery("(min-width: 768px)");
 
     return (
         <div className="flex flex-col justify-start items-start gap-6">
@@ -104,14 +116,19 @@ export default function LessonContentRenderer({ elements, imageUrls }: LessonCon
                         return renderSectionTitle(element as SectionTitleElement, index);
 
                     case ContentElementType.IMAGE:
-                        return renderImage(element as ImageElement, index < imageUrls.length ? imageUrls[index] : undefined, index);
+                        return renderImage(element as ImageElement, index < assetUrls.length ? assetUrls[index] : undefined, index);
 
                     case ContentElementType.EQUATION:
                         return renderEquation(element as EquationElement, index);
 
                     case ContentElementType.INTERACTIVE:
-                      return renderInteractive(element as InteractiveElement, index);
-
+                        return renderInteractive(element as InteractiveElement,
+                            index < assetUrls.length ? assetUrls[index] : undefined,
+                            locale,
+                            isDesktop ? 400 : 250,
+                            index
+                        );
+                        
                     default:
                         return null;
                 }

@@ -7,16 +7,18 @@ import { LessonContentNavbar, LessonContentNavbarRef } from "./LessonContentNavb
 import LessonContentRenderer from "./LessonContentRenderer";
 import LessonFinishPanel from "./LessonFinishPanel";
 
-import { LessonContent, LessonContentElement, ImageElement } from "@/lib/contentTypes";
+import { LessonContent, LessonContentElement, ImageElement, InteractiveElement } from "@/lib/contentTypes";
 import { ContentElementType } from "@/lib/types";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
+import { ValidLocale } from "@/i18n";
 
 
 type LessonContentNavigatorProps = {
     title: string,
     id: string,
     user: string,
+    locale: ValidLocale
     content: LessonContent,
     strings: {
         outlineTooltip: string,
@@ -30,15 +32,22 @@ type LessonContentNavigatorProps = {
     }
 }
 
-const fetchImageUrls = async (elements: LessonContentElement[], client: SupabaseClient): Promise<string[]> => {
+const fetchAssetUrls = async (elements: LessonContentElement[], client: SupabaseClient): Promise<string[]> => {
     return Promise.all(
         elements.map(async (element) => {
-            if (element.type === ContentElementType.IMAGE) {
+            if (element.type === ContentElementType.IMAGE || element.type === ContentElementType.INTERACTIVE) {
+                const parsedElement: ImageElement | InteractiveElement =
+                    element.type === ContentElementType.IMAGE ?
+                        element as ImageElement :
+                        element as InteractiveElement;
+                if (element.asset.length == 0) {
+                    return '';
+                }
                 const { data, error } = await client.storage
                     .from('lesson-materials')
-                    .createSignedUrl((element as ImageElement).asset, 60); // URL valid for 60 seconds
+                    .createSignedUrl(parsedElement.asset, 60); // URL valid for 60 seconds
                 if (error) {
-                    console.error('Error fetching image URL:', error);
+                    console.error('Error fetching asset URL:', error);
                     return '';
                 }
                 return data.signedUrl;
@@ -56,11 +65,13 @@ export default function LessonContentDisplay(props: LessonContentNavigatorProps)
     const [elements, setElements] = useState<LessonContentElement[]>(props.content.pageContents[currentPage]);
     const totalPages = props.content.pageContents.length;
 
+    const supabase = createClient();
+    const [assetUrls, setAssetUrls] = useState<string[]>([]);
 
     useEffect(() => {
         const loadUrls = async (elements: LessonContentElement[]) => {
-            const urls = await fetchImageUrls(elements, supabase);
-            setImageUrls(urls);
+            const urls = await fetchAssetUrls(elements, supabase);
+            setAssetUrls(urls);
         };
 
         setAnimationState("enter");
@@ -68,17 +79,13 @@ export default function LessonContentDisplay(props: LessonContentNavigatorProps)
         loadUrls(props.content.pageContents[currentPage]);
     }, [currentPage]);
 
-    const supabase = createClient();
-    const [imageUrls, setImageUrls] = useState<string[]>([]);
-
-
     const goToNextPage = async () => {
         if (currentPage < totalPages - 1) {
             setAnimationState('exit');
             setTimeout(() => {
                 const nextPage = currentPage + 1;
                 setCurrentPage(nextPage);
-                setImageUrls([]);
+                setAssetUrls([]);
             }, 300); // Match timeout to animation duration
         }
     };
@@ -89,7 +96,7 @@ export default function LessonContentDisplay(props: LessonContentNavigatorProps)
             setTimeout(() => {
                 const prevPage = currentPage - 1;
                 setCurrentPage(prevPage);
-                setImageUrls([]);
+                setAssetUrls([]);
             }, 300); // Match timeout to animation duration
         }
     };
@@ -99,7 +106,7 @@ export default function LessonContentDisplay(props: LessonContentNavigatorProps)
             setAnimationState('exit');
             setTimeout(() => {
                 setCurrentPage(page);
-                setImageUrls([]);
+                setAssetUrls([]);
             }, 300);
         }
     }
@@ -131,7 +138,7 @@ export default function LessonContentDisplay(props: LessonContentNavigatorProps)
                 jumpToPage={jumpToPage}
             />
             <div className={cn("max-w-[1000px]", animationState === 'enter' ? 'animate-fade-in' : 'animate-fade-out')}>
-                <LessonContentRenderer elements={elements} imageUrls={imageUrls} />
+                <LessonContentRenderer elements={elements} assetUrls={assetUrls} locale={props.locale}/>
                 <div className="flex justify-center mt-12">
                     {currentPage === totalPages - 1 ? <LessonFinishPanel
                         finishLessonText={props.strings.finishLessonText}

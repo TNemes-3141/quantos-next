@@ -36,6 +36,7 @@ export default async function PageContent({ locale, translate, userId, chapterId
                 title={breadcrumbData.lessonTitle}
                 id={lessonId}
                 user={userId}
+                locale={locale}
                 content={lessonContent}
                 strings={{
                     outlineTooltip: translate("learn.navigationBar.outlineTooltip"),

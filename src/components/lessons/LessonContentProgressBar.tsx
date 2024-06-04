@@ -36,7 +36,6 @@ export const LessonContentProgressBar = forwardRef((props: LessonContentProgress
         setProgressOnJumpPage: (userId: string, lessonId: string, page: number) => {
             if (page > completedSections) {
                 setCompletedSections(page);
-                console.log(page);
                 updateProgress(userId, lessonId, page / props.numSections);
             }
             setProgressCurrent(0);
