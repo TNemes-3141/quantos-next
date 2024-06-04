@@ -1,6 +1,7 @@
 "use client";
 
 import { useRive, useStateMachineInput } from '@rive-app/react-canvas';
+import { useTheme } from 'next-themes';
 import { ValidLocale } from '@/i18n';
 
 
@@ -26,10 +27,15 @@ export default function InteractiveAnimation(props: InteractiveAnimationProps) {
         fitCanvasToArtboardHeight: true,
         shouldResizeCanvasToContainer: true,
     });
+    const { theme } = useTheme();
 
     const language = useStateMachineInput(rive, "ExerciseStates", "language");
     if (language) {
         language.value = getLanguageInputForLocale(props.locale);
+    }
+    const dark = useStateMachineInput(rive, "ExerciseStates", "dark");
+    if (dark) {
+        dark.value = theme === "dark";
     }
 
     return (

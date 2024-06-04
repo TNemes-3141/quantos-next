@@ -125,10 +125,10 @@ export default function LessonContentRenderer({ elements, assetUrls, locale }: L
                         return renderInteractive(element as InteractiveElement,
                             index < assetUrls.length ? assetUrls[index] : undefined,
                             locale,
-                            isDesktop ? 400 : 250,
+                            isDesktop ? 400 : 300,
                             index
                         );
-                        
+
                     default:
                         return null;
                 }
