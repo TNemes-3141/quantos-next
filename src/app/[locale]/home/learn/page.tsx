@@ -15,7 +15,7 @@ export default async function Home({
 
   return (
     <Layout locale={validLocale} translate={translate} withButtons={true}>
-      <PageContent locale={validLocale} translate={translate} userName={user.user_metadata.display_name}/>
+      <PageContent locale={validLocale} translate={translate} userName={user.user_metadata.display_name} userId={user.id}/>
     </Layout>
   );
 }

@@ -20,6 +20,7 @@ export default async function Home({
     return (
         <Layout locale={validLocale} translate={translate} withButtons={false}>
             <PageContent
+                userId={user.id}
                 chapterId={params.chapterId}
                 locale={validLocale}
                 translate={translate}

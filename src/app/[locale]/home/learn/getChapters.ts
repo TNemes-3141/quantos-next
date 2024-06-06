@@ -1,9 +1,9 @@
 "use server";
 
-import { eq, and } from "drizzle-orm";
+import { eq, and, sql } from "drizzle-orm";
 import { ValidLocale } from "@/i18n";
 import { db } from "@/lib/database/db";
-import { chapters } from "@/lib/database/schema";
+import { chapters, progressRecords } from "@/lib/database/schema";
 
 
 type ChapterCardData = {
@@ -12,15 +12,17 @@ type ChapterCardData = {
     description: string;
     difficulty: "advanced" | "easy" | "challenging";
     iconPath: string | null;
+    progress: number;
 }
 
-export async function getChapterCardData(locale: ValidLocale): Promise<ChapterCardData[]> {
-    const result = await db.select({
+export async function getChapterCardData(userId: string, locale: ValidLocale): Promise<ChapterCardData[]> {
+    const chapterCardData = await db.select({
         id: chapters.chapterId,
         title: chapters.title,
         description: chapters.description,
         difficulty: chapters.difficulty,
         iconPath: chapters.iconPath,
+        lessons: chapters.lessons,
     }).from(chapters).where(
         and(
             eq(chapters.locale, locale),
@@ -28,5 +30,36 @@ export async function getChapterCardData(locale: ValidLocale): Promise<ChapterCa
         )
     ).orderBy(chapters.position);
 
-    return result;
+    const lessonProgressData = await db.select({
+        lesson: progressRecords.lesson,
+        progress: progressRecords.progress
+    }).from(progressRecords).where(
+        eq(progressRecords.user, userId)
+    );
+
+    // Create a map of lesson progress
+    const lessonProgressMap = new Map<string, number>();
+    for (const record of lessonProgressData) {
+        if (lessonProgressMap.has(record.lesson)) {
+            lessonProgressMap.set(record.lesson, lessonProgressMap.get(record.lesson)! + record.progress);
+        } else {
+            lessonProgressMap.set(record.lesson, record.progress);
+        }
+    }
+
+    return chapterCardData.map(chapter => {
+        const totalProgress = chapter.lessons.reduce((acc, lessonId) => {
+            return acc + (lessonProgressMap.get(lessonId) || 0);
+        }, 0);
+        const averageProgress = chapter.lessons.length > 0 ? totalProgress / chapter.lessons.length : 0;
+
+        return {
+            id: chapter.id,
+            title: chapter.title,
+            description: chapter.description,
+            difficulty: chapter.difficulty,
+            iconPath: chapter.iconPath,
+            progress: averageProgress,
+        };
+    });
 }

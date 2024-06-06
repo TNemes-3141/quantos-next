@@ -4,14 +4,15 @@ import { eq, and } from "drizzle-orm";
 
 import { DifficultyLevel } from "@/lib/types";
 import { db } from "@/lib/database/db";
-import { chapters, lessons } from "@/lib/database/schema";
+import { chapters, lessons, progressRecords } from "@/lib/database/schema";
 import { redirect } from "next/navigation";
 
 
 export type LessonCardData = {
     id: string,
     title: string,
-    readTime: number
+    readTime: number,
+    progress: number,
 }
 
 export type ChapterData = {
@@ -21,8 +22,8 @@ export type ChapterData = {
     thumbnailPath: string | null,
 }
 
-export async function getLessonCardData(chapterId: string): Promise<LessonCardData[]> {
-    const result = await db.select({
+export async function getLessonCardData(userId: string, chapterId: string): Promise<LessonCardData[]> {
+    const lessonCardData = await db.select({
         id: lessons.lessonId,
         title: lessons.title,
         readTime: lessons.readTime,
@@ -33,7 +34,24 @@ export async function getLessonCardData(chapterId: string): Promise<LessonCardDa
         )
     ).orderBy(lessons.position);
 
-    return result;
+    const progressValues = await db.select({
+        lessonId: progressRecords.lesson,
+        progress: progressRecords.progress,
+    }).from(progressRecords).where(
+        eq(progressRecords.user, userId)
+    );
+
+    const progressMap = progressValues.reduce((acc, curr) => {
+        acc[curr.lessonId] = curr.progress;
+        return acc;
+    }, {} as { [key: string]: number });
+
+    const combinedData = lessonCardData.map(lesson => ({
+        ...lesson,
+        progress: progressMap[lesson.id] || 0
+    }));
+
+    return combinedData;
 }
 
 export async function getChapterData(chapterId: string): Promise<ChapterData> {

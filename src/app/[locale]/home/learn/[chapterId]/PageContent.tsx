@@ -1,4 +1,4 @@
-import LessonSelectionCarousel from "@/components/LessonSelectionCarousel";
+import LessonSelectionGrid from "@/components/LessonSelectionGrid";
 import BackButton from "@/components/BackButton";
 import LearnBreadcrumbs from "@/components/LearnBreadcrumbs";
 import ChapterThumbnailAnimation from "@/components/ChapterThumbnailAnimation";
@@ -10,10 +10,11 @@ import { cn } from "@/lib/utils";
 import { secondary_font } from "@/lib/fonts";
 import { DifficultyLevel } from "@/lib/types";
 import { createClient } from "@/lib/supabase/server";
-import { getChapterData, getLessonCardData } from "./getLessons";
+import { getChapterData, getLessonCardData } from "./actions";
 
 
 type PageContentProps = LocalizedProps & {
+    userId: string,
     chapterId: string,
 }
 
@@ -28,7 +29,7 @@ function splitToBucketAndPath(input: string): { bucket: string, resourcePath: st
 }
 
 export default async function PageContent(props: PageContentProps) {
-    const lessons = await getLessonCardData(props.chapterId);
+    const lessons = await getLessonCardData(props.userId, props.chapterId);
     const chapterData = await getChapterData(props.chapterId);
 
     const supabase = createClient();
@@ -86,7 +87,7 @@ export default async function PageContent(props: PageContentProps) {
             <p className={cn("text-2xl pt-5", secondary_font.className)}>
                 {props.translate("learn.subheadingLessons")}
             </p>
-            <LessonSelectionCarousel
+            <LessonSelectionGrid
                 lessons={lessons}
                 readTimeLabel={props.translate("learn.readtimeLabel")}
             />

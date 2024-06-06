@@ -23,6 +23,7 @@ type ChapterCardProps = {
     description: string,
     difficulty: DifficultyLevel,
     iconPath: string | null,
+    progress: number,
     translate: TranslatorFunction
 }
 
@@ -61,34 +62,40 @@ export default function ChapterCard(props: ChapterCardProps) {
         }
     }
 
+    console.log(`Chapter ${props.chapterId} with total progress ${props.progress}/100`);
+
     return (
-        <Card className="max-w-[500px]">
+        <Card className="max-w-[500px] flex flex-col h-full">
             <CardHeader>
                 <CardTitle>{props.title}</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="flex flex-col flex-grow justify-center">
                 <div className="flex flex-col items-start">
                     <div className={cn("inline-flex items-center rounded-full border-transparent text-primary-foreground text-xs px-2.5 py-0.5", difficultyLevelToClassName(props.difficulty))}>
                         <p>{difficultyLevelToLocalizedString(props.difficulty)}</p>
                     </div>
                     <div className="flex flex-col md:flex-row gap-6 items-center mt-6">
-                        {publicUrl ? <div className="w-[100px] h-[100px] flex-shrink-0 p-2 rounded-lg bg-muted dark:bg-popover"><ChapterIconAnimation
-                            size={100}
-                            source={publicUrl}
-                        /></div> : <div className="w-[100px] h-[100px] flex-shrink-0 border border-border rounded-lg">
-                        </div>}
+                        {publicUrl ? (
+                            <div className="w-[100px] h-[100px] flex-shrink-0 p-2 rounded-lg bg-muted dark:bg-popover">
+                                <ChapterIconAnimation size={100} source={publicUrl} />
+                            </div>
+                        ) : (
+                            <div className="w-[100px] h-[100px] flex-shrink-0 border border-border rounded-lg"></div>
+                        )}
                         <p className="text-muted-foreground">{props.description}</p>
                     </div>
                 </div>
-
             </CardContent>
-            <CardFooter>
+            <CardFooter className="mt-auto">
                 <div className="w-full flex gap-4 items-center justify-stretch">
-                    <Trophy className="h-[1.5rem] w-[1.5rem] flex-shrink-0" />
-                    <Progress className="w-full" value={20} />
-                    <ChapterSelectButton chapterId={props.chapterId}/>
+                    <Trophy className="h-[1.5rem] w-[1.5rem] flex-shrink-0 color-primary" />
+                    <Progress className="w-full" value={props.progress} />
+                    <ChapterSelectButton chapterId={props.chapterId} />
                 </div>
             </CardFooter>
         </Card>
     );
+    
+    
+    
 }
