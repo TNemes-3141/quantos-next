@@ -7,7 +7,7 @@ import { LessonContentNavbar, LessonContentNavbarRef } from "./LessonContentNavb
 import LessonContentRenderer from "./LessonContentRenderer";
 import LessonFinishPanel from "./LessonFinishPanel";
 
-import { LessonContent, LessonContentElement, ImageElement, InteractiveElement } from "@/lib/contentTypes";
+import { LessonContent, LessonContentElement, ImageElement, InteractiveElement, InteractiveComponentElement } from "@/lib/contentTypes";
 import { ContentElementType } from "@/lib/types";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
@@ -35,11 +35,16 @@ type LessonContentNavigatorProps = {
 const fetchAssetUrls = async (elements: LessonContentElement[], client: SupabaseClient): Promise<string[]> => {
     return Promise.all(
         elements.map(async (element) => {
-            if (element.type === ContentElementType.IMAGE || element.type === ContentElementType.INTERACTIVE) {
-                const parsedElement: ImageElement | InteractiveElement =
+            if (element.type === ContentElementType.IMAGE ||
+                element.type === ContentElementType.INTERACTIVE ||
+                element.type === ContentElementType.INTERACTIVE_COMPONENT) {
+                const parsedElement: ImageElement | InteractiveElement | InteractiveComponentElement =
                     element.type === ContentElementType.IMAGE ?
                         element as ImageElement :
-                        element as InteractiveElement;
+                        (element.type === ContentElementType.INTERACTIVE ?
+                            element as InteractiveElement :
+                            element as InteractiveComponentElement
+                        );
                 if (element.asset.length == 0) {
                     return '';
                 }

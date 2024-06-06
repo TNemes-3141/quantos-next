@@ -13,7 +13,8 @@ import { LessonContent,
     SectionTitleElement,
     ImageElement,
     EquationElement,
-    InteractiveElement
+    InteractiveElement,
+    InteractiveComponentElement
 } from "@/lib/contentTypes";
 import { ContentElementType, ImageModifier } from "@/lib/types";
 import { ValidLocale } from "@/i18n";
@@ -175,6 +176,7 @@ function parseLessonContent(jsonData: any): LessonContentElement[][] {
                 case 'image': return parseImage(element, typeStrings);
                 case 'equation': return parseEquation(element);
                 case 'interactive': return parseInteractive(element);
+                case 'interactivecomponent': return parseInteractiveComponent(element);
                 default:
                     throw new Error(`Unknown content type: ${element.type}`);
             }
@@ -214,4 +216,14 @@ function parseEquation(element: any): EquationElement {
 
 function parseInteractive(element: any): InteractiveElement {
     return { type: ContentElementType.INTERACTIVE, asset: element.asset, caption: element.caption, alttext: element.alttext } as InteractiveElement;
+}
+
+function parseInteractiveComponent(element: any): InteractiveComponentElement {
+    return {
+        type: ContentElementType.INTERACTIVE_COMPONENT,
+        asset: element.asset,
+        component: element.component,
+        caption: element.caption,
+        alttext: element.alttext
+    } as InteractiveComponentElement;
 }

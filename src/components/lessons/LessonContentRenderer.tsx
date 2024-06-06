@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from 'next/dynamic';
 import 'katex/dist/katex.min.css';
 import TeX from '@matejmazur/react-katex';
 
@@ -17,8 +18,9 @@ import {
     SectionTitleElement,
     EquationElement,
     InteractiveElement,
+    InteractiveComponentElement,
 } from '@/lib/contentTypes';
-import { ContentElementType, ImageModifier } from '@/lib/types';
+import { ContentElementType, ImageModifier, InteractiveElementProps } from '@/lib/types';
 import { ValidLocale } from '@/i18n';
 
 
@@ -102,6 +104,24 @@ const renderInteractive = (element: InteractiveElement, url: string | undefined,
     );
 }
 
+const renderInteractiveComponent = (element: InteractiveComponentElement, url: string | undefined, locale: ValidLocale, size: number, key: number) => {
+    const InteractiveComponent = dynamic<InteractiveElementProps>(() => import(`../interactives/${element.component}.tsx`));
+    
+    return (
+        <div key={key} className='flex flex-col space-y-2 items-center w-full'>
+            {url ? (url.length > 0 ? <InteractiveComponent
+                source={url}
+                locale={locale}
+                size={size}
+            />
+                : <div className='w-[250px] h-[250px] md:w-[400px] md:h-[400px] bg-card rounded-md' />
+            )
+                : <Skeleton className='w-[250px] h-[250px] md:w-[400px] md:h-[400px] rounded-md' />}
+            <p className='text-sm text-muted-foreground text-center'>{element.caption}</p>
+        </div>
+    );
+}
+
 export default function LessonContentRenderer({ elements, assetUrls, locale }: LessonContentRendererProps) {
     const isDesktop = useMediaQuery("(min-width: 768px)");
 
@@ -123,6 +143,15 @@ export default function LessonContentRenderer({ elements, assetUrls, locale }: L
 
                     case ContentElementType.INTERACTIVE:
                         return renderInteractive(element as InteractiveElement,
+                            index < assetUrls.length ? assetUrls[index] : undefined,
+                            locale,
+                            isDesktop ? 400 : 300,
+                            index
+                        );
+                    
+                    case ContentElementType.INTERACTIVE_COMPONENT:
+                        return renderInteractiveComponent(
+                            element as InteractiveComponentElement,
                             index < assetUrls.length ? assetUrls[index] : undefined,
                             locale,
                             isDesktop ? 400 : 300,

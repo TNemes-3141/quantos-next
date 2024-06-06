@@ -35,13 +35,22 @@ export interface InteractiveElement extends ContentElement {
     alttext: string;
 }
 
+export interface InteractiveComponentElement extends ContentElement {
+    type: ContentElementType.INTERACTIVE_COMPONENT;
+    asset: string;
+    component: string;
+    caption: string;
+    alttext: string;
+}
+
 // Union type of all content elements
 export type LessonContentElement = 
     | ParagraphElement
     | SectionTitleElement
     | ImageElement
     | EquationElement
-    | InteractiveElement;
+    | InteractiveElement
+    | InteractiveComponentElement;
 
 export interface OutlineElement {
     sectiontitle: string;

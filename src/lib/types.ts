@@ -1,3 +1,6 @@
+import { ValidLocale } from "@/i18n"
+
+
 export enum DbAccessCodeResponse {
     OK,
     OK_NEW_USER,
@@ -56,6 +59,12 @@ export type WelcomeLocalizedStrings = {
     }
 }
 
+export type InteractiveElementProps = {
+    source: string,
+    locale: ValidLocale,
+    size: number,
+}
+
 export enum DifficultyLevel {
     EASY,
     ADVANCED,
@@ -68,6 +77,7 @@ export enum ContentElementType {
     IMAGE,
     EQUATION,
     INTERACTIVE,
+    INTERACTIVE_COMPONENT,
 }
 
 export enum ImageModifier {

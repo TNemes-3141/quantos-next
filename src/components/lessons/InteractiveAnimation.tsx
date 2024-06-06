@@ -3,13 +3,8 @@
 import { useRive, useStateMachineInput } from '@rive-app/react-canvas';
 import { useTheme } from 'next-themes';
 import { ValidLocale } from '@/i18n';
+import { InteractiveElementProps } from '@/lib/types';
 
-
-type InteractiveAnimationProps = {
-    source: string,
-    locale: ValidLocale,
-    size: number,
-}
 
 function getLanguageInputForLocale(locale: ValidLocale): number {
     switch (locale) {
@@ -18,7 +13,7 @@ function getLanguageInputForLocale(locale: ValidLocale): number {
     }
 }
 
-export default function InteractiveAnimation(props: InteractiveAnimationProps) {
+export default function InteractiveAnimation(props: InteractiveElementProps) {
     const { RiveComponent, rive } = useRive({
         src: props.source,
         stateMachines: "ExerciseStates",
