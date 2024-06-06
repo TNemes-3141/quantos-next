@@ -29,7 +29,7 @@ function splitToBucketAndPath(input: string): { bucket: string, resourcePath: st
 }
 
 export default async function PageContent(props: PageContentProps) {
-    const lessons = await getLessonCardData(props.userId, props.chapterId);
+    const lessons = await getLessonCardData(props.chapterId);
     const chapterData = await getChapterData(props.chapterId);
 
     const supabase = createClient();
@@ -88,6 +88,8 @@ export default async function PageContent(props: PageContentProps) {
                 {props.translate("learn.subheadingLessons")}
             </p>
             <LessonSelectionGrid
+                userId={props.userId}
+                chapterId={props.chapterId}
                 lessons={lessons}
                 readTimeLabel={props.translate("learn.readtimeLabel")}
             />

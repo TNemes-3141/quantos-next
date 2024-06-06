@@ -12,7 +12,6 @@ export type LessonCardData = {
     id: string,
     title: string,
     readTime: number,
-    progress: number,
 }
 
 export type ChapterData = {
@@ -22,36 +21,45 @@ export type ChapterData = {
     thumbnailPath: string | null,
 }
 
-export async function getLessonCardData(userId: string, chapterId: string): Promise<LessonCardData[]> {
-    const lessonCardData = await db.select({
-        id: lessons.lessonId,
-        title: lessons.title,
-        readTime: lessons.readTime,
-    }).from(lessons).where(
-        and(
-            eq(lessons.chapter, chapterId),
-            eq(lessons.active, true)
-        )
-    ).orderBy(lessons.position);
+export type ProgressMap = {[key: string]: number};
 
-    const progressValues = await db.select({
-        lessonId: progressRecords.lesson,
-        progress: progressRecords.progress,
-    }).from(progressRecords).where(
-        eq(progressRecords.user, userId)
-    );
+export async function getLessonCardData(chapterId: string): Promise<LessonCardData[]> {
+    try {
+        const lessonCardData = await db.select({
+            id: lessons.lessonId,
+            title: lessons.title,
+            readTime: lessons.readTime,
+        }).from(lessons).where(
+            and(
+                eq(lessons.chapter, chapterId),
+                eq(lessons.active, true)
+            )
+        ).orderBy(lessons.position);
 
-    const progressMap = progressValues.reduce((acc, curr) => {
-        acc[curr.lessonId] = curr.progress;
-        return acc;
-    }, {} as { [key: string]: number });
+        return lessonCardData;
+    } catch (error) {
+        redirect("/error");
+    }
+}
 
-    const combinedData = lessonCardData.map(lesson => ({
-        ...lesson,
-        progress: progressMap[lesson.id] || 0
-    }));
+export async function getProgressMap(userId: string): Promise<ProgressMap> {
+    try {
+        const progressValues = await db.select({
+            lessonId: progressRecords.lesson,
+            progress: progressRecords.progress,
+        }).from(progressRecords).where(
+            eq(progressRecords.user, userId)
+        );
 
-    return combinedData;
+        const progressMap = progressValues.reduce((acc, curr) => {
+            acc[curr.lessonId] = curr.progress;
+            return acc;
+        }, {} as { [key: string]: number });
+
+        return progressMap;
+    } catch (error) {
+        redirect("/error");
+    }
 }
 
 export async function getChapterData(chapterId: string): Promise<ChapterData> {
@@ -73,11 +81,11 @@ export async function getChapterData(chapterId: string): Promise<ChapterData> {
         let difficulty: DifficultyLevel;
         switch (result.difficulty) {
             case "easy": difficulty = DifficultyLevel.EASY;
-            break;
+                break;
             case "advanced": difficulty = DifficultyLevel.ADVANCED;
-            break;
+                break;
             case "challenging": difficulty = DifficultyLevel.CHALLENGING;
-            break;
+                break;
         }
 
         return {
