@@ -16,6 +16,7 @@ type LessonSelectionGridProps = {
 export default function LessonSelectionGrid(props: LessonSelectionGridProps) {
     //grid gap-4 grid-cols-1 md:grid-cols-[repeat(auto-fit,_minmax(400px,_1fr))]
     const [progressMap, setProgressMap] = useState<ProgressMap>({});
+    const [loading, setLoading] = useState(false);
 
     const fetchProgressData = async () => {
         const map = await getProgressMap(props.userId);
@@ -25,6 +26,10 @@ export default function LessonSelectionGrid(props: LessonSelectionGridProps) {
     useEffect(() => {
         fetchProgressData();
     }, [props.chapterId]);
+
+    const onLoading = () => {
+        setLoading(true);
+    }
 
     return (
         <div className="grid gap-4 grid-cols-1 md:grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))]">
@@ -37,6 +42,8 @@ export default function LessonSelectionGrid(props: LessonSelectionGridProps) {
                     readTimeLabel={props.readTimeLabel.replace("{{ readTime }}", `${lesson.readTime}`)}
                     progressValue={Math.floor((progressMap[lesson.id] || 0) * 100)}
                     isSquare={false}
+                    disabled={loading}
+                    onLoadingCallback={onLoading}
                 />
             ))}
         </div>

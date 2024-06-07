@@ -10,6 +10,8 @@ type LessonCardProps = {
     readTimeLabel: string,
     progressValue: number,
     isSquare: boolean,
+    disabled: boolean,
+    onLoadingCallback: () => void;
 }
 
 export default function LessonCard(props: LessonCardProps) {
@@ -33,6 +35,8 @@ export default function LessonCard(props: LessonCardProps) {
                     <Progress className="w-full" value={props.progressValue} />
                     <LessonSelectButton
                         lessonId={props.lessonId}
+                        disabled={props.disabled}
+                        onClick={props.onLoadingCallback}
                     />
                 </div>
             </CardFooter>

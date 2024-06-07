@@ -1,11 +1,11 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { eq, and } from "drizzle-orm";
 
 import { DifficultyLevel } from "@/lib/types";
 import { db } from "@/lib/database/db";
 import { chapters, lessons, progressRecords } from "@/lib/database/schema";
-import { redirect } from "next/navigation";
 
 
 export type LessonCardData = {
