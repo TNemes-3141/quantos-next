@@ -3,7 +3,7 @@ import ChapterSelectionGrid from "@/components/ChapterSelectionGrid";
 import { LocalizedProps } from "@/i18n";
 import { cn } from "@/lib/utils";
 import { secondary_font } from "@/lib/fonts";
-import { getChapterCardData } from "./getChapters";
+import { getChapterCardData } from "./actions";
 
 
 type PageContentProps = LocalizedProps & {
@@ -25,6 +25,7 @@ export default async function PageContent(props: PageContentProps) {
                 {props.translate("learn.subheadingChapters")}
             </p>
             <ChapterSelectionGrid
+                userId={props.userId}
                 chapters={chapters}
                 strings={{
                     easy: props.translate("learn.difficultyEasy"),

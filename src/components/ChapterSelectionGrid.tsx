@@ -3,12 +3,13 @@
 import { useState, useEffect } from "react";
 
 import ChapterCard from "./ChapterCard";
-import { ChapterCardData } from "@/app/[locale]/home/learn/getChapters";
+import { ChapterCardData, ProgressMap, getProgressMap } from "@/app/[locale]/home/learn/actions";
 import { DifficultyLevel } from "@/lib/types";
 
 
 type ChapterSelectionGridProps = {
     chapters: ChapterCardData[],
+    userId: string,
     strings: {
         easy: string,
         advanced: string,
@@ -18,6 +19,16 @@ type ChapterSelectionGridProps = {
 
 export default function ChapterSelectionGrid(props: ChapterSelectionGridProps) {
     const [loading, setLoading] = useState(false);
+    const [progressMap, setProgressMap] = useState<ProgressMap>(new Map<string, number>());
+
+    const fetchProgressData = async (chapters: ChapterCardData[]) => {
+        const map = await getProgressMap(props.userId, chapters);
+        setProgressMap(map);
+    }
+
+    useEffect(() => {
+        fetchProgressData(props.chapters);
+    }, [props.chapters])
 
     const onNavigate = () => {
         setLoading(true);
@@ -40,7 +51,7 @@ export default function ChapterSelectionGrid(props: ChapterSelectionGridProps) {
                 description={chapter.description}
                 difficulty={dbDifficultyLevelEnumToNativeEnum(chapter.difficulty)}
                 iconPath={chapter.iconPath}
-                progress={Math.floor(chapter.progress * 100)}
+                progress={Math.floor((progressMap.get(chapter.id) || 0) * 100)}
                 difficultyEasy={props.strings.easy}
                 difficultyAdvanced={props.strings.advanced}
                 difficultyChallenging={props.strings.challenging}
