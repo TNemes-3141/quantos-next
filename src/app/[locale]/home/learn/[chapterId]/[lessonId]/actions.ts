@@ -109,15 +109,15 @@ export async function submitCompleteLessonActivity(userId: string, lessonId: str
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
+    console.log(`User ID: ${userId}; lesson ID: ${lessonId}`);
+
     const existingActivityRecord = await db.query.activityRecords.findFirst({
         columns: {
             id: true
         },
         where: and(
             eq(activityRecords.user, userId),
-            eq(activityRecords.activityType, activityTypeEnum.enumValues[0]),
-            gte(activityRecords.timestamp, today),
-            lt(activityRecords.timestamp, new Date(today.getTime() + 86400000)),
+            eq(activityRecords.activityType, activityTypeEnum.enumValues[1]),
             eq(activityRecords.lesson, lessonId),
         ),
     });
