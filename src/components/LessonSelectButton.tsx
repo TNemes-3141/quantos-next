@@ -38,7 +38,7 @@ export default function LessonSelectButton(props: LessonSelectButtonProps) {
             </Button>
             {loading && (
                 <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-                    <Loader2 className="h-[5rem] w-[5rem] animate-spin text-white" />
+                    <Loader2 className="h-[4rem] w-[4rem] animate-spin text-white" />
                 </div>
             )}
         </div>
