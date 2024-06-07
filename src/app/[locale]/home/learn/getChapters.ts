@@ -6,7 +6,7 @@ import { db } from "@/lib/database/db";
 import { chapters, progressRecords } from "@/lib/database/schema";
 
 
-type ChapterCardData = {
+export type ChapterCardData = {
     id: string,
     title: string;
     description: string;

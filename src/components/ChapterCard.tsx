@@ -1,4 +1,6 @@
-import { createClient } from "@/lib/supabase/server"
+"use client"
+
+import { createClient } from "@/lib/supabase/client"
 
 import { Progress } from "./shadcn-ui/progress"
 import {
@@ -13,7 +15,6 @@ import ChapterIconAnimation from "./ChapterIconAnimation"
 import ChapterSelectButton from "./ChapterSelectButton"
 
 import { DifficultyLevel } from "@/lib/types"
-import { TranslatorFunction } from "@/i18n"
 import { cn } from "@/lib/utils"
 
 
@@ -24,7 +25,11 @@ type ChapterCardProps = {
     difficulty: DifficultyLevel,
     iconPath: string | null,
     progress: number,
-    translate: TranslatorFunction
+    deactivated: boolean,
+    onNavigateCallback: () => void,
+    difficultyEasy: string,
+    difficultyAdvanced: string,
+    difficultyChallenging: string,
 }
 
 function splitToBucketAndPath(input: string): { bucket: string, resourcePath: string | null } {
@@ -48,9 +53,9 @@ export default function ChapterCard(props: ChapterCardProps) {
 
     const difficultyLevelToLocalizedString = (level: DifficultyLevel): string => {
         switch (level) {
-            case DifficultyLevel.EASY: return props.translate("learn.difficultyEasy");
-            case DifficultyLevel.ADVANCED: return props.translate("learn.difficultyAdvanced");
-            case DifficultyLevel.CHALLENGING: return props.translate("learn.difficultyChallenging");
+            case DifficultyLevel.EASY: return props.difficultyEasy;
+            case DifficultyLevel.ADVANCED: return props.difficultyAdvanced;
+            case DifficultyLevel.CHALLENGING: return props.difficultyChallenging;
         }
     }
 
@@ -61,8 +66,6 @@ export default function ChapterCard(props: ChapterCardProps) {
             case DifficultyLevel.CHALLENGING: return "bg-rose-600 hover:bg-rose-600/80";
         }
     }
-
-    console.log(`Chapter ${props.chapterId} with total progress ${props.progress}/100`);
 
     return (
         <Card className="max-w-[500px] flex flex-col h-full">
@@ -88,14 +91,18 @@ export default function ChapterCard(props: ChapterCardProps) {
             </CardContent>
             <CardFooter className="mt-auto">
                 <div className="w-full flex gap-4 items-center justify-stretch">
-                    <Trophy className="h-[1.5rem] w-[1.5rem] flex-shrink-0 color-primary" />
+                    <Trophy className="h-[1.5rem] w-[1.5rem] flex-shrink-0" />
                     <Progress className="w-full" value={props.progress} />
-                    <ChapterSelectButton chapterId={props.chapterId} />
+                    <ChapterSelectButton
+                        chapterId={props.chapterId}
+                        deactivated={props.deactivated}
+                        onNavigate={props.onNavigateCallback}
+                    />
                 </div>
             </CardFooter>
         </Card>
     );
-    
-    
-    
+
+
+
 }
