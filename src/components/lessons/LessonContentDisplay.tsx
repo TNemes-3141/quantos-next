@@ -120,7 +120,7 @@ export default function LessonContentDisplay(props: LessonContentNavigatorProps)
         lessonContentNavbarRef.current?.setProgressToFullAndSave(props.user, props.id);
         setTimeout(() => {
             router.back();
-        }, 2000);
+        }, 1000);
     }
 
     return (

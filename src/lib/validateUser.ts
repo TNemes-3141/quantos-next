@@ -18,7 +18,7 @@ export async function validateUser(): Promise<User> {
         redirect('/auth/login');
     }
 
-    //Record sign-in action
+    //Record sign-in
     await submitSigninActivity(data.user.id);
 
     return data.user;

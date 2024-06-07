@@ -1,11 +1,11 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { eq, and } from "drizzle-orm";
+import { eq, and, gte, lt } from "drizzle-orm";
 
 import { createClient } from "@/lib/supabase/server";
 import { db } from "@/lib/database/db";
-import { chapters, lessons, progressRecords } from "@/lib/database/schema";
+import { chapters, lessons, progressRecords, activityRecords, activityTypeEnum } from "@/lib/database/schema";
 import { LessonContent,
     LessonContentElement,
     OutlineElement,
@@ -96,9 +96,42 @@ export async function updateProgress(userId: string, lessonId: string, newProgre
                 .set({progress: newProgress})
                 .where(and(eq(progressRecords.user, userId), eq(progressRecords.lesson, id)));
         }
+
+        if (newProgress === 1) {
+            await submitCompleteLessonActivity(userId, lessonId);
+        }
     } catch (error) {
         return;
     }
+}
+
+export async function submitCompleteLessonActivity(userId: string, lessonId: string): Promise<void> {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const existingActivityRecord = await db.query.activityRecords.findFirst({
+        columns: {
+            id: true
+        },
+        where: and(
+            eq(activityRecords.user, userId),
+            eq(activityRecords.activityType, activityTypeEnum.enumValues[0]),
+            gte(activityRecords.timestamp, today),
+            lt(activityRecords.timestamp, new Date(today.getTime() + 86400000)),
+            eq(activityRecords.lesson, lessonId),
+        ),
+    });
+
+    if (existingActivityRecord) {
+        console.log(`Already found an entry for this activity: ${existingActivityRecord.id}`)
+        return;
+    }
+
+    await db.insert(activityRecords).values({
+        user: userId,
+        activityType: activityTypeEnum.enumValues[1],
+        lesson: lessonId,
+    });
 }
 
 export async function getBreadcrumbData(chapterId: string, lessonId: string): Promise<BreadcrumbData> {
