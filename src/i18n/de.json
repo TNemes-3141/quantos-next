@@ -129,6 +129,14 @@
             "finishButtonLabel": "Fertig"
         }
     },
+    "stats": {
+        "pageHeading": "Statistiken",
+        "percentFormat": "{{ value }}%",
+        "totalProgress": {
+            "title": "Gesamtfortschritt",
+            "description": "Gut gemacht! Du hast bisher abgeschlossen:"
+        }
+    },
     "error": {
         "pageText": "Sorry! Etwas ist schief gelaufen...",
         "pageCta": "Zurück zur Startseite",
