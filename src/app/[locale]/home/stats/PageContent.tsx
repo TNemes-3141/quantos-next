@@ -3,6 +3,7 @@ import ProgressCard from "@/components/charts/ProgressCard";
 import { ValidLocale } from "@/i18n";
 import { secondary_font } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
+import { getStats } from "./getStats";
 
 
 type PageContentProps = {
@@ -16,7 +17,9 @@ type PageContentProps = {
     }
 }
 
-export default function PageContent(props: PageContentProps) {
+export default async function PageContent(props: PageContentProps) {
+    const stats = await getStats(props.userId, props.locale);
+    console.log(stats);
 
     return (
         <div className="flex flex-col space-y-8">

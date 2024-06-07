@@ -12,7 +12,7 @@ type PageContentProps = LocalizedProps & {
 }
 
 export default async function PageContent(props: PageContentProps) {
-    const chapters = await getChapterCardData(props.userId, props.locale);
+    const chapters = await getChapterCardData(props.locale);
 
     return (
         <div className="flex flex-col space-y-6">

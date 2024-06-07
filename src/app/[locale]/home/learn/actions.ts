@@ -16,9 +16,14 @@ export type ChapterCardData = {
     lessons: string[];
 }
 
+export type ChapterCardDataReduced = {
+    id: string;
+    lessons: string[];
+}
+
 export type ProgressMap = Map<string, number>;
 
-export async function getChapterCardData(userId: string, locale: ValidLocale): Promise<ChapterCardData[]> {
+export async function getChapterCardData(locale: ValidLocale): Promise<ChapterCardData[]> {
     try {
         const chapterCardData = await db.select({
             id: chapters.chapterId,
@@ -40,7 +45,25 @@ export async function getChapterCardData(userId: string, locale: ValidLocale): P
     }
 }
 
-export async function getProgressMap(userId: string, chapterCards: ChapterCardData[]): Promise<ProgressMap> {
+export async function getChapterCardDataReduced(locale: ValidLocale): Promise<ChapterCardDataReduced[]> {
+    try {
+        const chapterCardData = await db.select({
+            id: chapters.chapterId,
+            lessons: chapters.lessons,
+        }).from(chapters).where(
+            and(
+                eq(chapters.locale, locale),
+                eq(chapters.active, true)
+            )
+        ).orderBy(chapters.position);
+    
+        return chapterCardData;
+    } catch (error) {
+        redirect("/error");
+    }
+}
+
+export async function getProgressMap(userId: string, chapterCards: ChapterCardData[] | ChapterCardDataReduced[]): Promise<ProgressMap> {
     try {
         const lessonProgressData = await db.select({
             lesson: progressRecords.lesson,
