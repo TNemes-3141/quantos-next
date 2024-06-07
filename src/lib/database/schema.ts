@@ -6,6 +6,7 @@ export const accountTypeEnum = pgEnum('account_type', ['not_provided', 'student'
 export const ageGroupEnum = pgEnum('age_group', ['teen', 'young_adult', 'adult', 'elder']);
 export const experienceLevelEnum = pgEnum('experience_level', ['beginner', 'advanced', 'skilled']);
 export const difficultyLevelEnum = pgEnum('difficulty_level', ['easy', 'advanced', 'challenging']);
+export const activityTypeEnum = pgEnum('activity_type', ['signed_in', 'lesson_completed']);
 
 export const accessCodes = pgTable('access_codes', {
   id: serial('id').primaryKey(),
@@ -54,4 +55,12 @@ export const progressRecords = pgTable("progress_records", {
   user: uuid("user").references(() => userData.userId).notNull(),
   lesson: text("lesson").references(() => lessons.lessonId).notNull(),
   progress: real("progress").default(0.0).notNull(),
+});
+
+export const activityRecords = pgTable('activity_records', {
+  id: serial('id').primaryKey(),
+  user: uuid('user').references(() => userData.userId).notNull(),
+  timestamp: timestamp('timestamp').notNull().defaultNow(),
+  activityType: activityTypeEnum('activity_type').notNull(),
+  lesson: text('lesson').references(() => lessons.lessonId),
 });
