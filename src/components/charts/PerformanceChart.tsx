@@ -31,6 +31,12 @@ export default function PerformanceChart({ data, dataPointLabel, weekdays }: Lin
     const { theme } = useTheme();
 
     useEffect(() => {
+        const rootStyles = getComputedStyle(document.documentElement);
+        const primary = rootStyles.getPropertyValue('--primary').trim();
+        const foreground = rootStyles.getPropertyValue('--foreground').trim();
+        setPrimaryColor(primary);
+        setForegroundColor(foreground);
+        
         const generateLabels = () => {
             const today = new Date();
             const dayOfWeek = today.getDay(); // 0 (Sunday) to 6 (Saturday)
@@ -55,13 +61,9 @@ export default function PerformanceChart({ data, dataPointLabel, weekdays }: Lin
         setLabels(generateLabels());
     }, [weekdays]);
 
-    useEffect(() => {
-        const rootStyles = getComputedStyle(document.documentElement);
-        const primary = rootStyles.getPropertyValue('--primary').trim();
-        const foreground = rootStyles.getPropertyValue('--foreground').trim();
-        setPrimaryColor(primary);
-        setForegroundColor(foreground);
-    }, [theme]);
+    /*useEffect(() => {
+        
+    }, [theme]);*/
 
     const chartData = {
         labels,
