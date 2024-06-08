@@ -12,13 +12,13 @@ type ProgressCardProps = {
     percentFormat: string,
 }
 
-export default function ProgressCard(props: ProgressCardProps) {
+export default function TotalProgressCard(props: ProgressCardProps) {
     return (
         <div className="flex flex-col items-center gap-4">
             <p className={cn('font-semibold text-2xl tracking-tight', secondary_font.className)}>
                 {props.title}
             </p>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground text-center">
                 {props.description}
             </p>
             <div className="max-w-[250px] max-h-[250px]">

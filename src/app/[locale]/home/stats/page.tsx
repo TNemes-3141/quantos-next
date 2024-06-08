@@ -18,12 +18,7 @@ export default async function Home({
         <PageContent
             locale={validLocale}
             userId={user.id}
-            strings={{
-                pageHeading: translate("stats.pageHeading"),
-                percentFormat: translate("stats.percentFormat"),
-                totalProgressTitle: translate("stats.totalProgress.title"),
-                totalProgressDescription: translate("stats.totalProgress.description"),
-            }}
+            translate={translate}
         />
     </Layout>
   );

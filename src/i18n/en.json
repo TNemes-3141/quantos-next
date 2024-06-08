@@ -130,11 +130,34 @@
         }
     },
     "stats": {
-        "pageHeading": "Statistics",
+        "heading": "Statistics",
         "percentFormat": "{{ value }}%",
+        "activityDataNote": "Usage data older than 30 days is deleted automatically (except for progress tracking).",
+        "weekdays": {
+            "monday": "Mon",
+            "tuesday": "Tue",
+            "wednesday": "Wed",
+            "thursday": "Thu",
+            "friday": "Fri",
+            "saturday": "Sat",
+            "sunday": "Sun"
+        },
         "totalProgress": {
             "title": "Overall progress",
             "description": "Way to go! So far, you've completed:"
+        },
+        "activity": {
+            "title": "Activity",
+            "description": "online time in the last 30 days"
+        },
+        "performance": {
+            "title": "Performance",
+            "description": "completed lessons in the last 7 days",
+            "dataPointLabel": "completed lessons"
+        },
+        "progress": {
+            "title": "Progress",
+            "description": "per chapter"
         }
     },
     "error": {
