@@ -11,7 +11,7 @@ export default function Home() {
     const post = async () => {
         const supabase = createClient();
 
-        const { data, error } = await supabase.rpc('generate_random_code', { team_name: "Zsófi", expiry: 60, num_codes: 5 });
+        const { data, error } = await supabase.rpc('generate_random_code', { team_name: "KZMK workshop", expiry: 30, num_codes: 30 });
         console.log(data);
     }
 

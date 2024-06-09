@@ -17,6 +17,7 @@ export default async function Home({
   return (
     <Layout locale={validLocale} translate={translate} withButtons={true}>
       <PageContent
+        userId={user.id}
         locale={validLocale}
         translate={translate}
       />

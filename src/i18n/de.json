@@ -205,6 +205,7 @@
     },
     "settings": {
         "heading": "Einstellungen",
+        "team": "zugewiesen zu {{ team }}",
         "convertAnonymous": {
             "title": "Anonymes Login zu dauerhaftem Konto umwandeln",
             "description": "Du hast dich mit einem Zugangscode angemeldet, welcher 30 Tage gültig bleibt. Willst du Quantos länger verwenden und dabei deinen Fortschritt beibehalten, kannst du deinen Account in ein dauerhaftes umwandeln.",
