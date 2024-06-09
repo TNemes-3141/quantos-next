@@ -67,7 +67,13 @@ export default function GroupAccessForm(props: LogInFormProps) {
             return;
         }
         setLoading(true);
-        const { responseCode, errorMessage } = await submitAccessCode(code, props.locale);
+        const response = await submitAccessCode(code, props.locale);
+
+        if (!response) {
+            return;
+        }
+
+        const { responseCode, errorMessage } = response;
 
         if (errorMessage) {
             console.log(errorMessage);

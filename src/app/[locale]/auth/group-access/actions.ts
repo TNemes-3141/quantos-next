@@ -15,7 +15,7 @@ type SubmitAccessCodeResponse = {
   errorMessage: string | undefined,
 }
 
-export async function submitAccessCode(code: string, locale: ValidLocale): Promise<SubmitAccessCodeResponse> {
+export async function submitAccessCode(code: string, locale: ValidLocale): Promise<SubmitAccessCodeResponse | undefined> {
   let accessCode;
   try {
     accessCode = await db.query.accessCodes.findFirst({

@@ -20,8 +20,6 @@ export async function signup(userEmail: string, userPassword: string, locale: Va
     redirect('/error');
   }
 
-  console.log("Signup successful!");
-
   revalidatePath(`/${locale}/welcome`, 'layout');
   redirect(`/${locale}/welcome`);
 }

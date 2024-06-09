@@ -12,7 +12,7 @@ type SubmitCredentialsResponse = {
   errorMessage: string | undefined,
 }
 
-export async function login(userEmail: string, userPassword: string, locale: ValidLocale): Promise<SubmitCredentialsResponse> {
+export async function login(userEmail: string, userPassword: string, locale: ValidLocale): Promise<SubmitCredentialsResponse | undefined> {
   const supabase = createClient();
 
   const data = {
@@ -35,8 +35,4 @@ export async function login(userEmail: string, userPassword: string, locale: Val
 
   revalidatePath(`${locale}/home/learn`, 'layout');
   redirect(`${locale}/home/learn`);
-  return {
-    responseCode: LoginResponse.OK,
-    errorMessage: undefined,
-  }
 }
