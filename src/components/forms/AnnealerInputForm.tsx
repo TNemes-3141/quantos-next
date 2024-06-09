@@ -80,7 +80,7 @@ export default function AnnealerInputForm(props: AnnealerInputFormProps) {
             title: props.sendSuccessToast,
             description: (
                 <pre className="mt-2 w-[340px] rounded-md bg-popover p-4">
-                    <code className="text-popover-foreground">
+                    <code className="text-popover-foreground break-words whitespace-pre-wrap">
                         {formatJSON({ token: data.token, matrix })}
                     </code>
                 </pre>
