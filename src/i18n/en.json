@@ -1,0 +1,236 @@
+{
+    "footer": {
+        "copyrightNote": "Made with ❤️ with support from",
+        "languageLabel": "Language:"
+    },
+    "auth": {
+        "signUpDescription": "New here?",
+        "signUpButtonLabel": "Sign up",
+        "logInDescription": "Already on board?",
+        "logInButtonLabel": "Log in",
+        "logOutButtonLabel": "Log out",
+        "groupAccessDescription": "Part of a classroom or a team?",
+        "groupAccessButtonLabel": "Enter access code",
+        "emailLabel": "Email address",
+        "passwordLabel": "Password",
+        "passwordDescription": "At least 10 characters",
+        "passwordConfirmLabel": "Confirm password",
+        "passwordsNotMatchingError": "The passwords no not match.",
+        "accessCodeLabel": "Access code",
+        "showPasswordTooltip": "Show password",
+        "hidePasswordTooltip": "Hide password",
+        "unknown": "Unknown",
+        "signup": {
+            "title": "Welcome!",
+            "logInHint": "Already on board?"
+        },
+        "login": {
+            "title": "Welcome back!",
+            "signUpHint": "New here?",
+            "forgotPassword": "Forgot your password?",
+            "error": "An error has occurred during sign-in. Please check your details and try again! Reason:"
+        },
+        "groupaccess": {
+            "instructions": "Enter the code that you received",
+            "logInHint": "Already have an account?",
+            "accountHint": "You will receive a temporary, anonymous account without personal information. You can convert it into an actual account at any time after registration.",
+            "enterButtonLabel": "Enter",
+            "errorCodeNotFound": "The access code you entered is not registered. Check your access card again or create your own account instead!",
+            "errorCodeNotActive": "The access code you entered is invalid as this account has been deactivated. Please notify your instructor. If you believe you have received this message in error, please contact us at help@quantos.online.",
+            "errorCodeExpired": "The access code you entered has expired. Check your access card again or create your own account instead!"
+        }
+    },
+    "welcome": {
+        "nextPageButton": "Next",
+        "previousPageButton": "Back",
+        "finishButton": "Finish",
+        "welcomePage": {
+            "title": "Hi! Let's get started 🚀",
+            "question": "We'd like to ask you a few questions first to customize your user experience."
+        },
+        "namePage": {
+            "title": "What's your name?",
+            "question": "Leave this field blank if you don't want to be addressed by name.",
+            "placeholder": "First name" 
+        },
+        "accountTypePage": {
+            "titleWithName": "What type of account would you like to create, {{ userName }}?",
+            "titleWithoutName": "What type of account would you like to create?",
+            "chooseOption": "Choose an account...",
+            "optionStudentTitle": "Student or learner",
+            "optionStudentDescription": "Ideal for pupils, students and learning enthusiasts who want to find out more about quantum computing.",
+            "optionTeacherTitle": "Educator",
+            "optionTeacherDescription": "Perfect for teachers and educators who supervise school classes, training courses or workshops. Enables the creation and management of access codes for participants."
+        },
+        "agePage": {
+            "title": "How old are you?",
+            "question": "This question is optional, but improves your learning experience.",
+            "optionNotSpecified": "Not specified",
+            "optionTeen": "15-18 years",
+            "optionYoungAdult": "19-28 years",
+            "optionAdult": "29-59 years",
+            "optionElder": "60+ years"
+        },
+        "experiencePage": {
+            "title": "How would you describe yourself?",
+            "question": "That is, how familiar are you with quantum computing in general?",
+            "optionBeginner": "Beginner",
+            "optionAdvanced": "Advanced",
+            "optionSkilled": "Skilled"
+        },
+        "finalPage": {
+            "title": "You're all set! 🎉"
+        }
+    },
+    "home": {
+        "tabLearn": "Learn",
+        "tabCode": "Code",
+        "tabStatistics": "Statistics",
+        "tabSettings": "Settings",
+        "topNavigation": {
+            "searchPlaceholder": "Search...",
+            "noResultsMessage": "ಥ_ಥ No results found",
+            "commandHeaderNavigation": "Navigation",
+            "commandHeaderShortcuts": "Helpful shortcuts",
+            "commandHeaderLections": "Lections",
+            "commands": {
+                "personalSettings": "Change personal settings",
+                "password": "Change password",
+                "accessCodes": "Manage access codes",
+                "lowVision": "Activate low vision mode",
+                "colorBlindness": "Adjust for color blindness",
+                "help": "Get help",
+                "info": "View app information"
+            }
+        },
+        "profilePanel": {
+            "personalSettingsOption": "Profile settings",
+            "helpCenterOption": "Help center"
+        }
+    },
+    "learn": {
+        "difficultyEasy": "easy",
+        "difficultyAdvanced": "advaced",
+        "difficultyChallenging": "challenging",
+        "subheadingChapters": "Chapters",
+        "subheadingLessons": "Lessons",
+        "readtimeLabel": "Reading time: {{ readTime }} min.",
+        "greetingWithName": "Hi there, {{ userName }}! 👋",
+        "greetingWithoutName": "Hi there! 👋",
+        "navigationBar": {
+            "outlineTooltip": "Select section",
+            "outlineDescription": "Jump to a section",
+            "nextPageTooltip": "Next page",
+            "previousPageTooltip": "Previous page"
+        },
+        "finishPanel": {
+            "finishLessonText": "Well done! Click here to complete:",
+            "ratingQuestion": "How would you rate this lesson?",
+            "finishButtonLabel": "Finish"
+        }
+    },
+    "stats": {
+        "heading": "Statistics",
+        "activityDataNote": "Usage data older than 30 days is deleted automatically (except for progress tracking).",
+        "weekdays": {
+            "monday": "Mon",
+            "tuesday": "Tue",
+            "wednesday": "Wed",
+            "thursday": "Thu",
+            "friday": "Fri",
+            "saturday": "Sat",
+            "sunday": "Sun"
+        },
+        "totalProgress": {
+            "title": "Overall progress",
+            "description": "Way to go! So far, you've completed:"
+        },
+        "activity": {
+            "title": "Activity",
+            "description": "online time in the last 30 days"
+        },
+        "performance": {
+            "title": "Performance",
+            "description": "completed lessons in the last 7 days",
+            "dataPointLabel": "completed lessons"
+        },
+        "progress": {
+            "title": "Progress",
+            "description": "per chapter"
+        }
+    },
+    "code": {
+        "heading": "Coding",
+        "headerText": "Ready to take matters in your own hands? Send your Hamilton matrices to our simulator or a real-life DWave quantum annealer and use the results to solve problems nobody ever attempted before!",
+        "tabs": {
+            "simulator": "Simulator",
+            "annealer": "DWave Advantage"
+        },
+        "inputSubheading": "Inputs",
+        "apiTokenField": {
+            "label": "Your API token",
+            "placeholder": "Insert your token here",
+            "instruction": "This is required to authenticate your requests to the quantum annealer.",
+            "error": "API token is required."
+        },
+        "hamiltonianMatrixField": {
+            "label": "Hamiltonian matrix",
+            "placeholder": "Example: [[1, 4], [0, 1]]",
+            "instruction": "Enter a square upper triangular matrix with the coefficients of your optimization problem.",
+            "error": "Must be a valid Hamilton matrix (square, zeros under the main diagonal, JSON format)."
+        },
+        "sendButtonLabel": "Send",
+        "sendSuccessToast": "Inputs submitted successfully!",
+        "resultsSubheading": "Results",
+        "responseSubheadings": {
+            "simulator": "Response from the simulator",
+            "annealer": "Response from the DWave annealer"
+        },
+        "consoleOutput": {
+            "idle": "Waiting for input.",
+            "loading": "Waiting for server response...",
+            "successSimulator": "Operation successful! Here are the top solutions (up to 5), sorted from best to worst energy:",
+            "successAnnealer": "Operation successful! Here are the top solutions (up to 10), retreived from 5000 measurements, sorted from best to worst energy:",
+            "failure": "Something went wrong - unable to fetch response. If you're using DWave Advantage mode, check your internet connection, or try again.",
+            "probabilityBarLabel": "Probability (%)"
+        },
+        "columnHeaders": {
+            "energy": "Energy",
+            "sample": "Sample",
+            "occurrences": "Occurrences"
+        },
+        "probabilitySubheading": "Probability distribution",
+        "probabilitySliderLabel": "{{ value }} millikelvin",
+        "probabilityDescription": "This simulates how likely you would get each result on a real quantum annealer, from best to worst. At this temparature of the QPU, the best solution to your problem has a {{ percentage }} chance to be found."
+    },
+    "settings": {
+        "heading": "Settings",
+        "convertAnonymous": {
+            "title": "Convert anonymous sign-in to permanent account",
+            "description": "You have registered with an access code that remains valid for 30 days. If you want to use Quantos for longer and maintain your progress, you can convert your account to a permanent one.",
+            "buttonLabel": "Convert account"
+        },
+        "logOutButtonLabel": "Log out"
+    },
+    "error": {
+        "pageText": "Oops, sorry! Something went wrong...",
+        "pageCta": "Back to the starting page",
+        "dialogTitle": "Error",
+        "unknownErrorDialogText": "Oops! It seems that something went wrong... Please notify your instructor and try again later. If the problem persists, please contact us at help@quantos.online.",
+        "dialogCloseButton": "OK"
+    },
+    "themeSelection": {
+        "tooltip": "Toggle theme",
+        "dark": "Dark",
+        "light": "Light",
+        "system": "System"
+    },
+    "profilePanel": {
+        "tooltip": "Profile actions",
+        "personalSettings": "Profile settings",
+        "helpCenter": "Help center"
+    },
+    "backButtonLabel": "Back",
+    "closeButtonLabel": "Close",
+    "percentFormat": "{{ value }}%"
+}

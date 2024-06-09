@@ -1,0 +1,236 @@
+{
+    "footer": {
+        "copyrightNote": "Made with ❤️ mit Unterstützung des",
+        "languageLabel": "Sprache:"
+    },
+    "auth": {
+        "signUpDescription": "Neu hier?",
+        "signUpButtonLabel": "Registrieren",
+        "logInDescription": "Bereits an Bord?",
+        "logInButtonLabel": "Einloggen",
+        "logOutButtonLabel": "Abmelden",
+        "groupAccessDescription": "Teil einer Klasse oder eines Teams?",
+        "groupAccessButtonLabel": "Zugangscode eingeben",
+        "emailLabel": "Email-Adresse",
+        "passwordLabel": "Passwort",
+        "passwordDescription": "Mindestens 10 Zeichen",
+        "passwordConfirmLabel": "Passwort bestätigen",
+        "passwordsNotMatchingError": "Passwörter stimmen nicht überein.",
+        "accessCodeLabel": "Zugangscode",
+        "showPasswordTooltip": "Passwort anzeigen",
+        "hidePasswordTooltip": "Passwort verstecken",
+        "unknown": "Unbekannt",
+        "signup": {
+            "title": "Willkommen!",
+            "logInHint": "Bereits an Bord? Hier"
+        },
+        "login": {
+            "title": "Willkommen zurück!",
+            "signUpHint": "Noch neu? Hier",
+            "forgotPassword": "Passwort vergessen?",
+            "error": "Bei der Anmeldung ist ein Fehler aufgetreten. Bitte überprüfe deine Angaben und versuche es noch einmal! Grund:"
+        },
+        "groupaccess": {
+            "instructions": "Gib den Code, den du erhalten hast, ein",
+            "logInHint": "Bereits ein Konto? Hier",
+            "accountHint": "Du erhältst ein temporäres, anonymes Konto ohne persönliche Informationen. Du kannst es nach Anmeldung jederzeit in ein richtiges Konto umwandeln.",
+            "enterButtonLabel": "Eingeben",
+            "errorCodeNotFound": "Der eingegebene Zugangscode ist nicht registriert. Überprüfe deine Zugangskarte erneut oder erstelle stattdessen ein eigenes Konto!",
+            "errorCodeNotActive": "Der eingegebene Zugangscode ist ungültig, da dieses Konto deaktiviert wurde. Bitte kontaktiere deinen Kursleiter. Wenn du glaubst, dass du diese Nachricht irrtümlich erhalten hast, kontaktiere uns bitte unter help@quantos.online.",
+            "errorCodeExpired": "Der eingegebene Zugangscode ist abgelaufen. Überprüfe deine Zugangskarte erneut oder erstelle stattdessen ein eigenes Konto!"
+        }
+    },
+    "welcome": {
+        "nextPageButton": "Weiter",
+        "previousPageButton": "Zurück",
+        "finishButton": "Fertig",
+        "welcomePage": {
+            "title": "Hi! Lass uns loslegen 🚀",
+            "question": "Wir möchten dir zuerst ein paar Fragen stellen, um dein Nutzererlebnis anzupassen."
+        },
+        "namePage": {
+            "title": "Wie heißt du?",
+            "question": "Lass das Feld leer, wenn du nicht mit Namen angesprochen werden möchtest.",
+            "placeholder": "Vorname"
+        },
+        "accountTypePage": {
+            "titleWithName": "Welche Art von Konto möchtest du anlegen, {{ userName }}?",
+            "titleWithoutName": "Welche Art von Konto möchtest du anlegen?",
+            "chooseOption": "Konto auswählen...",
+            "optionStudentTitle": "Schüler/-in oder Lernende/-r",
+            "optionStudentDescription": "Ideal für Schüler/-innen, Student/-innen und Lernbegeisterte, die mehr über Quantencomputing erfahren möchten.",
+            "optionTeacherTitle": "Lehrperson",
+            "optionTeacherDescription": "Optimal für Lehrkräfte und Ausbilder, die Schulklassen, Fortbildungskurse oder Workshops betreuen. Ermöglicht zusätzlich das Erstellen und Verwalten von Zugangscodes für Teilnehmer/-innen."
+        },
+        "agePage": {
+            "title": "Wie alt bist du?",
+            "question": "Diese Frage ist optional, verbessert aber dein Lernerlebnis.",
+            "optionNotSpecified": "Keine Angabe",
+            "optionTeen": "15-18 Jahre",
+            "optionYoungAdult": "19-28 Jahre",
+            "optionAdult": "29-59 Jahre",
+            "optionElder": "60+ Jahre"
+        },
+        "experiencePage": {
+            "title": "Wie würdest du dich beschreiben?",
+            "question": "Genauer: Wie vertraut bist du mit dem Thema Quantencomputing im Allgemeinen?",
+            "optionBeginner": "Anfänger",
+            "optionAdvanced": "Fortgeschritten",
+            "optionSkilled": "Erfahren"
+        },
+        "finalPage": {
+            "title": "Super, es kann losgehen! 🎉"
+        }
+    },
+    "home": {
+        "tabLearn": "Lernen",
+        "tabCode": "Coden",
+        "tabStatistics": "Statistiken",
+        "tabSettings": "Einstellungen",
+        "topNavigation": {
+            "searchPlaceholder": "Suchen...",
+            "noResultsMessage": "ಥ_ಥ Keine Ergebnisse",
+            "commandHeaderNavigation": "Navigation",
+            "commandHeaderShortcuts": "Hilfreiche Schnellzugriffe",
+            "commandHeaderLections": "Lektionen",
+            "commands": {
+                "personalSettings": "Profileinstellungen bearbeiten",
+                "password": "Passwort ändern",
+                "accessCodes": "Zugangscodes verwalten",
+                "lowVision": "Sehschwäche-Modus aktivieren",
+                "colorBlindness": "Farbenblindheit ausgleichen",
+                "help": "Hilfe anfordern",
+                "info": "App-Informationen ansehen"
+            }
+        },
+        "profilePanel": {
+            "personalSettingsOption": "Profileinstellungen",
+            "helpCenterOption": "Hilfe-Center"
+        }
+    },
+    "learn": {
+        "difficultyEasy": "Einfach",
+        "difficultyAdvanced": "Fortgeschritten",
+        "difficultyChallenging": "Herausfordernd",
+        "subheadingChapters": "Kapitel",
+        "subheadingLessons": "Lektionen",
+        "readtimeLabel": "Lesezeit: {{ readTime }} Min.",
+        "greetingWithName": "Hallo, {{ userName }}! 👋",
+        "greetingWithoutName": "Hallo! 👋",
+        "navigationBar": {
+            "outlineTooltip": "Abschnitt wählen",
+            "outlineDescription": "Springe zu einem Abschnitt",
+            "nextPageTooltip": "Nächste Seite",
+            "previousPageTooltip": "Vorherige Seite"
+        },
+        "finishPanel": {
+            "finishLessonText": "Geschafft! Klicke hier zum Abschließen:",
+            "ratingQuestion": "Wie fandest du diese Lektion?",
+            "finishButtonLabel": "Fertig"
+        }
+    },
+    "stats": {
+        "heading": "Statistiken",
+        "activityDataNote": "Nutzungsdaten, die älter als 30 Tage alt sind, werden automatisch gelöscht (Fortschrittsanzeigen ausgenommen).",
+        "weekdays": {
+            "monday": "Mo",
+            "tuesday": "Di",
+            "wednesday": "Mi",
+            "thursday": "Do",
+            "friday": "Fr",
+            "saturday": "Sa",
+            "sunday": "So"
+        },
+        "totalProgress": {
+            "title": "Gesamtfortschritt",
+            "description": "Gut gemacht! Du hast bisher abgeschlossen:"
+        },
+        "activity": {
+            "title": "Aktivität",
+            "description": "Onlinezeiten in den letzten 30 Tagen"
+        },
+        "performance": {
+            "title": "Leistung",
+            "description": "abgeschlossene Lektionen in den letzten 7 Tagen",
+            "dataPointLabel": "abgeschlossene Lektionen"
+        },
+        "progress": {
+            "title": "Fortschritt",
+            "description": "pro Kapitel"
+        }
+    },
+    "code": {
+        "heading": "Coding",
+        "headerText": "Bist du bereit, die Dinge selbst in die Hand zu nehmen? Schicke deine Hamilton-Matrizen an unseren Simulator oder einen echten DWave-Quantenannealer und nutze die Ergebnisse, um Probleme zu lösen, die noch niemand zuvor versucht hat!",
+        "tabs": {
+            "simulator": "Simulator",
+            "annealer": "DWave Advantage"
+        },
+        "inputSubheading": "Eingaben",
+        "apiTokenField": {
+            "label": "Dein API-Token",
+            "placeholder": "Füge deinen Token hier ein",
+            "instruction": "Dies wird benötigt, um deine Anfragen an den Quantenannealer zu authentifizieren.",
+            "error": "Ein API-Token ist erforderlich."
+        },
+        "hamiltonianMatrixField": {
+            "label": "Hamilton-Matrix",
+            "placeholder": "Beispiel: [[1, 4], [0, 1]]",
+            "instruction": "Gebe eine quadratische, obere Dreiecksmatrix mit den Koeffizienten deines Optimierungsproblems ein.",
+            "error": "Muss eine gültige Hamilton-Matrix sein (quadratisch, Nullen unter der Hauptdiagonale, JSON-Format)."
+        },
+        "sendButtonLabel": "Senden",
+        "sendSuccessToast": "Eingaben erfolgreich abgeschickt!",
+        "resultsSubheading": "Ergebnisse",
+        "responseSubheadings": {
+            "simulator": "Antwort des Simulators",
+            "annealer": "Antwort des DWave-Annealers"
+        },
+        "consoleOutput": {
+            "idle": "Warte auf Eingabe.",
+            "loading": "Warte auf Antwort des Servers...",
+            "successSimulator": "Ausführung erfolgreich! Hier sind die besten Lösungen (bis zu 5), sortiert von der besten bis zur schlechtesten Energie:",
+            "successAnnealer": "Ausführung erfolgreich! Hier sind die besten Lösungen (bis zu 10), erhalten aus 5000 Messungen und sortiert von der besten bis zur schlechtesten Energie:",
+            "failure": "Etwas ist schief gelaufen - Antwort kann nicht abgerufen werden. Wenn du den DWave Advantage-Modus verwendest, überprüfe deine Internetverbindung oder versuche es erneut."
+        },
+        "columnHeaders": {
+            "energy": "Energie",
+            "sample": "Messung",
+            "occurrences": "Häufigkeit"
+        },
+        "probabilitySubheading": "Wahrscheinlichkeitsverteilung",
+        "probabilitySliderLabel": "{{ value }} Millikelvin",
+        "probabilityDescription": "Dies simuliert, wie wahrscheinlich die einzelnen Ergebnisse auf einem echten Quantenannealer wären, von der besten bis zur schlechtesten Lösung. Bei dieser Temperatur der QPU beträgt die Wahrscheinlichkeit der besten Lösung für dein Problem {{ percentage }}.",
+        "probabilityBarLabel": "Wahrscheinlichkeit (%)"
+    },
+    "settings": {
+        "heading": "Einstellungen",
+        "convertAnonymous": {
+            "title": "Anonymes Login zu dauerhaftem Konto umwandeln",
+            "description": "Du hast dich mit einem Zugangscode angemeldet, welcher 30 Tage gültig bleibt. Willst du Quantos länger verwenden und dabei deinen Fortschritt beibehalten, kannst du deinen Account in ein dauerhaftes umwandeln.",
+            "buttonLabel": "Konto umwandeln"
+        },
+        "logOutButtonLabel": "Ausloggen"
+    },
+    "error": {
+        "pageText": "Sorry! Etwas ist schief gelaufen...",
+        "pageCta": "Zurück zur Startseite",
+        "dialogTitle": "Fehler",
+        "unknownErrorDialogText": "Ups! Es scheint, dass etwas schief gelaufen ist... Bitte benachrichtige deinen Kursleiter und versuche es später noch einmal. Wenn das Problem weiterhin besteht, kontaktiere uns bitte unter help@quantos.online.",
+        "dialogCloseButton": "OK"
+    },
+    "themeSelection": {
+        "tooltip": "Farbschema umschalten",
+        "dark": "Dunkel",
+        "light": "Hell",
+        "system": "System"
+    },
+    "profilePanel": {
+        "tooltip": "Profilaktionen",
+        "personalSettings": "Profileinstellungen",
+        "helpCenter": "Hilfe-Center"
+    },
+    "backButtonLabel": "Zurück",
+    "closeButtonLabel": "Schließen",
+    "percentFormat": "{{ value }}%"
+}
