@@ -11,7 +11,7 @@ export interface AgeSelectionAnimationRef {
     setAgeClass: (value: -1 | 0 | 1 | 2 | 3) => void;
 }
 
-export const AgeSelectionAnimation = forwardRef((props: AgeSelectionAnimationProps, ref) => {
+const AgeSelectionAnimation = forwardRef((props: AgeSelectionAnimationProps, ref) => {
     const { RiveComponent, rive } = useRive({
         src: "/assets/age_selection.riv",
         stateMachines: "AgeClasses",
@@ -34,3 +34,7 @@ export const AgeSelectionAnimation = forwardRef((props: AgeSelectionAnimationPro
         <RiveComponent style={{ maxWidth: `${props.size}px` }}/>
     );
 });
+
+AgeSelectionAnimation.displayName = "AgeSelectionAnimation";
+
+export default AgeSelectionAnimation;

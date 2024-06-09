@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { SupabaseClient } from '@supabase/supabase-js';
-import { LessonContentNavbar, LessonContentNavbarRef } from "./LessonContentNavbar";
+import LessonContentNavbar, { LessonContentNavbarRef } from "./LessonContentNavbar";
 import LessonContentRenderer from "./LessonContentRenderer";
 import LessonFinishPanel from "./LessonFinishPanel";
 

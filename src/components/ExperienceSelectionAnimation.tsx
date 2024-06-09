@@ -11,7 +11,7 @@ export interface ExperienceSelectionAnimationRef {
     setExperienceLevel: (value: 0 | 1 | 2) => void;
 }
 
-export const ExperienceSelectionAnimation = forwardRef((props: ExperienceSelectionAnimationProps, ref) => {
+const ExperienceSelectionAnimation = forwardRef((props: ExperienceSelectionAnimationProps, ref) => {
     const { RiveComponent, rive } = useRive({
         src: "/assets/experience_selection.riv",
         stateMachines: "ExperienceClasses",
@@ -34,3 +34,7 @@ export const ExperienceSelectionAnimation = forwardRef((props: ExperienceSelecti
         <RiveComponent style={{ maxWidth: `${props.size}px` }}/>
     );
 });
+
+ExperienceSelectionAnimation.displayName = "ExperienceSelectionAnimation";
+
+export default ExperienceSelectionAnimation;

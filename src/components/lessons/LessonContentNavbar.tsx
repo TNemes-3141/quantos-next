@@ -2,7 +2,7 @@
 
 import { useRef, forwardRef, useImperativeHandle } from "react";
 import OutlinePanel from "./OutlinePanel";
-import { LessonContentProgressBar, LessonContentProgressBarRef } from "./LessonContentProgressBar";
+import LessonContentProgressBar, { LessonContentProgressBarRef } from "./LessonContentProgressBar";
 import { Button } from "../shadcn-ui/button";
 import {
     Tooltip,
@@ -40,7 +40,7 @@ export interface LessonContentNavbarRef {
     setProgressToFullAndSave: (userId: string, lessonId: string) => void;
 }
 
-export const LessonContentNavbar = forwardRef((props: LessonContentNavbarProps, ref) => {
+const LessonContentNavbar = forwardRef((props: LessonContentNavbarProps, ref) => {
     const lessonContentProgressBarRef = useRef<LessonContentProgressBarRef>(null);
     const isDesktop = useMediaQuery("(min-width: 768px)");
 
@@ -170,3 +170,7 @@ export const LessonContentNavbar = forwardRef((props: LessonContentNavbarProps, 
         );
     }
 });
+
+LessonContentNavbar.displayName = "LessonContentNavbar";
+
+export default LessonContentNavbar;
