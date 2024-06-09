@@ -189,7 +189,8 @@
         "consoleOutput": {
             "idle": "Warte auf Eingabe.",
             "loading": "Warte auf Antwort des Servers...",
-            "success": "Ausführung erfolgreich! Hier sind die besten Lösungen (bis zu 5), sortiert von der besten bis zur schlechtesten Energie:",
+            "successSimulator": "Ausführung erfolgreich! Hier sind die besten Lösungen (bis zu 5), sortiert von der besten bis zur schlechtesten Energie:",
+            "successAnnealer": "Ausführung erfolgreich! Hier sind die besten Lösungen (bis zu 10), erhalten aus 5000 Messungen und sortiert von der besten bis zur schlechtesten Energie:",
             "failure": "Etwas ist schief gelaufen - Antwort kann nicht abgerufen werden. Wenn du den DWave Advantage-Modus verwendest, überprüfe deine Internetverbindung oder versuche es erneut."
         },
         "probabilitySubheading": "Wahrscheinlichkeitsverteilung",

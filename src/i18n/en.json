@@ -189,7 +189,8 @@
         "consoleOutput": {
             "idle": "Waiting for input.",
             "loading": "Waiting for server response...",
-            "success": "Operation successful! Here are the top solutions (up to 5), sorted from best to worst energy:",
+            "successSimulator": "Operation successful! Here are the top solutions (up to 5), sorted from best to worst energy:",
+            "successAnnealer": "Operation successful! Here are the top solutions (up to 10), retreived from 5000 measurements, sorted from best to worst energy:",
             "failure": "Something went wrong - unable to fetch response. If you're using DWave Advantage mode, check your internet connection, or try again."
         },
         "probabilitySubheading": "Probability distribution",

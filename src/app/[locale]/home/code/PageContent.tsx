@@ -40,7 +40,8 @@ export default async function PageContent({ userId, locale, translate }: PageCon
         consoleOutput: {
             idle: translate("code.consoleOutput.idle"),
             loading: translate("code.consoleOutput.loading"),
-            success: translate("code.consoleOutput.success"),
+            successSimulator: translate("code.consoleOutput.successSimulator"),
+            successAnnealer: translate("code.consoleOutput.successAnnealer"),
             failure: translate("code.consoleOutput.failure"),
         },
         probabilitySubheading: translate("code.probabilitySubheading"),
@@ -97,7 +98,7 @@ export default async function PageContent({ userId, locale, translate }: PageCon
                             responseSubheadingsAnnealer: strings.responseSubheadings.annealer,
                             consoleOutputIdle: strings.consoleOutput.idle,
                             consoleOutputLoading: strings.consoleOutput.loading,
-                            consoleOutputSuccess: strings.consoleOutput.success,
+                            consoleOutputSuccess: strings.consoleOutput.successAnnealer,
                             consoleOutputFailure: strings.consoleOutput.failure,
                         }}    
                     />
