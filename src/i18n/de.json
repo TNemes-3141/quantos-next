@@ -131,7 +131,6 @@
     },
     "stats": {
         "heading": "Statistiken",
-        "percentFormat": "{{ value }}%",
         "activityDataNote": "Nutzungsdaten, die älter als 30 Tage alt sind, werden automatisch gelöscht (Fortschrittsanzeigen ausgenommen).",
         "weekdays": {
             "monday": "Mo",
@@ -160,6 +159,33 @@
             "description": "pro Kapitel"
         }
     },
+    "code": {
+        "heading": "Coding",
+        "headerText": "Bist du bereit, die Dinge selbst in die Hand zu nehmen? Schicke deine Hamilton-Matrizen an unseren Simulator oder einen echten DWave-Quantenannealer und nutze die Ergebnisse, um Probleme zu lösen, die noch niemand zuvor versucht hat!",
+        "tabs": {
+            "simulator": "Simulator",
+            "annealer": "DWave Advantage"
+        },
+        "inputSubheading": "Eingaben",
+        "apiTokenLabel": "Dein API-Token",
+        "apiTokenPlaceholder": "Füge deinen Token hier ein",
+        "hamiltonianLabel": "Hamilton-Matrix",
+        "defaultZerosNote": "Beim Senden werden leere Felder auf 0 gesetzt.",
+        "sendButtonLabel": "Senden",
+        "responseSubheadings": {
+            "simulator": "Antwort des Simulators",
+            "annealer": "Antwort des DWave-Annealers"
+        },
+        "consoleOutput": {
+            "idle": "Warte auf Eingabe.",
+            "loading": "Warte auf Antwort des Servers...",
+            "success": "Ausführung erfolgreich! Hier sind die besten Lösungen (bis zu 5), sortiert von der besten bis zur schlechtesten Energie:",
+            "failure": "Etwas ist schief gelaufen - Antwort kann nicht abgerufen werden. Wenn du den DWave Advantage-Modus verwendest, überprüfe deine Internetverbindung oder versuche es erneut."
+        },
+        "probabilitySubheading": "Wahrscheinlichkeitsverteilung",
+        "probabilitySliderLabel": "{{ value }} Millikelvin",
+        "probabilityDescription": "Dies simuliert, wie wahrscheinlich die einzelnen Ergebnisse auf einem echten Quantenannealer wären, von der besten bis zur schlechtesten Lösung. Bei dieser Temperatur der QPU beträgt die Wahrscheinlichkeit der besten Lösung für dein Problem {{ percentage }}."
+    },
     "error": {
         "pageText": "Sorry! Etwas ist schief gelaufen...",
         "pageCta": "Zurück zur Startseite",
@@ -179,5 +205,6 @@
         "helpCenter": "Hilfe-Center"
     },
     "backButtonLabel": "Zurück",
-    "closeButtonLabel": "Schließen"
+    "closeButtonLabel": "Schließen",
+    "percentFormat": "{{ value }}%"
 }

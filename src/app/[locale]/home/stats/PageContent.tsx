@@ -35,7 +35,7 @@ export default async function PageContent({ userId, locale, translate}: PageCont
                 progress={Math.floor(aggregateChapterProgresses(stats.progressPerChapter) * 100)}
                 title={translate("stats.totalProgress.title")}
                 description={translate("stats.totalProgress.description")}
-                percentFormat={translate("stats.percentFormat")}
+                percentFormat={translate("percentFormat")}
             />
             <div className="flex space-x-2 justify-start items-center">
                 <TriangleAlert color="#e7184c" className="h-[1.2rem] w-[1.2rem] flex-shrink-0"/>
