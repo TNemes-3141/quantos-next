@@ -12,7 +12,7 @@ import { AgePage } from "./welcome-questions/AgePage";
 import { ExperiencePage } from "./welcome-questions/ExperiencePage";
 import { FinalPage } from "./welcome-questions/FinalPage";
 
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 import { Button } from "./shadcn-ui/button";
 import { ValidLocale } from "@/i18n";
 
@@ -35,6 +35,7 @@ const questionComponents: QuestionComponentType[] = [
 export default function WelcomeQuestionnaire(props: WelcomeQuestionnaireProps) {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [animationState, setAnimationState] = useState<"enter" | "exit">("enter");
+    const [loading, setLoading] = useState(false);
     const submitRef = useRef<HTMLButtonElement>(null);
     const totalQuestions = 6;
 
@@ -89,8 +90,13 @@ export default function WelcomeQuestionnaire(props: WelcomeQuestionnaireProps) {
                     <div></div>
                 }
                 {currentQuestion === totalQuestions - 1 ?
-                    <Link href={`/${props.locale}/home/learn`}> {/*TODO: Include locale */}
-                        <Button variant="default" className="px-4 py-2">{props.strings.finishButton}</Button>
+                    <Link href={`/${props.locale}/home/learn`}>
+                        <Button variant="default" className="px-4 py-2" onClick={() => setLoading(true)} disabled={loading}>
+                            {loading ?
+                                <Loader2 className="h-[1.2rem] w-[1.2rem] animate-spin" /> :
+                                props.strings.finishButton
+                            }
+                        </Button>
                     </Link> :
                     <Button variant="ghost" onClick={goToNextQuestion} className="px-4 py-2">
                         {props.strings.nextPageButton}
