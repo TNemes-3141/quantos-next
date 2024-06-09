@@ -21,6 +21,7 @@ import {
     FormMessage,
 } from "@/components/shadcn-ui/form"
 import { showPasswordAtomZero, showPasswordAtomOne } from "@/stores/showPasswordStore";
+import { ValidLocale } from "@/i18n";
 
 type SignUpFormProps = {
     emailLabel: string,
@@ -31,6 +32,7 @@ type SignUpFormProps = {
     showPasswordTooltip: string,
     hidePasswordTooltip: string,
     submitLabel: string,
+    locale: ValidLocale,
 }
 
 const formSchema = z.object({
@@ -68,7 +70,7 @@ export default function SignUpForm(props: SignUpFormProps) {
 
         setPasswordsNotMatching(false);
         onFormValid();
-        await signup(values.email, values.password);
+        await signup(values.email, values.password, props.locale);
         setLoading(false);
     }
 

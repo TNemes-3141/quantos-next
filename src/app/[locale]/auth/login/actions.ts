@@ -5,13 +5,14 @@ import { redirect } from 'next/navigation'
 
 import { createClient } from '@/lib/supabase/server'
 import { LoginResponse } from '@/lib/types'
+import { ValidLocale } from '@/i18n'
 
 type SubmitCredentialsResponse = {
   responseCode: LoginResponse,
   errorMessage: string | undefined,
 }
 
-export async function login(userEmail: string, userPassword: string): Promise<SubmitCredentialsResponse> {
+export async function login(userEmail: string, userPassword: string, locale: ValidLocale): Promise<SubmitCredentialsResponse> {
   const supabase = createClient();
 
   const data = {
@@ -32,8 +33,8 @@ export async function login(userEmail: string, userPassword: string): Promise<Su
     redirect('/error');
   }
 
-  revalidatePath('/home/learn', 'layout');
-  redirect('/home/learn');
+  revalidatePath(`${locale}/home/learn`, 'layout');
+  redirect(`${locale}/home/learn`);
   return {
     responseCode: LoginResponse.OK,
     errorMessage: undefined,

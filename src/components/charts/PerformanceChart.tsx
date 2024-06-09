@@ -28,7 +28,7 @@ export default function PerformanceChart({ data, dataPointLabel, weekdays }: Lin
     const [primaryColor, setPrimaryColor] = useState<string>('');
     const [foregroundColor, setForegroundColor] = useState<string>('');
     const [labels, setLabels] = useState<string[]>([]);
-    const { theme } = useTheme();
+    //const { theme } = useTheme();
 
     useEffect(() => {
         const rootStyles = getComputedStyle(document.documentElement);

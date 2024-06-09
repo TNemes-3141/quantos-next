@@ -24,6 +24,7 @@ export default function LogInCard(props: LocalizedProps) {
             </CardHeader>
             <CardContent>
                 <LogInForm
+                    locale={props.locale}
                     emailLabel={props.translate("auth.emailLabel")}
                     passwordLabel={props.translate("auth.passwordLabel")}
                     showPasswordTooltip={props.translate("auth.showPasswordTooltip")}

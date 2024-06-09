@@ -4,8 +4,9 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 import { createClient } from '@/lib/supabase/server'
+import { ValidLocale } from '@/i18n'
 
-export async function signup(userEmail: string, userPassword: string) {
+export async function signup(userEmail: string, userPassword: string, locale: ValidLocale) {
   const supabase = createClient();
 
   const data = {
@@ -21,6 +22,6 @@ export async function signup(userEmail: string, userPassword: string) {
 
   console.log("Signup successful!");
 
-  revalidatePath('/welcome', 'layout');
-  redirect('/welcome');
+  revalidatePath(`/${locale}/welcome`, 'layout');
+  redirect(`/${locale}/welcome`);
 }

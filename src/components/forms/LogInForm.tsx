@@ -22,6 +22,7 @@ import {
 } from "@/components/shadcn-ui/form"
 import { showPasswordAtomTwo } from "@/stores/showPasswordStore";
 import { LoginResponse } from "@/lib/types";
+import { ValidLocale } from "@/i18n";
 
 type LogInFormProps = {
     emailLabel: string,
@@ -32,6 +33,7 @@ type LogInFormProps = {
     errorTitle: string,
     errorText: string,
     errorCloseButton: string,
+    locale: ValidLocale
 }
 
 const formSchema = z.object({
@@ -55,7 +57,7 @@ export default function LogInForm(props: LogInFormProps) {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         setLoading(true);
-        const r = await login(values.email, values.password);
+        const r = await login(values.email, values.password, props.locale);
 
         if (r && r.responseCode == LoginResponse.AUTH_API_ERROR && openDialogButtonRef.current) {
             setErrorText(props.errorText + " " + r.errorMessage ?? "");

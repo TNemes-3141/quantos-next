@@ -22,6 +22,7 @@ export default function SignUpCard(props: LocalizedProps) {
             </CardHeader>
             <CardContent>
                 <SignUpForm
+                    locale={props.locale}
                     emailLabel={props.translate("auth.emailLabel")}
                     passwordLabel={props.translate("auth.passwordLabel")}
                     passwordConfirmLabel={props.translate("auth.passwordConfirmLabel")}
