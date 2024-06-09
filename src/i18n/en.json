@@ -203,6 +203,15 @@
         "probabilitySliderLabel": "{{ value }} millikelvin",
         "probabilityDescription": "This simulates how likely you would get each result on a real quantum annealer, from best to worst. At this temparature of the QPU, the best solution to your problem has a {{ percentage }} chance to be found."
     },
+    "settings": {
+        "heading": "Settings",
+        "convertAnonymous": {
+            "title": "Convert anonymous sign-in to permanent account",
+            "description": "You have registered with an access code that remains valid for 30 days. If you want to use Quantos for longer and maintain your progress, you can convert your account to a permanent one.",
+            "buttonLabel": "Convert account"
+        },
+        "logOutButtonLabel": "Log out"
+    },
     "error": {
         "pageText": "Oops, sorry! Something went wrong...",
         "pageCta": "Back to the starting page",

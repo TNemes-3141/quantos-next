@@ -203,6 +203,15 @@
         "probabilityDescription": "Dies simuliert, wie wahrscheinlich die einzelnen Ergebnisse auf einem echten Quantenannealer wären, von der besten bis zur schlechtesten Lösung. Bei dieser Temperatur der QPU beträgt die Wahrscheinlichkeit der besten Lösung für dein Problem {{ percentage }}.",
         "probabilityBarLabel": "Wahrscheinlichkeit (%)"
     },
+    "settings": {
+        "heading": "Einstellungen",
+        "convertAnonymous": {
+            "title": "Anonymes Login zu dauerhaftem Konto umwandeln",
+            "description": "Du hast dich mit einem Zugangscode angemeldet, welcher 30 Tage gültig bleibt. Willst du Quantos länger verwenden und dabei deinen Fortschritt beibehalten, kannst du deinen Account in ein dauerhaftes umwandeln.",
+            "buttonLabel": "Konto umwandeln"
+        },
+        "logOutButtonLabel": "Ausloggen"
+    },
     "error": {
         "pageText": "Sorry! Etwas ist schief gelaufen...",
         "pageCta": "Zurück zur Startseite",
