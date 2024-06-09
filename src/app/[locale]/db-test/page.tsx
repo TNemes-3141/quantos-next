@@ -8,19 +8,19 @@ import { Button } from "@/components/shadcn-ui/button";
 
 
 export default function Home() {
-    /*const post = async () => {
+    const post = async () => {
         const supabase = createClient();
 
-        const { data, error } = await supabase.rpc('generate_random_code', { team_name: "Fraunhofer TTO", expiry: 60, num_codes: 5 });
+        const { data, error } = await supabase.rpc('generate_random_code', { team_name: "Zsófi", expiry: 60, num_codes: 5 });
         console.log(data);
-    }*/
+    }
 
     /*const post = async () => {
         postOutline();
         console.log("Done!");
     }*/
 
-    const post = async () => {
+    /*const post = async () => {
         try {
             const hamiltonian = [[-1, 0, 3],[0, -1, 0],[0, 0, -1]];
             console.log(hamiltonian);
@@ -30,7 +30,7 @@ export default function Home() {
         } catch (error) {
             console.error('Error:', error);
         }
-    };
+    };*/
 
     return (
         <Button onClick={post}>Senden</Button>

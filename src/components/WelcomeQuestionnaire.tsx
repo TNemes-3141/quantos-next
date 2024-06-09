@@ -14,9 +14,11 @@ import { FinalPage } from "./welcome-questions/FinalPage";
 
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "./shadcn-ui/button";
+import { ValidLocale } from "@/i18n";
 
 
 type WelcomeQuestionnaireProps = {
+    locale: ValidLocale
     strings: WelcomeLocalizedStrings,
     setProgress: any,
 }
@@ -87,7 +89,7 @@ export default function WelcomeQuestionnaire(props: WelcomeQuestionnaireProps) {
                     <div></div>
                 }
                 {currentQuestion === totalQuestions - 1 ?
-                    <Link href={"/home/learn"}>
+                    <Link href={`/${props.locale}/home/learn`}> {/*TODO: Include locale */}
                         <Button variant="default" className="px-4 py-2">{props.strings.finishButton}</Button>
                     </Link> :
                     <Button variant="ghost" onClick={goToNextQuestion} className="px-4 py-2">

@@ -6,7 +6,8 @@ import { eq, and, gte, lt } from "drizzle-orm";
 import { createClient } from "@/lib/supabase/server";
 import { db } from "@/lib/database/db";
 import { chapters, lessons, progressRecords, activityRecords, activityTypeEnum } from "@/lib/database/schema";
-import { LessonContent,
+import {
+    LessonContent,
     LessonContentElement,
     OutlineElement,
     ParagraphElement,
@@ -31,7 +32,10 @@ export async function createProgressEntryIfNotPresent(userId: string, lessonId: 
             columns: {
                 id: true,
             },
-            where: eq(progressRecords.lesson, lessonId),
+            where: and(
+                eq(progressRecords.lesson, lessonId),
+                eq(progressRecords.user, userId)
+            ),
         });
         if (existingProgressEntry) {
             return;
@@ -68,7 +72,10 @@ export async function updateProgress(userId: string, lessonId: string, newProgre
             columns: {
                 progress: true,
             },
-            where: eq(progressRecords.lesson, lessonId),
+            where: and(
+                eq(progressRecords.lesson, lessonId),
+                eq(progressRecords.user, userId)
+            ),
         });
         if (!existingProgressEntry) {
             return;
@@ -93,7 +100,7 @@ export async function updateProgress(userId: string, lessonId: string, newProgre
         const allLessonIds = [lessonId, ...lesson.linkedLessons];
         for (const id of allLessonIds) {
             await db.update(progressRecords)
-                .set({progress: newProgress})
+                .set({ progress: newProgress })
                 .where(and(eq(progressRecords.user, userId), eq(progressRecords.lesson, id)));
         }
 
@@ -199,7 +206,7 @@ function parseOutlineElements(jsonData: any): OutlineElement[] {
 }
 
 function parseLessonContent(jsonData: any): LessonContentElement[][] {
-    return jsonData.pages.map((page: any) => 
+    return jsonData.pages.map((page: any) =>
         page.elements.map((element: any) => {
             const typeStrings = (element.type as String).split(":");
 

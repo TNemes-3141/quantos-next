@@ -65,21 +65,23 @@ async function anonymousSignIn(dbResponse: DbAccessCodeResponse, code: string, l
   const { data, error } = await supabase.auth.signInAnonymously()
 
   if (error) {
-    redirect(`${locale}/error`);
+    console.log(error);
+    redirect(`/error`);
   }
 
   if (dbResponse == DbAccessCodeResponse.OK_NEW_USER) {
     try {
       await db.insert(userData).values({ userId: data.user!.id, registeredAccessCode: code});
     } catch (error) {
-      redirect(`${locale}/error`);
+      console.log(error);
+      redirect(`/error`);
     }
 
-    revalidatePath(`${locale}/welcome`, 'layout');
-    redirect(`${locale}/welcome`);
+    revalidatePath(`/${locale}/welcome`, 'layout');
+    redirect(`/${locale}/welcome`); //TODO: Fix this
   }
   else {
-    revalidatePath(`${locale}/home/learn`, 'layout');
-    redirect(`${locale}/home/learn`);
+    revalidatePath(`/${locale}/home/learn`, 'layout');
+    redirect(`/${locale}/home/learn`);
   }
 }

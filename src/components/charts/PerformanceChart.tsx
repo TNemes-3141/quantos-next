@@ -53,17 +53,12 @@ export default function PerformanceChart({ data, dataPointLabel, weekdays }: Lin
             for (let i = 0; i < 7; i++) {
                 labels.push(weekDayNames[(dayOfWeek - 6 + i + 7) % 7]);
             }
-            console.log(labels);
 
             return labels;
         };
 
         setLabels(generateLabels());
     }, [weekdays]);
-
-    /*useEffect(() => {
-        
-    }, [theme]);*/
 
     const chartData = {
         labels,

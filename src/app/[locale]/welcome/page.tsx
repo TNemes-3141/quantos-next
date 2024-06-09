@@ -62,7 +62,7 @@ export default async function Home({
 
   return (
     <>
-      <PageContent strings={localizedStrings} userId={user.id} />
+      <PageContent strings={localizedStrings} userId={user.id} locale={validLocale}/>
       {/*<Footer locale={validLocale} translate={translate} />*/}
     </>
   );

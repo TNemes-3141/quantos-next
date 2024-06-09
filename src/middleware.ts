@@ -66,7 +66,17 @@ export async function middleware(request: NextRequest) {
         // Apply cookies and headers from the authentication middleware's response
         authResponse.headers.forEach((value, key) => combinedResponse.headers.set(key, value));
         authResponse.cookies.getAll().forEach((cookie) => combinedResponse.cookies.set(cookie));
+        
+        // Set locale cookie
+        combinedResponse.cookies.set('locale', matchedLocale);
+        
         return combinedResponse;
+    } else {
+        // Set locale cookie if locale is already present
+        const currentLocale = pathname.split('/')[1];
+        const response = NextResponse.next();
+        response.cookies.set('locale', currentLocale);
+        return response;
     }
 
     /*console.log("Headers:");

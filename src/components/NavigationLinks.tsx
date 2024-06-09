@@ -32,8 +32,15 @@ const getPathnameWithoutLocale = (path: string): string => {
     return path.substring(secondSlashIndex);
 }
 
+const getLocale = (path: string): string | undefined => {
+    const parts = path.split('/');
+    return parts[1] || undefined;
+}
+
 export default function NavigationLinks(props: NavigationLinksProps) {
-    const pathName = getPathnameWithoutLocale(usePathname());
+    const path = usePathname();
+    const pathName = getPathnameWithoutLocale(path);
+    const locale = getLocale(path);
     const isDesktop = useMediaQuery("(min-width: 768px)");
 
     const links: NavigationLink[] = [
@@ -70,7 +77,7 @@ export default function NavigationLinks(props: NavigationLinksProps) {
     return (
         <div className={cn("flex gap-4", props.orientation === "vertical" ? "flex-col justify-start" : " justify-around items-center")}>
             {links.map((link) => (
-                <Link key={link.name} href={link.href}>
+                <Link key={link.name} href={`${locale ? `${"/" + locale}` : ""}${link.href}`}> {/*TODO: Include locale */}
                     <div className={cn("flex gap-4 justify-center lg:justify-start items-center px-4 py-2 md:mx-4 rounded-md cursor-pointer",
                         pathName === link.href ? "bg-muted" : "hover:bg-card bg-transparent")}>
                         {isDesktop ? <TabIconAnimation
