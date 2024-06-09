@@ -25,28 +25,31 @@ export async function validateUser(): Promise<User> {
 }
 
 export async function submitSigninActivity(userId: string): Promise<void> {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    try {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
 
-    const existingActivityRecord = await db.query.activityRecords.findFirst({
-        columns: {
-            id: true
-        },
-        where: and(
-            eq(activityRecords.user, userId),
-            eq(activityRecords.activityType, activityTypeEnum.enumValues[0]),
-            gte(activityRecords.timestamp, today),
-            lt(activityRecords.timestamp, new Date(today.getTime() + 86400000)),
-        ),
-    });
+        const existingActivityRecord = await db.query.activityRecords.findFirst({
+            columns: {
+                id: true
+            },
+            where: and(
+                eq(activityRecords.user, userId),
+                eq(activityRecords.activityType, activityTypeEnum.enumValues[0]),
+                gte(activityRecords.timestamp, today),
+                lt(activityRecords.timestamp, new Date(today.getTime() + 86400000)),
+            ),
+        });
 
-    if (existingActivityRecord) {
-        console.log(`Already found an entry for this activity: ${existingActivityRecord.id}`)
-        return;
+        if (existingActivityRecord) {
+            return;
+        }
+
+        await db.insert(activityRecords).values({
+            user: userId,
+            activityType: activityTypeEnum.enumValues[0],
+        });
+    } catch (error) {
+        console.error(error);
     }
-
-    await db.insert(activityRecords).values({
-        user: userId,
-        activityType: activityTypeEnum.enumValues[0],
-    });
 }
