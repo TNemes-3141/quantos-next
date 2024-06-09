@@ -2,6 +2,7 @@
 
 import { createClient } from "@/lib/supabase/client";
 import { postOutline } from "./actions";
+import axios from 'axios';
 
 import { Button } from "@/components/shadcn-ui/button";
 
@@ -15,10 +16,121 @@ export default function Home() {
         console.log(data);
     }*/
 
-    const post = async () => {
+    /*const post = async () => {
         postOutline();
         console.log("Done!");
-    }
+    }*/
+
+    const post = async () => {
+        try {
+            const hamiltonian = [
+                [
+                    -8.0,
+                    8.0,
+                    8.0,
+                    8.0,
+                    1.9,
+                    1.9,
+                    8.0,
+                    1.2,
+                    1.2
+                ],
+                [
+                    0.0,
+                    -8.0,
+                    8.0,
+                    1.9,
+                    8.0,
+                    1.9,
+                    1.2,
+                    8.0,
+                    1.2
+                ],
+                [
+                    0.0,
+                    0.0,
+                    -8.0,
+                    1.9,
+                    1.9,
+                    8.0,
+                    1.2,
+                    1.2,
+                    8.0
+                ],
+                [
+                    0.0,
+                    0.0,
+                    0.0,
+                    -8.0,
+                    8.0,
+                    8.0,
+                    8.0,
+                    1.4,
+                    1.4
+                ],
+                [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    -8.0,
+                    8.0,
+                    1.4,
+                    8.0,
+                    1.4
+                ],
+                [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    -8.0,
+                    1.4,
+                    1.4,
+                    8.0
+                ],
+                [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    -8.0,
+                    8.0,
+                    8.0
+                ],
+                [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    -8.0,
+                    8.0
+                ],
+                [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    -8.0
+                ]
+            ];
+            const token = "DEV-26e55bfa2c93e9c1b22c85a124c9cf10d7b47a5a";
+            const response = await axios.post('/api/solve-hamiltonian', { hamiltonian, token });
+            console.log(response.data.solutions);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
 
     return (
         <Button onClick={post}>Senden</Button>

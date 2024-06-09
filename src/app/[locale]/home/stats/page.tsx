@@ -4,6 +4,7 @@ import PageContent from "./PageContent";
 import { ValidLocale, getTranslator } from "@/i18n";
 import { validateUser } from "@/lib/validateUser";
 
+
 export default async function Home({
   params,
 }: {
@@ -15,11 +16,11 @@ export default async function Home({
 
   return (
     <Layout locale={validLocale} translate={translate} withButtons={true}>
-        <PageContent
-            locale={validLocale}
-            userId={user.id}
-            translate={translate}
-        />
+      <PageContent
+        locale={validLocale}
+        userId={user.id}
+        translate={translate}
+      />
     </Layout>
   );
 }
