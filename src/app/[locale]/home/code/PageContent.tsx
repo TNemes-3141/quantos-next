@@ -44,6 +44,11 @@ export default async function PageContent({ userId, locale, translate }: PageCon
             successAnnealer: translate("code.consoleOutput.successAnnealer"),
             failure: translate("code.consoleOutput.failure"),
         },
+        columnHeaders: {
+            energy: translate("code.columnHeaders.energy"),
+            sample: translate("code.columnHeaders.sample"),
+            occurrences: translate("code.columnHeaders.occurrences"),
+        },
         probabilitySubheading: translate("code.probabilitySubheading"),
         probabilitySliderLabel: translate("code.probabilitySliderLabel"),
         probabilityDescription: translate("code.probabilityDescription"),
@@ -100,6 +105,9 @@ export default async function PageContent({ userId, locale, translate }: PageCon
                             consoleOutputLoading: strings.consoleOutput.loading,
                             consoleOutputSuccess: strings.consoleOutput.successAnnealer,
                             consoleOutputFailure: strings.consoleOutput.failure,
+                            columnHeaderEnergy: strings.columnHeaders.energy,
+                            columnHeaderSample: strings.columnHeaders.sample,
+                            columnHeaderOccurrences: strings.columnHeaders.occurrences,
                         }}    
                     />
                 </TabsContent>

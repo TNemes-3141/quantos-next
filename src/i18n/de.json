@@ -193,6 +193,11 @@
             "successAnnealer": "Ausführung erfolgreich! Hier sind die besten Lösungen (bis zu 10), erhalten aus 5000 Messungen und sortiert von der besten bis zur schlechtesten Energie:",
             "failure": "Etwas ist schief gelaufen - Antwort kann nicht abgerufen werden. Wenn du den DWave Advantage-Modus verwendest, überprüfe deine Internetverbindung oder versuche es erneut."
         },
+        "columnHeaders": {
+            "energy": "Energie",
+            "sample": "Messung",
+            "occurrences": "Häufigkeit"
+        },
         "probabilitySubheading": "Wahrscheinlichkeitsverteilung",
         "probabilitySliderLabel": "{{ value }} Millikelvin",
         "probabilityDescription": "Dies simuliert, wie wahrscheinlich die einzelnen Ergebnisse auf einem echten Quantenannealer wären, von der besten bis zur schlechtesten Lösung. Bei dieser Temperatur der QPU beträgt die Wahrscheinlichkeit der besten Lösung für dein Problem {{ percentage }}."

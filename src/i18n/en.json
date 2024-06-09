@@ -193,6 +193,11 @@
             "successAnnealer": "Operation successful! Here are the top solutions (up to 10), retreived from 5000 measurements, sorted from best to worst energy:",
             "failure": "Something went wrong - unable to fetch response. If you're using DWave Advantage mode, check your internet connection, or try again."
         },
+        "columnHeaders": {
+            "energy": "Energy",
+            "sample": "Sample",
+            "occurrences": "Occurrences"
+        },
         "probabilitySubheading": "Probability distribution",
         "probabilitySliderLabel": "{{ value }} millikelvin",
         "probabilityDescription": "This simulates how likely you would get each result on a real quantum annealer, from best to worst. At this temparature of the QPU, the best solution to your problem has a {{ percentage }} chance to be found."

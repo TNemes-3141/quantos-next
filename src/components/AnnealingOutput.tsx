@@ -30,6 +30,9 @@ type AnnealingOutputProps = {
     consoleOutputLoading: string,
     consoleOutputSuccess: string,
     consoleOutputFailure: string,
+    columnHeaderEnergy: string,
+    columnHeaderSample: string,
+    columnHeaderOccurrences: string,
 }
 
 export default function AnnealingOutput(props: AnnealingOutputProps) {
@@ -69,9 +72,9 @@ export default function AnnealingOutput(props: AnnealingOutputProps) {
                     <Table>
                         <TableHeader>
                             <TableRow>
-                                <TableHead>Energy</TableHead>
-                                <TableHead>Sample</TableHead>
-                                <TableHead>Occurrences</TableHead>
+                                <TableHead>{props.columnHeaderEnergy}</TableHead>
+                                <TableHead>{props.columnHeaderSample}</TableHead>
+                                <TableHead>{props.columnHeaderOccurrences}</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>

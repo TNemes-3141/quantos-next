@@ -29,6 +29,9 @@ type AnnealerInterfaceProps = {
         consoleOutputLoading: string,
         consoleOutputSuccess: string,
         consoleOutputFailure: string,
+        columnHeaderEnergy: string,
+        columnHeaderSample: string,
+        columnHeaderOccurrences: string,
     }
 }
 
@@ -93,6 +96,9 @@ export default function AnnealerInterface(props: AnnealerInterfaceProps) {
                 consoleOutputLoading={props.strings.consoleOutputLoading}
                 consoleOutputSuccess={props.strings.consoleOutputSuccess}
                 consoleOutputFailure={props.strings.consoleOutputFailure}
+                columnHeaderEnergy={props.strings.columnHeaderEnergy}
+                columnHeaderSample={props.strings.columnHeaderSample}
+                columnHeaderOccurrences={props.strings.columnHeaderOccurrences}
             />
         </div>
     );
