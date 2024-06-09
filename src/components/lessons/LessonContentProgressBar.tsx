@@ -18,7 +18,7 @@ export interface LessonContentProgressBarRef {
     setProgressToFullAndSave: (userId: string, lessonId: string) => void;
 }
 
-export const LessonContentProgressBar = forwardRef((props: LessonContentProgressBarProps, ref) => {
+const LessonContentProgressBar = forwardRef((props: LessonContentProgressBarProps, ref) => {
     const [completedSections, setCompletedSections] = useState(0);
     const [progressCurrent, setProgressCurrent] = useState(0);
 
@@ -78,3 +78,7 @@ export const LessonContentProgressBar = forwardRef((props: LessonContentProgress
         </div>
     );
 });
+
+LessonContentProgressBar.displayName = "LessonContentProgressBar";
+
+export default LessonContentProgressBar;

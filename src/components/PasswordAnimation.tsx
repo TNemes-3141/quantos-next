@@ -43,4 +43,6 @@ const PasswordAnimation = forwardRef((props: PasswordAnimationProps, ref) => {
     );
 });
 
+PasswordAnimation.displayName = "PasswordAnimation";
+
 export default PasswordAnimation;

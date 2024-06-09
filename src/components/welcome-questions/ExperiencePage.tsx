@@ -8,7 +8,7 @@ import { updateExperienceLevel } from "@/app/[locale]/welcome/actions";
 
 import { secondary_font } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
-import { ExperienceSelectionAnimation, ExperienceSelectionAnimationRef } from "../ExperienceSelectionAnimation";
+import ExperienceSelectionAnimation, { ExperienceSelectionAnimationRef } from "../ExperienceSelectionAnimation";
 import { Slider } from "../shadcn-ui/slider";
 import { Label } from "../shadcn-ui/label";
 

@@ -8,7 +8,7 @@ import { updateAgeGroup } from "@/app/[locale]/welcome/actions";
 
 import { secondary_font } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
-import { AgeSelectionAnimation, AgeSelectionAnimationRef } from "../AgeSelectionAnimation";
+import AgeSelectionAnimation, { AgeSelectionAnimationRef } from "../AgeSelectionAnimation";
 import { Slider } from "../shadcn-ui/slider";
 import { Label } from "../shadcn-ui/label";
 

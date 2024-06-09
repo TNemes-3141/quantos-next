@@ -33,6 +33,6 @@ export async function login(userEmail: string, userPassword: string, locale: Val
     redirect('/error');
   }
 
-  revalidatePath(`${locale}/home/learn`, 'layout');
-  redirect(`${locale}/home/learn`);
+  revalidatePath(`/${locale}/home/learn`, 'layout');
+  redirect(`/${locale}/home/learn`);
 }
