@@ -84,7 +84,7 @@ export default function AnnealingOutput(props: AnnealingOutputProps) {
                         <TableBody>
                             {Array.from(props.record.entries()).map((entry, index) => (
                                 <TableRow key={index}>
-                                    <TableCell>{entry.energy}</TableCell>
+                                    <TableCell>{entry.energy.toFixed(1)}</TableCell>
                                     <TableCell>{entry.solutionVector.vector.join(", ")}</TableCell>
                                     <TableCell>{entry.numOccurrences}</TableCell>
                                 </TableRow>

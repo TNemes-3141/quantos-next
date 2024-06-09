@@ -68,22 +68,29 @@ export default async function PageContent({ userId, locale, translate }: PageCon
                     <TabsTrigger value="annealer">{translate("code.tabs.annealer")}</TabsTrigger>
                 </TabsList>
                 <TabsContent value="simulator">
-                    {/*<SimulatorInterface
+                    <SimulatorInterface
                         strings={{
                             inputSubheading: strings.inputSubheading,
-                            hamiltonianLabel: strings.hamiltonianLabel,
-                            defaultZerosNote: strings.defaultZerosNote,
+                            hamiltonianLabel: strings.hamiltonianMatrixField.label,
+                            hamiltonianPlaceholder: strings.hamiltonianMatrixField.placeholder,
+                            hamiltonianInstruction: strings.hamiltonianMatrixField.instruction,
+                            hamiltonianError: strings.hamiltonianMatrixField.error,
                             sendButtonLabel: strings.sendButtonLabel,
+                            sendSuccessToast: strings.sendSuccessToast,
+                            resultsSubheading: strings.resultsSubheading,
                             responseSubheadingsSimulator: strings.responseSubheadings.simulator,
                             consoleOutputIdle: strings.consoleOutput.idle,
                             consoleOutputLoading: strings.consoleOutput.loading,
-                            consoleOutputSuccess: strings.consoleOutput.success,
+                            consoleOutputSuccess: strings.consoleOutput.successSimulator,
                             consoleOutputFailure: strings.consoleOutput.failure,
+                            columnHeaderEnergy: strings.columnHeaders.energy,
+                            columnHeaderSample: strings.columnHeaders.sample,
+                            columnHeaderOccurrences: strings.columnHeaders.occurrences,
                             probabilitySubheading: strings.probabilitySubheading,
                             probabilitySliderLabel: strings.probabilitySliderLabel,
                             probabilityDescription: strings.probabilityDescription,
                         }}
-                    />*/}
+                    />
                 </TabsContent>
                 <TabsContent value="annealer">
                     <AnnealerInterface

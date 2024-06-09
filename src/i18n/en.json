@@ -181,7 +181,7 @@
         },
         "sendButtonLabel": "Send",
         "sendSuccessToast": "Inputs submitted successfully!",
-        "resultsSubheading": "Ergebnisse",
+        "resultsSubheading": "Results",
         "responseSubheadings": {
             "simulator": "Response from the simulator",
             "annealer": "Response from the DWave annealer"
