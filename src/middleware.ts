@@ -68,15 +68,15 @@ export async function middleware(request: NextRequest) {
         authResponse.cookies.getAll().forEach((cookie) => combinedResponse.cookies.set(cookie));
         
         // Set locale cookie
-        combinedResponse.cookies.set('locale', matchedLocale);
+        //combinedResponse.cookies.set('locale', matchedLocale);
         
         return combinedResponse;
     } else {
         // Set locale cookie if locale is already present
-        const currentLocale = pathname.split('/')[1];
-        const response = NextResponse.next();
-        response.cookies.set('locale', currentLocale);
-        return response;
+        //const currentLocale = pathname.split('/')[1];
+        //const response = NextResponse.next();
+        //response.cookies.set('locale', currentLocale);
+        //return response;
     }
 
     /*console.log("Headers:");

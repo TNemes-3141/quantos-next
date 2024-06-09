@@ -52,6 +52,7 @@ export default async function PageContent({ userId, locale, translate }: PageCon
         probabilitySubheading: translate("code.probabilitySubheading"),
         probabilitySliderLabel: translate("code.probabilitySliderLabel"),
         probabilityDescription: translate("code.probabilityDescription"),
+        percentFormat: translate("percentFormat"),
     }
 
     return (
@@ -62,7 +63,7 @@ export default async function PageContent({ userId, locale, translate }: PageCon
             <p>
                 {translate("code.headerText")}
             </p>
-            <Tabs defaultValue="annealer" className="w-full max-w-[1200px]">
+            <Tabs defaultValue="simulator" className="w-full max-w-[1200px]">
                 <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="simulator">{translate("code.tabs.simulator")}</TabsTrigger>
                     <TabsTrigger value="annealer">{translate("code.tabs.annealer")}</TabsTrigger>
@@ -89,6 +90,7 @@ export default async function PageContent({ userId, locale, translate }: PageCon
                             probabilitySubheading: strings.probabilitySubheading,
                             probabilitySliderLabel: strings.probabilitySliderLabel,
                             probabilityDescription: strings.probabilityDescription,
+                            percentFormat: strings.percentFormat,
                         }}
                     />
                 </TabsContent>
