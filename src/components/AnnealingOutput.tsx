@@ -1,4 +1,5 @@
 import { SolutionRecord } from "qubo-embedder";
+import { OctagonX } from "lucide-react";
 
 import {
     Table,
@@ -50,9 +51,12 @@ export default function AnnealingOutput(props: AnnealingOutputProps) {
                 return props.consoleOutputSuccess;
             case OutputState.Failure:
                 return (
-                    <span className="text-destructive">
-                        {props.consoleOutputFailure}
-                    </span>
+                    <div className="flex space-x-2 justify-start items-center">
+                        <OctagonX color="#e7184c" className="h-[1.2rem] w-[1.2rem] flex-shrink-0" />
+                        <span className="text-destructive">
+                            {props.consoleOutputFailure}
+                        </span>
+                    </div>
                 );
             default:
                 return "";
