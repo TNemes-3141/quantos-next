@@ -200,7 +200,8 @@
         },
         "probabilitySubheading": "Wahrscheinlichkeitsverteilung",
         "probabilitySliderLabel": "{{ value }} Millikelvin",
-        "probabilityDescription": "Dies simuliert, wie wahrscheinlich die einzelnen Ergebnisse auf einem echten Quantenannealer wären, von der besten bis zur schlechtesten Lösung. Bei dieser Temperatur der QPU beträgt die Wahrscheinlichkeit der besten Lösung für dein Problem {{ percentage }}."
+        "probabilityDescription": "Dies simuliert, wie wahrscheinlich die einzelnen Ergebnisse auf einem echten Quantenannealer wären, von der besten bis zur schlechtesten Lösung. Bei dieser Temperatur der QPU beträgt die Wahrscheinlichkeit der besten Lösung für dein Problem {{ percentage }}.",
+        "probabilityBarLabel": "Wahrscheinlichkeit (%)"
     },
     "error": {
         "pageText": "Sorry! Etwas ist schief gelaufen...",

@@ -8,10 +8,11 @@ import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Lege
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 type ProbabilityDistributionChartProps = {
-    probabilities: number[]
+    probabilities: number[],
+    barLabel: string,
 }
 
-export default function ProbabilityDistributionChart({ probabilities }: ProbabilityDistributionChartProps) {
+export default function ProbabilityDistributionChart({ probabilities, barLabel }: ProbabilityDistributionChartProps) {
     const [primaryColor, setPrimaryColor] = useState<string>('');
     const [foregroundColor, setForegroundColor] = useState<string>('');
 
@@ -29,7 +30,7 @@ export default function ProbabilityDistributionChart({ probabilities }: Probabil
         labels: ['#1', '#2', '#3', '#4', '#5'],
         datasets: [
             {
-                label: 'Probability (%)',
+                label: barLabel,
                 data: paddedProbabilities.map(p => (p * 100).toFixed(1)),
                 backgroundColor: [`hsl(${primaryColor})`, 'rgba(0,0,0,0)'],
             },

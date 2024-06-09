@@ -17,6 +17,7 @@ type ProbabilityDistributionDisplayProps = {
     probabilitySubheading: string,
     probabilitySliderLabel: string,
     probabilityDescription: string,
+    probabilityBarLabel: string,
     percentFormat: string,
 }
 
@@ -63,7 +64,7 @@ export default function ProbabilityDistributionDisplay(props: ProbabilityDistrib
             <CardContent>
                 <div className="flex flex-col items-center gap-4">
                     {props.energies.length !== 0 ? <>
-                        <ProbabilityDistributionChart probabilities={probabilities}/>
+                        <ProbabilityDistributionChart probabilities={probabilities} barLabel={props.probabilityBarLabel}/>
                         <Slider
                             id="temp-slider"
                             onValueChange={(value) => setTemperature(value[0])}

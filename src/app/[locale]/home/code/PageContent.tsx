@@ -52,6 +52,7 @@ export default async function PageContent({ userId, locale, translate }: PageCon
         probabilitySubheading: translate("code.probabilitySubheading"),
         probabilitySliderLabel: translate("code.probabilitySliderLabel"),
         probabilityDescription: translate("code.probabilityDescription"),
+        probabilityBarLabel: translate("code.probabilityBarLabel"),
         percentFormat: translate("percentFormat"),
     }
 
@@ -90,6 +91,7 @@ export default async function PageContent({ userId, locale, translate }: PageCon
                             probabilitySubheading: strings.probabilitySubheading,
                             probabilitySliderLabel: strings.probabilitySliderLabel,
                             probabilityDescription: strings.probabilityDescription,
+                            probabilityBarLabel: strings.probabilityBarLabel,
                             percentFormat: strings.percentFormat,
                         }}
                     />

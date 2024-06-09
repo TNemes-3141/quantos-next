@@ -31,6 +31,7 @@ type SimulatorInterfaceProps = {
         probabilitySubheading: string,
         probabilitySliderLabel: string,
         probabilityDescription: string,
+        probabilityBarLabel: string,
         percentFormat: string,
     }
 }
@@ -97,6 +98,7 @@ export default function SimulatorInterface(props: SimulatorInterfaceProps) {
                 probabilitySubheading={props.strings.probabilitySubheading}
                 probabilitySliderLabel={props.strings.probabilitySliderLabel}
                 probabilityDescription={props.strings.probabilityDescription}
+                probabilityBarLabel={props.strings.probabilityBarLabel}
                 percentFormat={props.strings.percentFormat}
             />
         </div>
