@@ -167,11 +167,21 @@
             "annealer": "DWave Advantage"
         },
         "inputSubheading": "Inputs",
-        "apiTokenLabel": "Your API token",
-        "apiTokenPlaceholder": "Insert your token here",
-        "hamiltonianLabel": "Hamiltonian matrix",
-        "defaultZerosNote": "Upon sending, empty fields will be set to 0.",
+        "apiTokenField": {
+            "label": "Your API token",
+            "placeholder": "Insert your token here",
+            "instruction": "This is required to authenticate your requests to the quantum annealer.",
+            "error": "API token is required."
+        },
+        "hamiltonianMatrixField": {
+            "label": "Hamiltonian matrix",
+            "placeholder": "Example: [[1, 4], [0, 1]]",
+            "instruction": "Enter a square upper triangular matrix with the coefficients of your optimization problem.",
+            "error": "Must be a valid Hamilton matrix (square, zeros under the main diagonal, JSON format)."
+        },
         "sendButtonLabel": "Send",
+        "sendSuccessToast": "Inputs submitted successfully!",
+        "resultsSubheading": "Ergebnisse",
         "responseSubheadings": {
             "simulator": "Response from the simulator",
             "annealer": "Response from the DWave annealer"

@@ -167,11 +167,21 @@
             "annealer": "DWave Advantage"
         },
         "inputSubheading": "Eingaben",
-        "apiTokenLabel": "Dein API-Token",
-        "apiTokenPlaceholder": "Füge deinen Token hier ein",
-        "hamiltonianLabel": "Hamilton-Matrix",
-        "defaultZerosNote": "Beim Senden werden leere Felder auf 0 gesetzt.",
+        "apiTokenField": {
+            "label": "Dein API-Token",
+            "placeholder": "Füge deinen Token hier ein",
+            "instruction": "Dies wird benötigt, um deine Anfragen an den Quantenannealer zu authentifizieren.",
+            "error": "Ein API-Token ist erforderlich."
+        },
+        "hamiltonianMatrixField": {
+            "label": "Hamilton-Matrix",
+            "placeholder": "Beispiel: [[1, 4], [0, 1]]",
+            "instruction": "Gebe eine quadratische, obere Dreiecksmatrix mit den Koeffizienten deines Optimierungsproblems ein.",
+            "error": "Muss eine gültige Hamilton-Matrix sein (quadratisch, Nullen unter der Hauptdiagonale, JSON-Format)."
+        },
         "sendButtonLabel": "Senden",
+        "sendSuccessToast": "Eingaben erfolgreich abgeschickt!",
+        "resultsSubheading": "Ergebnisse",
         "responseSubheadings": {
             "simulator": "Antwort des Simulators",
             "annealer": "Antwort des DWave-Annealers"

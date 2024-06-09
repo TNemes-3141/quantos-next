@@ -18,11 +18,21 @@ type PageContentProps = LocalizedProps & {
 export default async function PageContent({ userId, locale, translate }: PageContentProps) {
     const strings = {
         inputSubheading: translate("code.inputSubheading"),
-        apiTokenLabel: translate("code.apiTokenLabel"),
-        apiTokenPlaceholder: translate("code.apiTokenPlaceholder"),
-        hamiltonianLabel: translate("code.hamiltonianLabel"),
-        defaultZerosNote: translate("code.defaultZerosNote"),
+        apiTokenField: {
+            label: translate("code.apiTokenField.label"),
+            placeholder: translate("code.apiTokenField.placeholder"),
+            instruction: translate("code.apiTokenField.instruction"),
+            error: translate("code.apiTokenField.error"),
+        },
+        hamiltonianMatrixField: {
+            label: translate("code.hamiltonianMatrixField.label"),
+            placeholder: translate("code.hamiltonianMatrixField.placeholder"),
+            instruction: translate("code.hamiltonianMatrixField.instruction"),
+            error: translate("code.hamiltonianMatrixField.error"),
+        },
+        sendSuccessToast: translate("code.sendSuccessToast"),
         sendButtonLabel: translate("code.sendButtonLabel"),
+        resultsSubheading: translate("code.resultsSubheading"),
         responseSubheadings: {
             simulator: translate("code.responseSubheadings.simulator"),
             annealer: translate("code.responseSubheadings.annealer"),
@@ -46,13 +56,13 @@ export default async function PageContent({ userId, locale, translate }: PageCon
             <p>
                 {translate("code.headerText")}
             </p>
-            <Tabs defaultValue="simulator" className="w-full max-w-[1200px]">
+            <Tabs defaultValue="annealer" className="w-full max-w-[1200px]">
                 <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="simulator">{translate("code.tabs.simulator")}</TabsTrigger>
                     <TabsTrigger value="annealer">{translate("code.tabs.annealer")}</TabsTrigger>
                 </TabsList>
                 <TabsContent value="simulator">
-                    <SimulatorInterface
+                    {/*<SimulatorInterface
                         strings={{
                             inputSubheading: strings.inputSubheading,
                             hamiltonianLabel: strings.hamiltonianLabel,
@@ -67,17 +77,23 @@ export default async function PageContent({ userId, locale, translate }: PageCon
                             probabilitySliderLabel: strings.probabilitySliderLabel,
                             probabilityDescription: strings.probabilityDescription,
                         }}
-                    />
+                    />*/}
                 </TabsContent>
                 <TabsContent value="annealer">
                     <AnnealerInterface
                         strings={{
                             inputSubheading: strings.inputSubheading,
-                            apiTokenLabel: strings.apiTokenLabel,
-                            apiTokenPlaceholder: strings.apiTokenPlaceholder,
-                            hamiltonianLabel: strings.hamiltonianLabel,
-                            defaultZerosNote: strings.defaultZerosNote,
+                            apiTokenLabel: strings.apiTokenField.label,
+                            apiTokenPlaceholder: strings.apiTokenField.placeholder,
+                            apiTokenInstruction: strings.apiTokenField.instruction,
+                            apiTokenError: strings.apiTokenField.error,
+                            hamiltonianLabel: strings.hamiltonianMatrixField.label,
+                            hamiltonianPlaceholder: strings.hamiltonianMatrixField.placeholder,
+                            hamiltonianInstruction: strings.hamiltonianMatrixField.instruction,
+                            hamiltonianError: strings.hamiltonianMatrixField.error,
                             sendButtonLabel: strings.sendButtonLabel,
+                            sendSuccessToast: strings.sendSuccessToast,
+                            resultsSubheading: strings.resultsSubheading,
                             responseSubheadingsAnnealer: strings.responseSubheadings.annealer,
                             consoleOutputIdle: strings.consoleOutput.idle,
                             consoleOutputLoading: strings.consoleOutput.loading,

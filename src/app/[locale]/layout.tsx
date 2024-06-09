@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Providers } from "./providers";
-import { primary_font } from "@/lib/fonts";
+import { Toaster } from "@/components/shadcn-ui/toaster";
 import "@/styles/globals.css"
 
+import { primary_font } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,6 +28,7 @@ export default function RootLayout({
           <div className="flex flex-col justify-between flex-grow">
             {children}
           </div>
+          <Toaster/>
         </Providers>
       </body>
     </html>

@@ -5,8 +5,8 @@ export async function POST(req: NextRequest) {
     try {
         const { hamiltonian, token } = await req.json();
 
-        console.log(hamiltonian);
-        console.log(token);
+        console.log("Got this hamiltonian: " + hamiltonian);
+        console.log("With this token: " + token);
 
         // Call the FastAPI backend
         const response = await axios.post('https://qubo-embedder-api-35541e21b105.herokuapp.com/solve_hamiltonian', {
