@@ -205,6 +205,7 @@
     },
     "settings": {
         "heading": "Settings",
+        "team": "belonging to {{ team }}",
         "convertAnonymous": {
             "title": "Convert anonymous sign-in to permanent account",
             "description": "You have registered with an access code that remains valid for 30 days. If you want to use Quantos for longer and maintain your progress, you can convert your account to a permanent one.",
