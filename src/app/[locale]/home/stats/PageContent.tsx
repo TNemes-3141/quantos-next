@@ -38,8 +38,8 @@ export default async function PageContent({ userId, locale, translate}: PageCont
                 percentFormat={translate("percentFormat")}
             />
             <div className="flex space-x-2 justify-start items-center">
-                <TriangleAlert color="#e7184c" className="h-[1.2rem] w-[1.2rem] flex-shrink-0"/>
-                <p className="text-destructive">{translate("stats.activityDataNote")}</p>
+                <TriangleAlert color="#B59C35" className="h-[1.2rem] w-[1.2rem] flex-shrink-0"/>
+                <p className="text-warning">{translate("stats.activityDataNote")}</p>
             </div>
             <div className="grid gap-4 grid-cols-1 md:grid-cols-[repeat(auto-fit,_minmax(500px,_1fr))]">
                 <StatCard title={translate("stats.performance.title")} description={translate("stats.performance.description")}>
