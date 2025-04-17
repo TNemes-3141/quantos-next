@@ -4,6 +4,9 @@
         "languageLabel": "Language:"
     },
     "auth": {
+        "trialDescription": "You can try Quantos for free as long as you want.",
+        "trialButtonLabel": "Try it",
+        "authenticateDescription": "Or, set up an account to save your progress:",
         "signUpDescription": "New here?",
         "signUpButtonLabel": "Sign up",
         "logInDescription": "Already on board?",

@@ -8,17 +8,17 @@ import { Button } from "@/components/shadcn-ui/button";
 
 
 export default function Home() {
-    const post = async () => {
+    /*const post = async () => {
         const supabase = createClient();
 
         const { data, error } = await supabase.rpc('generate_random_code', { team_name: "KZMK workshop", expiry: 30, num_codes: 30 });
         console.log(data);
-    }
-
-    /*const post = async () => {
-        postOutline();
-        console.log("Done!");
     }*/
+
+    const post = async () => {
+        await postOutline();
+        console.log("Done!");
+    }
 
     /*const post = async () => {
         try {

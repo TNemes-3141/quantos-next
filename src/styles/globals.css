@@ -31,6 +31,9 @@
     --destructive: 345 81% 50%;
     --destructive-foreground: 345 66% 92%;
 
+    --warning: 48 55% 46%;
+    --warning-foreground: 48 55% 46%;
+
     --ring: 215 20.2% 65.1%;
 }
 
@@ -62,6 +65,9 @@
 
     --destructive: 345 81% 50%;
     --destructive-foreground: 345 66% 92%;
+
+    --warning: 48 55% 46%;
+    --warning-foreground: 48 55% 46%;
 
     --ring: 215 20.2% 65.1%;
 }
