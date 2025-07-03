@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
 
         const response = await axios.post(
             'https://api.quantoslabs.com/solve_hamiltonian',
-            { hamiltonian },
+            { hamiltonian, label },
             {
                 headers: {
                     Authorization: API_TOKEN,
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
             num_occurrences: solution.num_occurrences,
         }));
 
-        return NextResponse.json({ label, solutions }, { status: 200 });
+        return NextResponse.json({ solutions }, { status: 200 });
 
     } catch (error) {
         console.error('Error calling FastAPI backend:', error);
