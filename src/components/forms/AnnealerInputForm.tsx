@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useState, useEffect } from "react";
 
 import { Button } from "../shadcn-ui/button";
 import {
@@ -35,6 +36,18 @@ type AnnealerInputFormProps = {
 
 export default function AnnealerInputForm(props: AnnealerInputFormProps) {
     const { toast } = useToast();
+    const [secondsLeft, setSecondsLeft] = useState(0);
+
+    // Countdown effect for button cooldown
+    useEffect(() => {
+        if (secondsLeft <= 0) {
+            return;
+        }
+        const timer = setTimeout(() => {
+            setSecondsLeft(secondsLeft - 1);
+        }, 1000);
+        return () => clearTimeout(timer);
+    }, [secondsLeft]);
 
     const matrixSchema = z
         .string()
@@ -73,6 +86,9 @@ export default function AnnealerInputForm(props: AnnealerInputFormProps) {
     };
 
     async function handleSubmit(data: z.infer<typeof FormSchema>) {
+        // Start 5-second cooldown
+        setSecondsLeft(5);
+
         const matrix = JSON.parse(data.matrix);
         toast({
             title: props.sendSuccessToast,
@@ -123,7 +139,9 @@ export default function AnnealerInputForm(props: AnnealerInputFormProps) {
                     )}
                 />
                 <div className="flex justify-center">
-                    <Button type="submit">{props.sendButtonLabel}</Button>
+                    <Button type="submit" disabled={secondsLeft > 0}>
+                        {secondsLeft > 0 ? secondsLeft : props.sendButtonLabel}
+                    </Button>
                 </div>
             </form>
         </Form>

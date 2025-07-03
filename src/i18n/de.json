@@ -178,7 +178,7 @@
         },
         "hamiltonianMatrixField": {
             "label": "Hamilton-Matrix",
-            "placeholder": "Beispiel: [[1, 4], [0, 1]]",
+            "placeholder": "Beispiel: [[-1, 3], [0, -1]]",
             "instruction": "Gebe eine quadratische, obere Dreiecksmatrix mit den Koeffizienten deines Optimierungsproblems ein.",
             "error": "Muss eine gültige Hamilton-Matrix sein (quadratisch, Nullen unter der Hauptdiagonale, JSON-Format)."
         },
