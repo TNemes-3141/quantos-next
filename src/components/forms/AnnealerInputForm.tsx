@@ -20,7 +20,7 @@ import { useToast } from "../shadcn-ui/use-toast";
 
 
 type AnnealerInputFormProps = {
-    onSubmit: (data: { token: string; hamiltonian: number[][] }) => Promise<void>;
+    onSubmit: (data: { label: string; hamiltonian: number[][] }) => Promise<void>;
     apiTokenLabel: string,
     apiTokenPlaceholder: string,
     apiTokenInstruction: string,
@@ -54,13 +54,11 @@ export default function AnnealerInputForm(props: AnnealerInputFormProps) {
             }
         }, props.hamiltonianError);
     const FormSchema = z.object({
-        token: z.string().min(1, props.apiTokenError),
         matrix: matrixSchema,
     });
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
-            token: "",
             matrix: "",
         },
     });
@@ -81,18 +79,18 @@ export default function AnnealerInputForm(props: AnnealerInputFormProps) {
             description: (
                 <pre className="mt-2 w-[340px] rounded-md bg-popover p-4">
                     <code className="text-popover-foreground break-words whitespace-pre-wrap">
-                        {formatJSON({ token: data.token, matrix })}
+                        {formatJSON({ matrix })}
                     </code>
                 </pre>
             ),
         });
-        await props.onSubmit({ token: data.token, hamiltonian: matrix });
+        await props.onSubmit({ label: "Quantos", hamiltonian: matrix });
     }
 
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(handleSubmit)} className="w-2/3 space-y-4">
-                <FormField
+                {/*<FormField
                     control={form.control}
                     name="token"
                     render={({ field }) => (
@@ -107,7 +105,7 @@ export default function AnnealerInputForm(props: AnnealerInputFormProps) {
                             <FormMessage />
                         </FormItem>
                     )}
-                />
+                />*/}
                 <FormField
                     control={form.control}
                     name="matrix"

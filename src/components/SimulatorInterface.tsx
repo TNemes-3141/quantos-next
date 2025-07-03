@@ -45,8 +45,17 @@ export default function SimulatorInterface(props: SimulatorInterfaceProps) {
         try {
             setOutputState(OutputState.Waiting);
             const simulator = Solver.simulator();
-            const qubo = Qubo.fromHamiltonian(Hamiltonian.fromList(hamiltonian))
-            const solution = await simulator.sampleQubo(qubo, 5);
+            const qubo = Qubo.fromHamiltonian(Hamiltonian.fromList(hamiltonian));
+            let recs = 0;
+            if (hamiltonian.length === 1) {
+                recs = 2;
+            } else if (hamiltonian.length === 2) {
+                recs = 4;
+            } else if (hamiltonian.length >= 2) {
+                recs = 5;
+            }
+
+            const solution = await simulator.sampleQubo(qubo, recs);
 
             const energies = Array.from(solution.entries()).map(entry => entry.energy);
 

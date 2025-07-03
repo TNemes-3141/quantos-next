@@ -39,11 +39,11 @@ export default function AnnealerInterface(props: AnnealerInterfaceProps) {
     const [outputState, setOutputState] = useState<OutputState>(OutputState.Standby);
     const [record, setRecord] = useState<SolutionRecord | null>(null);
 
-    const onSubmit = async (data: { token: string; hamiltonian: number[][] }) => {
+    const onSubmit = async (data: { label: string; hamiltonian: number[][] }) => {
         try {
             setOutputState(OutputState.Waiting);
-            const { token, hamiltonian } = data;
-            const response = await axios.post('/api/solve-hamiltonian', { hamiltonian, token });
+            const { label, hamiltonian } = data;
+            const response = await axios.post('/api/solve-hamiltonian', { hamiltonian, label });
 
             const solutions = response.data.solutions;
             const solutionRecord = new SolutionRecord(10); // Create a SolutionRecord with capacity 10
